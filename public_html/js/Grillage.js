@@ -696,8 +696,12 @@ function Grillage(idDiv) {
             //effacerContour(listeErreurSimple[i].x, listeErreurSimple[i].y);
         }
     }
+<<<<<<< HEAD
 
     var coordonneGrilleCourant;
+=======
+	
+>>>>>>> Hack clavier 3
     /**
      * Cette methode correspond à l'évenement faite quand on click dans la grille
      * @param {type} event
