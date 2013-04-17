@@ -40,6 +40,23 @@ function Grillage(idDiv) {
     buttonEnonce.innerHTML = "Enoncé";
     content.appendChild(buttonEnonce);
 
+
+    /*****************************************************************************
+     * @description Création du button "Corriger" qui servira à afficher le Corriger. 
+     * @type @exp;document@call;createElement
+     */
+    var buttonCorriger = document.createElement("button");
+    var styleButtonCorriger = "";
+    buttonCorriger.setAttribute("id", "buttonCorriger");
+    buttonCorriger.setAttribute("class", "buttonPoseurOperation");
+    buttonCorriger.setAttribute("style", styleButtonCorriger);
+    buttonCorriger.innerHTML = "Corriger";
+    content.appendChild(buttonCorriger);
+	
+    buttonCorriger.addEventListener('click', function(e) {
+    	lancerCorrectionSimple();
+    }, false);
+
     /*****************************************************************************
      * @description Création du button "Operateurn" qui servira à afficher la bare d'outils
      * @type @exp;document@call;createElement
@@ -524,7 +541,7 @@ function Grillage(idDiv) {
      * @param {type} x
      * @param {type} y
      */
-    function ceerCanvasCellule(x, y) {
+    function creerCanvasCellule(x, y) {
         var canvasCellule = document.createElement("canvas");
         var canvasCelluleGrille = "position: absolute;z-index: 2;margin-left: " + x + "px;margin-top: " + y + "px;background: #FFBDBD;opacity: 0.7;";
         canvasCellule.setAttribute("width", tailleCase);
@@ -582,6 +599,8 @@ function Grillage(idDiv) {
         KEY_ENTER = 13;
         KEY_ESC = 27;
         KEY_DEL = 46;
+		KEY_SUPPR = 8;
+		console.log(intKeyCode+' '+caractere)
         if (intKeyCode === KEY_ENTER) {
             return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "entrer", "type": "action"};
         }
@@ -591,58 +610,14 @@ function Grillage(idDiv) {
         if (intKeyCode === KEY_DEL) {
             return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "del", "type": "action"};
         }
-        if (intKeyCode >= 96 && intKeyCode <= 111 || intKeyCode === 187) {
-            switch (intKeyCode) {
-                case 96:
-                    return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "0", "type": "chiffre"};
-                    break;
-                case 97:
-                    return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "1", "type": "chiffre"};
-                    break;
-                case 98:
-                    return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "2", "type": "chiffre"};
-                    break;
-                case 99:
-                    return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "3", "type": "chiffre"};
-                    break;
-                case 100:
-                    return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "4", "type": "chiffre"};
-                    break;
-                case 101:
-                    return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "5", "type": "chiffre"};
-                    break;
-                case 102:
-                    return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "6", "type": "chiffre"};
-                    break;
-                case 103:
-                    return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "7", "type": "chiffre"};
-                    break;
-                case 104:
-                    return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "8", "type": "chiffre"};
-                    break;
-                case 105:
-                    return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "9", "type": "chiffre"};
-                    break;
-                case 106:
-                    return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "*", "type": "operateur"};
-                    break;
-                case 107:
-                    return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "+", "type": "operateur"};
-                    break;
-                case 109:
-                    return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "-", "type": "operateur"};
-                    break;
-                case 110:
-                    return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": ".", "type": "operateur"};
-                    break;
-                case 111:
-                    return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "/", "type": "operateur"};
-                    break;
-                case 187:
-                    return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "equal", "type": "operateur"};
-                    break;
-            }
-
+        if (intKeyCode === KEY_SUPPR) {
+            return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "del", "type": "action"};
+        }
+        if (expReg.test(caractere)) {
+			return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": caractere, "type": "chiffre"};
+		}
+		if(caractere=="+" || caractere=="-" || caractere=="*" || caractere=="/" || caractere=="," ){
+        	return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": caractere, "type": "operateur"};
         }
         if (intKeyCode >= 37 && intKeyCode <= 40) {
             switch (intKeyCode) {
@@ -660,13 +635,11 @@ function Grillage(idDiv) {
                     break;
             }
         }
-        if (expReg.test(caractere)) {
-            return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": String.fromCharCode(intKeyCode), "type": "chiffre"};
-        }
+
         if (intKeyCode >= 8 && intKeyCode <= 46) {
-            return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "notC", "type": "nonpriseencharge"};
+            return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": caractere, "type": "nonpriseencharge"};
         }
-        return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "notC", "type": "interdit"};
+        return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": caractere, "type": "interdit"};
 
 
     }
@@ -699,6 +672,298 @@ function Grillage(idDiv) {
 
     var coordonneGrilleCourant;
 
+    function traiterEntreeClavier(event) {
+        //On appelle la fonction clavier qui nous retourne un Object(intKeyCode,intAltKey,intCtrlKey,val,type)
+        var donnekey = clavier(event);
+        /**
+         * Selon la categorie on realise des actions
+         */
+        if (operationEnCours) {
+            switch (donnekey.type) {
+                /**
+                 * 
+                 */
+                case "chiffre":
+                    if (verifierQueLaCelluleEstActive(coordonneGrilleCourant.x, coordonneGrilleCourant.y)) {
+
+                        switch (typeOperation) {
+                            case 'addition':
+                                suiviCorrectionAddition(donnekey, coordonneGrilleCourant, dernierCelluleSelectionne);
+
+                                ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#000");
+
+                                break;
+                        }
+                        effacerDivForTooltip(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                        effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+
+                    } else {
+                        var message = '<img style="position: absolute;margin-left: -16px;margin-top: -8px;" src=\"./img/icone_erreur.png\"/>\n\
+                                <em style="margin-left: 15px;">Erreur : Vous ne pouvez pas ecrire dans cette zone.<br> Veuillez\n\
+                                ecrire dans les zone autorisé.</em>';
+                        var bgcolor = "#FF332F";
+                        var textcolor = "#FFFCFB";
+                        afficheMessageTooltip(coordonneGrilleCourant, message, bgcolor, textcolor);
+                        dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "red");
+                        listeErreurSimple.push({x: coordonneGrilleCourant.x, y: coordonneGrilleCourant.y});
+                    }
+                    break;
+                    /**
+                     * Dans cette categorie nous avons le touche Echap, Entrer et Delete
+                     * 
+                     */
+                case "operateur":
+                    switch (typeOperation) {
+                        case 'addition':
+                            switch (donnekey.val) {
+                                case "equal":
+
+                                    //suiviCorrectionAddition(donnekey, coordonneGrilleCourant, dernierCelluleSelectionne);
+                                    afficherResultatOperation("addition");
+                                    //ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#000");
+                                    break;
+								case ",":
+                                	ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#000");
+									
+                            }
+                            break;
+                    }
+                    effacerDivForTooltip(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                    effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                    break;
+                case "action":
+                    switch (donnekey.val) {
+                        /**
+                         * Delete efface l'ecriture d'une cellule selectionné
+                         */
+                        case "del":
+                            if (verifierQueLaCelluleEstActive(coordonneGrilleCourant.x, coordonneGrilleCourant.y)) {
+                                effacerEcritureUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                                effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                                dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
+                                ecrireDansUneCelluleAvecTransparance(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "", "white", "rgba(163, 209, 157, 0.3)");
+
+                            } else {
+                                var message = '<img style="position: absolute;margin-left: -16px;margin-top: -8px;" src=\"./img/icone_erreur.png\"/>\n\
+                                <em style="margin-left: 15px;">Erreur : Vous ne pouvez pas ecrire dans cette zone.<br> Veuillez\n\
+                                ecrire dans les zone autorisé.</em>';
+                                var bgcolor = "#FF332F";
+                                var textcolor = "#FFFCFB";
+                                afficheMessageTooltip(coordonneGrilleCourant, message, bgcolor, textcolor);
+                                dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "red");
+                                listeErreurSimple.push({x: coordonneGrilleCourant.x, y: coordonneGrilleCourant.y});
+                            }
+                            break;
+
+                        case "echap":
+                            effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                            effacerContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                            supprimerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                            break;
+                    }
+                    break;
+                    /**
+                     * Cette actegorie nous permet de deplacer le selectionneur de cellule grace aux touche directionnel
+                     * du clavier.
+                     */
+                case "direction":
+                    switch (donnekey.val) {
+                        case "droit":
+                            if (coordonneGrilleCourant.x >= 0 && coordonneGrilleCourant.x < 768) {
+                                dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                                coordonneGrilleCourant.x = coordonneGrilleCourant.x + tailleCase + 2;
+                                effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                                supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                                dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
+                                creerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                                dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                            }
+                            break;
+                        case "gauche":
+                            if (coordonneGrilleCourant.x > 0 && coordonneGrilleCourant.x <= 768) {
+                                dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                                coordonneGrilleCourant.x = coordonneGrilleCourant.x - tailleCase - 2;
+                                effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                                supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                                dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
+                                creerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                                dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                            }
+                            break;
+                        case "haut":
+                            if (coordonneGrilleCourant.y > 0 && coordonneGrilleCourant.x <= 480) {
+                                dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                                coordonneGrilleCourant.y = coordonneGrilleCourant.y - tailleCase - 2;
+                                effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                                supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                                dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
+                                creerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                                dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                            }
+                            break;
+                        case "bas":
+                            if (coordonneGrilleCourant.y >= 0 && coordonneGrilleCourant.y < 480) {
+                                dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                                coordonneGrilleCourant.y = coordonneGrilleCourant.y + tailleCase + 2;
+                                effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                                supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                                dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
+                                creerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                                dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                            }
+                            break;
+                    }
+                    break;
+                    /**
+                     * Cette catégorie est la liste de touche intergie, à l'anclachement un message s'affiche dans la grille
+                     * sous forme d'un tooltip qui signale à l'utilisateur d'utiliser les bonnes touche.
+                     * Le contour de la cellule devient rouge
+                     */
+                case "interdit":
+                    var message = '<img style="position: absolute;margin-left: -16px;margin-top: -8px;" src=\"./img/icone_erreur.png\"/>\n\
+                <em style="margin-left: 15px;">Erreur : seul les caractères numerique sont permise <br> dans cette cellule. \n\
+                Exemple : 0, 1, 2, 5 etc...</em>';
+                    var bgcolor = "#FF332F";
+                    var textcolor = "#FFFCFB";
+                    afficheMessageTooltip(coordonneGrilleCourant, message, bgcolor, textcolor);
+                    dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "red");
+                    listeErreurSimple.push({x: coordonneGrilleCourant.x, y: coordonneGrilleCourant.y});
+                    break;
+            }
+        } 
+		else {
+            switch (donnekey.type) {
+                /**
+                 * 
+                 */
+                case "chiffre":
+                    suiviCorrectionAddition(donnekey, coordonneGrilleCourant, dernierCelluleSelectionne);
+
+                    ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#000");
+
+                    effacerDivForTooltip(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                    effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                    listeErreurSimple.push({x: coordonneGrilleCourant.x, y: coordonneGrilleCourant.y});
+                    break;
+
+                case "operateur":
+                    suiviCorrectionAddition(donnekey, coordonneGrilleCourant, dernierCelluleSelectionne);
+
+                    ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#00F");
+
+
+                    effacerDivForTooltip(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                    effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                    listeErreurSimple.push({x: coordonneGrilleCourant.x, y: coordonneGrilleCourant.y});
+                    break;
+                    /**
+                     * Dans cette categorie nous avons le touche Echap, Entrer et Delete
+                     * 
+                     */
+                case "action":
+                    switch (donnekey.val) {
+                        /**
+                         * Delete efface l'ecriture d'une cellule selectionné
+                         */
+                        case "del":
+                            effacerEcritureUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                            effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                            dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
+                            break;
+
+                        case "echap":
+                            effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                            effacerContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                            supprimerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                            break;
+                    }
+                    break;
+                    /**
+                     * Cette actegorie nous permet de deplacer le selectionneur de cellule grace aux touche directionnel
+                     * du clavier.
+                     */
+                case "direction":
+                    switch (donnekey.val) {
+                        case "droit":
+                            if (coordonneGrilleCourant.x >= 0 && coordonneGrilleCourant.x < 768) {
+                                dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                                coordonneGrilleCourant.x = coordonneGrilleCourant.x + tailleCase + 2;
+                                effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                                supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                                dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
+                                creerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                                dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                            }
+                            break;
+                        case "gauche":
+                            if (coordonneGrilleCourant.x > 0 && coordonneGrilleCourant.x <= 768) {
+                                dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                                coordonneGrilleCourant.x = coordonneGrilleCourant.x - tailleCase - 2;
+                                effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                                supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                                dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
+                                creerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                                dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                            }
+                            break;
+                        case "haut":
+                            if (coordonneGrilleCourant.y > 0 && coordonneGrilleCourant.y <= 480) {
+                                dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                                coordonneGrilleCourant.y = coordonneGrilleCourant.y - tailleCase - 2;
+                                effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                                supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                                dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
+                                creerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                                dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                            }
+                            break;
+                        case "bas":
+                            if (coordonneGrilleCourant.y >= 0 && coordonneGrilleCourant.y < 480) {
+                                dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                                coordonneGrilleCourant.y = coordonneGrilleCourant.y + tailleCase + 2;
+                                effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                                supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                                dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
+                                creerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                                dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                            }
+                            break;
+                    }
+                    break;
+                    /**
+                     * Cette catégorie est la liste de touche intergie, à l'anclachement un message s'affiche dans la grille
+                     * sous forme d'un tooltip qui signale à l'utilisateur d'utiliser les bonnes touche.
+                     * Le contour de la cellule devient rouge
+                     */
+                case "interdit":
+                    var message = '<img style="position: absolute;margin-left: -16px;margin-top: -8px;" src=\"./img/icone_erreur.png\"/>\n\
+                <em style="margin-left: 15px;">Erreur : seul les caractères numerique sont permise <br> dans cette cellule. \n\
+                Exemple : 0, 1, 2, 5 etc...</em>';
+                    var bgcolor = "#FF332F";
+                    var textcolor = "#FFFCFB";
+                    afficheMessageTooltip(coordonneGrilleCourant, message, bgcolor, textcolor);
+                    dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "red");
+                    listeErreurSimple.push({x: coordonneGrilleCourant.x, y: coordonneGrilleCourant.y});
+                    break;
+            }
+        }
+    }
     /**
      * Cette methode correspond à l'évenement faite quand on click dans la grille
      * @param {type} event
@@ -725,7 +990,7 @@ function Grillage(idDiv) {
             //On dessine le contour au nouveau 
             dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
             //On crèe un element canvas au dessus
-            ceerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+            creerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
 
             effacerErreurTooltipSimple();
 
@@ -737,296 +1002,16 @@ function Grillage(idDiv) {
                 canvasCelluleSelectionne = cellule;
 
                 //Si on click sur le clavier
-                document.onkeydown = function(event) {
-                    //On appelle la fonction clavier qui nous retourne un Object(intKeyCode,intAltKey,intCtrlKey,val,type)
-                    var donnekey = clavier(event);
-                    /**
-                     * Selon la categorie on realise des actions
-                     */
-                    if (operationEnCours) {
-                        switch (donnekey.type) {
-                            /**
-                             * 
-                             */
-                            case "chiffre":
-                                if (verifierQueLaCelluleEstActive(coordonneGrilleCourant.x, coordonneGrilleCourant.y)) {
-
-                                    switch (typeOperation) {
-                                        case 'addition':
-                                            suiviCorrectionAddition(donnekey, coordonneGrilleCourant, dernierCelluleSelectionne);
-
-                                            ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#000");
-
-                                            break;
-                                    }
-                                    effacerDivForTooltip(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
-                                    effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-
-                                } else {
-                                    var message = '<img style="position: absolute;margin-left: -16px;margin-top: -8px;" src=\"./img/icone_erreur.png\"/>\n\
-                                            <em style="margin-left: 15px;">Erreur : Vous ne pouvez pas ecrire dans cette zone.<br> Veuillez\n\
-                                            ecrire dans les zone autorisé.</em>';
-                                    var bgcolor = "#FF332F";
-                                    var textcolor = "#FFFCFB";
-                                    afficheMessageTooltip(coordonneGrilleCourant, message, bgcolor, textcolor);
-                                    dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "red");
-                                    listeErreurSimple.push({x: coordonneGrilleCourant.x, y: coordonneGrilleCourant.y});
-                                }
-                                break;
-                                /**
-                                 * Dans cette categorie nous avons le touche Echap, Entrer et Delete
-                                 * 
-                                 */
-                            case "operateur":
-                                switch (typeOperation) {
-                                    case 'addition':
-                                        switch (donnekey.val) {
-                                            case "equal":
-
-                                                //suiviCorrectionAddition(donnekey, coordonneGrilleCourant, dernierCelluleSelectionne);
-                                                afficherResultatOperation("addition");
-                                                //ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#000");
-                                                break;
-                                        }
-                                        break;
-                                }
-                                effacerDivForTooltip(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
-                                effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                break;
-                            case "action":
-                                switch (donnekey.val) {
-                                    /**
-                                     * Delete efface l'ecriture d'une cellule selectionné
-                                     */
-                                    case "del":
-                                        if (verifierQueLaCelluleEstActive(coordonneGrilleCourant.x, coordonneGrilleCourant.y)) {
-                                            effacerEcritureUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                            effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                            dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
-                                            ecrireDansUneCelluleAvecTransparance(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "", "white", "rgba(163, 209, 157, 0.3)");
-
-                                        } else {
-                                            var message = '<img style="position: absolute;margin-left: -16px;margin-top: -8px;" src=\"./img/icone_erreur.png\"/>\n\
-                                            <em style="margin-left: 15px;">Erreur : Vous ne pouvez pas ecrire dans cette zone.<br> Veuillez\n\
-                                            ecrire dans les zone autorisé.</em>';
-                                            var bgcolor = "#FF332F";
-                                            var textcolor = "#FFFCFB";
-                                            afficheMessageTooltip(coordonneGrilleCourant, message, bgcolor, textcolor);
-                                            dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "red");
-                                            listeErreurSimple.push({x: coordonneGrilleCourant.x, y: coordonneGrilleCourant.y});
-                                        }
-                                        break;
-
-                                    case "echap":
-                                        effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                        effacerContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                        supprimerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                        break;
-                                }
-                                break;
-                                /**
-                                 * Cette actegorie nous permet de deplacer le selectionneur de cellule grace aux touche directionnel
-                                 * du clavier.
-                                 */
-                            case "direction":
-                                switch (donnekey.val) {
-                                    case "droit":
-                                        if (coordonneGrilleCourant.x >= 0 && coordonneGrilleCourant.x < 768) {
-                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
-                                            coordonneGrilleCourant.x = coordonneGrilleCourant.x + tailleCase + 2;
-                                            effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
-                                            supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
-                                            dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
-                                            ceerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
-                                        }
-                                        break;
-                                    case "gauche":
-                                        if (coordonneGrilleCourant.x > 0 && coordonneGrilleCourant.x <= 768) {
-                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
-                                            coordonneGrilleCourant.x = coordonneGrilleCourant.x - tailleCase - 2;
-                                            effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
-                                            supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
-                                            dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
-                                            ceerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
-                                        }
-                                        break;
-                                    case "haut":
-                                        if (coordonneGrilleCourant.y > 0 && coordonneGrilleCourant.x <= 480) {
-                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
-                                            coordonneGrilleCourant.y = coordonneGrilleCourant.y - tailleCase - 2;
-                                            effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
-                                            supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
-                                            dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
-                                            ceerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
-                                        }
-                                        break;
-                                    case "bas":
-                                        if (coordonneGrilleCourant.y >= 0 && coordonneGrilleCourant.y < 480) {
-                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
-                                            coordonneGrilleCourant.y = coordonneGrilleCourant.y + tailleCase + 2;
-                                            effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
-                                            supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
-                                            dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
-                                            ceerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
-                                        }
-                                        break;
-                                }
-                                break;
-                                /**
-                                 * Cette catégorie est la liste de touche intergie, à l'anclachement un message s'affiche dans la grille
-                                 * sous forme d'un tooltip qui signale à l'utilisateur d'utiliser les bonnes touche.
-                                 * Le contour de la cellule devient rouge
-                                 */
-                            case "interdit":
-                                var message = '<img style="position: absolute;margin-left: -16px;margin-top: -8px;" src=\"./img/icone_erreur.png\"/>\n\
-                            <em style="margin-left: 15px;">Erreur : seul les caractères numerique sont permise <br> dans cette cellule. \n\
-                            Exemple : 0, 1, 2, 5 etc...</em>';
-                                var bgcolor = "#FF332F";
-                                var textcolor = "#FFFCFB";
-                                afficheMessageTooltip(coordonneGrilleCourant, message, bgcolor, textcolor);
-                                dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "red");
-                                listeErreurSimple.push({x: coordonneGrilleCourant.x, y: coordonneGrilleCourant.y});
-                                break;
-                        }
-                    } else {
-                        switch (donnekey.type) {
-                            /**
-                             * 
-                             */
-                            case "chiffre":
-                                suiviCorrectionAddition(donnekey, coordonneGrilleCourant, dernierCelluleSelectionne);
-
-                                ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#000");
-
-                                effacerDivForTooltip(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
-                                effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                listeErreurSimple.push({x: coordonneGrilleCourant.x, y: coordonneGrilleCourant.y});
-                                break;
-
-                            case "operateur":
-                                suiviCorrectionAddition(donnekey, coordonneGrilleCourant, dernierCelluleSelectionne);
-
-                                ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#00F");
-
-
-                                effacerDivForTooltip(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
-                                effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                listeErreurSimple.push({x: coordonneGrilleCourant.x, y: coordonneGrilleCourant.y});
-                                break;
-                                /**
-                                 * Dans cette categorie nous avons le touche Echap, Entrer et Delete
-                                 * 
-                                 */
-                            case "action":
-                                switch (donnekey.val) {
-                                    /**
-                                     * Delete efface l'ecriture d'une cellule selectionné
-                                     */
-                                    case "del":
-                                        effacerEcritureUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                        effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                        dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
-                                        break;
-
-                                    case "echap":
-                                        effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                        effacerContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                        supprimerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                        break;
-                                }
-                                break;
-                                /**
-                                 * Cette actegorie nous permet de deplacer le selectionneur de cellule grace aux touche directionnel
-                                 * du clavier.
-                                 */
-                            case "direction":
-                                switch (donnekey.val) {
-                                    case "droit":
-                                        if (coordonneGrilleCourant.x >= 0 && coordonneGrilleCourant.x < 768) {
-                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
-                                            coordonneGrilleCourant.x = coordonneGrilleCourant.x + tailleCase + 2;
-                                            effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
-                                            supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
-                                            dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
-                                            ceerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
-                                        }
-                                        break;
-                                    case "gauche":
-                                        if (coordonneGrilleCourant.x > 0 && coordonneGrilleCourant.x <= 768) {
-                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
-                                            coordonneGrilleCourant.x = coordonneGrilleCourant.x - tailleCase - 2;
-                                            effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
-                                            supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
-                                            dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
-                                            ceerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
-                                        }
-                                        break;
-                                    case "haut":
-                                        if (coordonneGrilleCourant.y > 0 && coordonneGrilleCourant.y <= 480) {
-                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
-                                            coordonneGrilleCourant.y = coordonneGrilleCourant.y - tailleCase - 2;
-                                            effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
-                                            supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
-                                            dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
-                                            ceerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
-                                        }
-                                        break;
-                                    case "bas":
-                                        if (coordonneGrilleCourant.y >= 0 && coordonneGrilleCourant.y < 480) {
-                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
-                                            coordonneGrilleCourant.y = coordonneGrilleCourant.y + tailleCase + 2;
-                                            effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
-                                            supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
-                                            dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
-                                            ceerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
-                                        }
-                                        break;
-                                }
-                                break;
-                                /**
-                                 * Cette catégorie est la liste de touche intergie, à l'anclachement un message s'affiche dans la grille
-                                 * sous forme d'un tooltip qui signale à l'utilisateur d'utiliser les bonnes touche.
-                                 * Le contour de la cellule devient rouge
-                                 */
-                            case "interdit":
-                                var message = '<img style="position: absolute;margin-left: -16px;margin-top: -8px;" src=\"./img/icone_erreur.png\"/>\n\
-                            <em style="margin-left: 15px;">Erreur : seul les caractères numerique sont permise <br> dans cette cellule. \n\
-                            Exemple : 0, 1, 2, 5 etc...</em>';
-                                var bgcolor = "#FF332F";
-                                var textcolor = "#FFFCFB";
-                                afficheMessageTooltip(coordonneGrilleCourant, message, bgcolor, textcolor);
-                                dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "red");
-                                listeErreurSimple.push({x: coordonneGrilleCourant.x, y: coordonneGrilleCourant.y});
-                                break;
-                        }
-                    }
-                };
+				
+				//Hack pour safari et chrome
+				if(window.devicePixelRatio) {
+					document.onkeypress = function(eventClavier) {traiterEntreeClavier(eventClavier);}
+				}
+				//Hack pour firefox
+				else{
+					document.onkeydown = function(eventClavier) {traiterEntreeClavier(eventClavier);}
+				}   
             }
-            ;
             dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
             dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
         } else {
@@ -1093,6 +1078,11 @@ function Grillage(idDiv) {
 
         }
     }
+	
+	
+	function lancerCorrectionSimple(){
+		console.log(TableauDesCelluleAutorise);
+	}
     /****************************************************************************************
      * @description  Cette fonction prend en entrer un canvas et dessine la flèche du tooltip
      * @param {type} canvasToolTip
@@ -1217,7 +1207,7 @@ function Grillage(idDiv) {
     var positionInitialPourPoserUneOperation = {x: postXContante, y: postYContante};
 
     /***********************************************************************************************
-     * @description Cette fonction nous permet d'afficher l'opération
+     * @description Cette fonction nous permet d'afficher ¬l'opération
      * @param {type} Addition
      * @returns {undefined}
      */
