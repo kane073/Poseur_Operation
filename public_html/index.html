@@ -1,0 +1,38 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Poseur d'operation</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="css/poseuroperation.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="js/excanvas.js"></script>
+        
+        <script type="text/javascript" src="js/Grillage.js"></script>
+        <script type="text/javascript" src="js/Nombre.js"></script>
+        <script type="text/javascript" src="js/Addition.js"></script>
+        
+    </head>
+    <body>
+        <div id="cercle">
+            
+        </div>
+        <div id="operation">
+
+        </div>
+        
+        <script type="text/javascript">
+            var grille = new Grillage("operation");
+            var addition = new Addition(2678.545,42.819,987.825);
+            addition.resoudreAddition();
+            // console.log(addition.getRetenues());
+            console.log(addition.getResultat().getPartieEntiere(),addition.getResultat().getPartieDecimale());
+            grille.poserOparationAddition(addition);
+            
+            
+        </script>
+        <script type="text/javascript" src="js/AnimationGrillage.js"></script>
+    </body>
+</html>
