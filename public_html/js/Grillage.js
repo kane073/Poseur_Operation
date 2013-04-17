@@ -698,6 +698,10 @@ function Grillage(idDiv) {
     }
 
     var coordonneGrilleCourant;
+<<<<<<< HEAD
+=======
+	
+>>>>>>> This reverts commit 658124100667928bac6da310d5b0cef13f0a677c.
     /**
      * Cette methode correspond à l'évenement faite quand on click dans la grille
      * @param {type} event
