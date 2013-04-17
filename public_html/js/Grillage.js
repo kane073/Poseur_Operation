@@ -13,8 +13,7 @@
  */
 function Grillage(idDiv) {
 
-    var listeErreurSimple = [];
-
+        
     /***************************************************************************
      * @description On applique un style au contenaire principal, 
      * @type @exp;document@call;getElementById
@@ -63,7 +62,11 @@ function Grillage(idDiv) {
             vuBareOutils = false;
         }
     }, false);
-
+    
+    /**
+     * @description Le div qui contient la bare d'outils cotament les chiffres et les opérateurs
+     * @type @exp;document@call;createElement
+     */
     var divoutil = document.createElement("div");
     var styleMenu = 'border:inset 5px #5cbeff;-moz-border-radius: 5px;-webkit-border-radius: 5px;\n\
                     border-radius: 5px;z-index: 5;margin-left: 390px;margin-top: -35px;\n\
@@ -92,6 +95,12 @@ function Grillage(idDiv) {
         console.log(positionBontton);
 
     };
+    /**
+     * @description Function pour obtenir les coordonnées dans le div du bare d'outils
+     * @param {type} x
+     * @param {type} y
+     * @returns {Grillage.getCoordonneButtonOutils.Objct(x,y)}
+     */
     function getCoordonneButtonOutils(x, y) {
         contextOutils.globalAlpha = 0.5;
 
@@ -168,7 +177,12 @@ function Grillage(idDiv) {
         contextOutils.globalAlpha = 1;
         contextOutils.fillRect(x, y, 37, 35);
     }
-
+    
+    /**
+     * @description Obtenir les coordonnées par rapport à l'interieur du div des menu
+     * @param {type} event
+     * @returns {Grillage.getSourisPositionMenuOutils.Anonym$16}
+     */
     function getSourisPositionMenuOutils(event) {
         var elementCanvas = canvasOutil;
         var ox = elementCanvas.scrollLeft - elementCanvas.offsetLeft;
@@ -232,7 +246,19 @@ function Grillage(idDiv) {
      * @type cellule contient un élément canvas sélectionné
      */
     var CanvasCelluleSelectionne;
-
+    
+    /**
+     * 
+     * @type Array
+     */
+    var listeErreurSimple = [];
+    
+    /**
+     * 
+     * @type Array Ce tableau contient les valeurs de chaque cellule à tout moment
+     */
+    var listeDonneeDeChaqueCellule = {};
+    
     /*******************************************************************************
      * Ici nous dessinons la grille et on stocke dans tableauDeGille les coordonnées 
      * de chaque cellule
@@ -242,13 +268,36 @@ function Grillage(idDiv) {
         for (var j = 0; j < parseInt(heightCanvas / tailleCase); j++) {
             contextCanvasGrille.fillRect(i * 32, j * 32, 30, 30);
             tableauDeGille.push({x: i * 32, y: j * 32});
+            listeDonneeDeChaqueCellule[String(i * 32)+"_"+String(j * 32)]= "";
         }
     }
+    
     /*******************************************************************************
      * On insert la div.grille dans le div.content 
      */
     content.appendChild(grille);
-
+    
+    /**
+     * @description Cette funtion nous retourne la valeur d'une cellule en lui passant en paramètre son coordonnée
+     * @param {type} x
+     * @param {type} y
+     * @returns {int}
+     */
+    function getValeurUneCellule(x,y){
+        return parseInt(listeDonneeDeChaqueCellule[String(x)+"_"+String(y)]);
+    }
+    
+    /***
+     * @description Cette function enregistre la valeur d'une 
+     * @param {type} x
+     * @param {type} y
+     * @param {type} val
+     */
+    function setValeurUneCellule(x,y,val){
+        listeDonneeDeChaqueCellule[String(x)+"_"+String(y)] = String(val);
+    }
+    
+    
     /*******************************************************************************
      * @description Cette fonction nous donnes la position de la sourcie par rapport 
      * à l'élement canvas.canvasGrille.
@@ -362,11 +411,13 @@ function Grillage(idDiv) {
      * @param {type} couleur
      */
     function ecrireDansUneCellule(x, y, caractere, couleur) {
+        EffacerLesDonneeCellule(x, y);
         contextCanvasGrille.fillStyle = couleur;
         contextCanvasGrille.textAlign = 'center';
         contextCanvasGrille.textBaseline = 'top';
         contextCanvasGrille.font = 'bold 25px sans-serif';
         contextCanvasGrille.fillText(caractere, x + 15, y);
+        setValeurUneCellule(x, y, caractere);
     }
     /**
      * 
@@ -377,6 +428,7 @@ function Grillage(idDiv) {
      * @param {type} couleurTransparence
      */
     function ecrireDansUneCelluleAvecTransparance(x, y, caractere, couleurText, couleurTransparence) {
+        EffacerEcritureUneCelluleException(x, y, couleurTransparence)
         contextCanvasGrille.fillStyle = couleurText;
         contextCanvasGrille.textAlign = 'center';
         contextCanvasGrille.textBaseline = 'top';
@@ -385,6 +437,7 @@ function Grillage(idDiv) {
 
         contextCanvasGrille.fillStyle = couleurTransparence;
         contextCanvasGrille.fillRect(x, y, 30, 30);
+        setValeurUneCellule(x, y, caractere);
     }
     /**
      * @description Cette fonction prend les coordonnées d'une cellule et efface le caractère ecrit à l'intérieur.
@@ -394,11 +447,19 @@ function Grillage(idDiv) {
     function EffacerEcritureUneCellule(x, y) {
         contextCanvasGrille.fillStyle = "#fff";
         contextCanvasGrille.fillRect(x, y, 30, 30);
+        setValeurUneCellule(x, y, "");
+    }
+    function EffacerEcritureUneCelluleException(x, y, couleur) {
+        contextCanvasGrille.fillStyle = couleur;
+        contextCanvasGrille.fillRect(x, y, 30, 30);
+        setValeurUneCellule(x, y, "");
     }
     function EffacerLesDonneeCellule(x, y) {
+        
         contextCanvasGrille.clearRect(x, y, 30, 30);
         contextCanvasGrille.fillStyle = "#fff";
         contextCanvasGrille.fillRect(x, y, 30, 30);
+        setValeurUneCellule(x, y, "");
     }
     function dessinerBaseOperation(x, y, couleur) {
 
@@ -588,7 +649,7 @@ function Grillage(idDiv) {
     function effacerErreurTooltipSimple() {
         for (i = 0; i < listeErreurSimple.length; i++) {
             effacerDivForTooltip(listeErreurSimple[i].x, listeErreurSimple[i].y);
-            effacerContour(listeErreurSimple[i].x, listeErreurSimple[i].y);
+            //effacerContour(listeErreurSimple[i].x, listeErreurSimple[i].y);
         }
     }
     /**
@@ -801,8 +862,7 @@ function Grillage(idDiv) {
                                 suiviCorrectionAddition(donnekey, coordonneGrilleCourant, DernierCelluleSelectionne);
 
                                 ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#000");
-
-
+                                
                                 effacerDivForTooltip(DernierCelluleSelectionne.x, DernierCelluleSelectionne.y);
                                 effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
                                 listeErreurSimple.push({x: coordonneGrilleCourant.x, y: coordonneGrilleCourant.y});
