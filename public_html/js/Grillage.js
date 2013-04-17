@@ -113,7 +113,7 @@ function Grillage(idDiv) {
                         break;
                     case "action":
                         if (positionBontton.val === "del") {
-                            EffacerEcritureUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                            effacerEcritureUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
                         }
                         if (positionBontton.val === "equal") {
 
@@ -128,7 +128,7 @@ function Grillage(idDiv) {
                         break;
                     case "action":
                         if (positionBontton.val === "del") {
-                            EffacerEcritureUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                            effacerEcritureUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
                         }
                         break;
 
@@ -283,13 +283,13 @@ function Grillage(idDiv) {
      * 
      * @type type Coordonnée de la dernière cellule selectionné dans la grille
      */
-    var DernierCelluleSelectionne = {x: 0, y: 0};
+    var dernierCelluleSelectionne = {x: 0, y: 0};
 
     /**
      * 
      * @type cellule contient un élément canvas sélectionné
      */
-    var CanvasCelluleSelectionne;
+    var canvasCelluleSelectionne;
 
     /**
      * 
@@ -455,7 +455,7 @@ function Grillage(idDiv) {
      * @param {type} couleur
      */
     function ecrireDansUneCellule(x, y, caractere, couleur) {
-        EffacerLesDonneeCellule(x, y);
+        effacerLesDonneeCellule(x, y);
         contextCanvasGrille.fillStyle = couleur;
         contextCanvasGrille.textAlign = 'center';
         contextCanvasGrille.textBaseline = 'top';
@@ -472,7 +472,7 @@ function Grillage(idDiv) {
      * @param {type} couleurTransparence
      */
     function ecrireDansUneCelluleAvecTransparance(x, y, caractere, couleurText, couleurTransparence) {
-        EffacerEcritureUneCelluleException(x, y, couleurTransparence)
+        effacerEcritureUneCelluleException(x, y, couleurTransparence)
         contextCanvasGrille.fillStyle = couleurText;
         contextCanvasGrille.textAlign = 'center';
         contextCanvasGrille.textBaseline = 'top';
@@ -488,17 +488,17 @@ function Grillage(idDiv) {
      * @param {type} x
      * @param {type} y
      */
-    function EffacerEcritureUneCellule(x, y) {
+    function effacerEcritureUneCellule(x, y) {
         contextCanvasGrille.fillStyle = "#fff";
         contextCanvasGrille.fillRect(x, y, 30, 30);
         setValeurUneCellule(x, y, "");
     }
-    function EffacerEcritureUneCelluleException(x, y, couleur) {
+    function effacerEcritureUneCelluleException(x, y, couleur) {
         contextCanvasGrille.fillStyle = couleur;
         contextCanvasGrille.fillRect(x, y, 30, 30);
         setValeurUneCellule(x, y, "");
     }
-    function EffacerLesDonneeCellule(x, y) {
+    function effacerLesDonneeCellule(x, y) {
 
         contextCanvasGrille.clearRect(x, y, 30, 30);
         contextCanvasGrille.fillStyle = "#fff";
@@ -716,11 +716,11 @@ function Grillage(idDiv) {
         /**
          * On verifie qu'on n'a pas clické que la même cellule
          */
-        if (DernierCelluleSelectionne.x !== coordonneGrilleCourant.x || DernierCelluleSelectionne.y !== coordonneGrilleCourant.y) {
+        if (dernierCelluleSelectionne.x !== coordonneGrilleCourant.x || dernierCelluleSelectionne.y !== coordonneGrilleCourant.y) {
             //On éfface le coutour de la cellule precedente
-            effacerContour(DernierCelluleSelectionne.x, DernierCelluleSelectionne.y);
+            effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
             //On efface aussi l'élement canvas que se trouve au-dessus de l'anciène cellule
-            supprimerCanvasCellule(DernierCelluleSelectionne.x, DernierCelluleSelectionne.y);
+            supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
             //On dessine le contour au nouveau 
             dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
             //On crèe un element canvas au dessus
@@ -732,8 +732,8 @@ function Grillage(idDiv) {
             var id_cellule = "cellule_" + coordonneGrilleCourant.x + "_" + coordonneGrilleCourant.y;
             var cellule = grille.querySelector("#" + id_cellule);
             if (cellule) {
-                //On affecte l'élément à l'atribut CanvasCelluleSelectionne
-                CanvasCelluleSelectionne = cellule;
+                //On affecte l'élément à l'atribut canvasCelluleSelectionne
+                canvasCelluleSelectionne = cellule;
 
                 //Si on click sur le clavier
                 document.onkeydown = function(event) {
@@ -752,13 +752,13 @@ function Grillage(idDiv) {
 
                                     switch (typeOperation) {
                                         case 'addition':
-                                            suiviCorrectionAddition(donnekey, coordonneGrilleCourant, DernierCelluleSelectionne);
+                                            suiviCorrectionAddition(donnekey, coordonneGrilleCourant, dernierCelluleSelectionne);
 
                                             ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#000");
 
                                             break;
                                     }
-                                    effacerDivForTooltip(DernierCelluleSelectionne.x, DernierCelluleSelectionne.y);
+                                    effacerDivForTooltip(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
                                     effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
 
                                 } else {
@@ -782,14 +782,14 @@ function Grillage(idDiv) {
                                         switch (donnekey.val) {
                                             case "equal":
 
-                                                //suiviCorrectionAddition(donnekey, coordonneGrilleCourant, DernierCelluleSelectionne);
+                                                //suiviCorrectionAddition(donnekey, coordonneGrilleCourant, dernierCelluleSelectionne);
                                                 afficherResultatOperation("addition");
                                                 //ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#000");
                                                 break;
                                         }
                                         break;
                                 }
-                                effacerDivForTooltip(DernierCelluleSelectionne.x, DernierCelluleSelectionne.y);
+                                effacerDivForTooltip(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
                                 effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
                                 break;
                             case "action":
@@ -799,7 +799,7 @@ function Grillage(idDiv) {
                                      */
                                     case "del":
                                         if (verifierQueLaCelluleEstActive(coordonneGrilleCourant.x, coordonneGrilleCourant.y)) {
-                                            EffacerEcritureUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                                            effacerEcritureUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
                                             effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
                                             dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
                                             ecrireDansUneCelluleAvecTransparance(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "", "white", "rgba(163, 209, 157, 0.3)");
@@ -831,54 +831,54 @@ function Grillage(idDiv) {
                                 switch (donnekey.val) {
                                     case "droit":
                                         if (coordonneGrilleCourant.x >= 0 && coordonneGrilleCourant.x < 768) {
-                                            DernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            DernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
                                             coordonneGrilleCourant.x = coordonneGrilleCourant.x + tailleCase + 2;
-                                            effacerContour(DernierCelluleSelectionne.x, DernierCelluleSelectionne.y);
-                                            supprimerCanvasCellule(DernierCelluleSelectionne.x, DernierCelluleSelectionne.y);
+                                            effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                                            supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
                                             dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
                                             ceerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                            DernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            DernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
                                         }
                                         break;
                                     case "gauche":
                                         if (coordonneGrilleCourant.x > 0 && coordonneGrilleCourant.x <= 768) {
-                                            DernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            DernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
                                             coordonneGrilleCourant.x = coordonneGrilleCourant.x - tailleCase - 2;
-                                            effacerContour(DernierCelluleSelectionne.x, DernierCelluleSelectionne.y);
-                                            supprimerCanvasCellule(DernierCelluleSelectionne.x, DernierCelluleSelectionne.y);
+                                            effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                                            supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
                                             dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
                                             ceerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                            DernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            DernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
                                         }
                                         break;
                                     case "haut":
                                         if (coordonneGrilleCourant.y > 0 && coordonneGrilleCourant.x <= 480) {
-                                            DernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            DernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
                                             coordonneGrilleCourant.y = coordonneGrilleCourant.y - tailleCase - 2;
-                                            effacerContour(DernierCelluleSelectionne.x, DernierCelluleSelectionne.y);
-                                            supprimerCanvasCellule(DernierCelluleSelectionne.x, DernierCelluleSelectionne.y);
+                                            effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                                            supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
                                             dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
                                             ceerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                            DernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            DernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
                                         }
                                         break;
                                     case "bas":
                                         if (coordonneGrilleCourant.y >= 0 && coordonneGrilleCourant.y < 480) {
-                                            DernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            DernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
                                             coordonneGrilleCourant.y = coordonneGrilleCourant.y + tailleCase + 2;
-                                            effacerContour(DernierCelluleSelectionne.x, DernierCelluleSelectionne.y);
-                                            supprimerCanvasCellule(DernierCelluleSelectionne.x, DernierCelluleSelectionne.y);
+                                            effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                                            supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
                                             dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
                                             ceerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                            DernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            DernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
                                         }
                                         break;
                                 }
@@ -905,22 +905,22 @@ function Grillage(idDiv) {
                              * 
                              */
                             case "chiffre":
-                                suiviCorrectionAddition(donnekey, coordonneGrilleCourant, DernierCelluleSelectionne);
+                                suiviCorrectionAddition(donnekey, coordonneGrilleCourant, dernierCelluleSelectionne);
 
                                 ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#000");
 
-                                effacerDivForTooltip(DernierCelluleSelectionne.x, DernierCelluleSelectionne.y);
+                                effacerDivForTooltip(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
                                 effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
                                 listeErreurSimple.push({x: coordonneGrilleCourant.x, y: coordonneGrilleCourant.y});
                                 break;
 
                             case "operateur":
-                                suiviCorrectionAddition(donnekey, coordonneGrilleCourant, DernierCelluleSelectionne);
+                                suiviCorrectionAddition(donnekey, coordonneGrilleCourant, dernierCelluleSelectionne);
 
                                 ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#00F");
 
 
-                                effacerDivForTooltip(DernierCelluleSelectionne.x, DernierCelluleSelectionne.y);
+                                effacerDivForTooltip(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
                                 effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
                                 listeErreurSimple.push({x: coordonneGrilleCourant.x, y: coordonneGrilleCourant.y});
                                 break;
@@ -934,7 +934,7 @@ function Grillage(idDiv) {
                                      * Delete efface l'ecriture d'une cellule selectionné
                                      */
                                     case "del":
-                                        EffacerEcritureUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                                        effacerEcritureUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
                                         effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
                                         dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
                                         break;
@@ -954,54 +954,54 @@ function Grillage(idDiv) {
                                 switch (donnekey.val) {
                                     case "droit":
                                         if (coordonneGrilleCourant.x >= 0 && coordonneGrilleCourant.x < 768) {
-                                            DernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            DernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
                                             coordonneGrilleCourant.x = coordonneGrilleCourant.x + tailleCase + 2;
-                                            effacerContour(DernierCelluleSelectionne.x, DernierCelluleSelectionne.y);
-                                            supprimerCanvasCellule(DernierCelluleSelectionne.x, DernierCelluleSelectionne.y);
+                                            effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                                            supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
                                             dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
                                             ceerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                            DernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            DernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
                                         }
                                         break;
                                     case "gauche":
                                         if (coordonneGrilleCourant.x > 0 && coordonneGrilleCourant.x <= 768) {
-                                            DernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            DernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
                                             coordonneGrilleCourant.x = coordonneGrilleCourant.x - tailleCase - 2;
-                                            effacerContour(DernierCelluleSelectionne.x, DernierCelluleSelectionne.y);
-                                            supprimerCanvasCellule(DernierCelluleSelectionne.x, DernierCelluleSelectionne.y);
+                                            effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                                            supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
                                             dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
                                             ceerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                            DernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            DernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
                                         }
                                         break;
                                     case "haut":
                                         if (coordonneGrilleCourant.y > 0 && coordonneGrilleCourant.y <= 480) {
-                                            DernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            DernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
                                             coordonneGrilleCourant.y = coordonneGrilleCourant.y - tailleCase - 2;
-                                            effacerContour(DernierCelluleSelectionne.x, DernierCelluleSelectionne.y);
-                                            supprimerCanvasCellule(DernierCelluleSelectionne.x, DernierCelluleSelectionne.y);
+                                            effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                                            supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
                                             dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
                                             ceerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                            DernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            DernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
                                         }
                                         break;
                                     case "bas":
                                         if (coordonneGrilleCourant.y >= 0 && coordonneGrilleCourant.y < 480) {
-                                            DernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            DernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
                                             coordonneGrilleCourant.y = coordonneGrilleCourant.y + tailleCase + 2;
-                                            effacerContour(DernierCelluleSelectionne.x, DernierCelluleSelectionne.y);
-                                            supprimerCanvasCellule(DernierCelluleSelectionne.x, DernierCelluleSelectionne.y);
+                                            effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
+                                            supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
                                             dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
                                             ceerCanvasCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
-                                            DernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-                                            DernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+                                            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+                                            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
                                         }
                                         break;
                                 }
@@ -1026,11 +1026,11 @@ function Grillage(idDiv) {
                 };
             }
             ;
-            DernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-            DernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
         } else {
-            DernierCelluleSelectionne.x = coordonneGrilleCourant.x;
-            DernierCelluleSelectionne.y = coordonneGrilleCourant.y;
+            dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
+            dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
         }
 
     };
@@ -1039,12 +1039,12 @@ function Grillage(idDiv) {
      * 
      * @param {type} reponse
      * @param {type} coordonneGrilleCourant
-     * @param {type} DernierCelluleSelectionne
+     * @param {type} dernierCelluleSelectionne
      * @returns {undefined}
      */
-    function suiviCorrectionAddition(reponse, coordonneGrilleCourant, DernierCelluleSelectionne) {
+    function suiviCorrectionAddition(reponse, coordonneGrilleCourant, dernierCelluleSelectionne) {
         console.log(coordonneGrilleCourant);
-        console.log(DernierCelluleSelectionne);
+        console.log(dernierCelluleSelectionne);
         console.log(reponse);
 
     }
@@ -1377,7 +1377,7 @@ function Grillage(idDiv) {
             }
 
         }
-        EffacerEcritureUneCellule(positionInitialPourPoserUneOperation.x, positionInitialPourPoserUneOperation.y);
+        effacerEcritureUneCellule(positionInitialPourPoserUneOperation.x, positionInitialPourPoserUneOperation.y);
 
     };
 
