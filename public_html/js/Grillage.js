@@ -13,7 +13,7 @@
  */
 function Grillage(idDiv) {
 
-        
+
     /***************************************************************************
      * @description On applique un style au contenaire principal, 
      * @type @exp;document@call;getElementById
@@ -62,7 +62,7 @@ function Grillage(idDiv) {
             vuBareOutils = false;
         }
     }, false);
-    
+
     /**
      * @description Le div qui contient la bare d'outils cotament les chiffres et les opérateurs
      * @type @exp;document@call;createElement
@@ -93,6 +93,50 @@ function Grillage(idDiv) {
         var positionSourcie = getSourisPositionMenuOutils(event);
         var positionBontton = getCoordonneButtonOutils(positionSourcie.x, positionSourcie.y);
         console.log(positionBontton);
+        if (coordonneGrilleCourant) {
+            if (operationEnCours) {
+                switch (positionBontton.type) {
+                    case "chiffre":
+                        if (verifierQueLaCelluleEstActive(coordonneGrilleCourant.x, coordonneGrilleCourant.y)) {
+                            ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, positionBontton.val, "black");
+                        } else {
+                            var message = '<img style="position: absolute;margin-left: -16px;margin-top: -8px;" src=\"./img/icone_erreur.png\"/>\n\
+                                            <em style="margin-left: 15px;">Erreur : Vous ne pouvez pas ecrire dans cette zone.<br> Veuillez\n\
+                                            ecrire dans les zone autorisé.</em>';
+                            var bgcolor = "#FF332F";
+                            var textcolor = "#FFFCFB";
+                            afficheMessageTooltip(coordonneGrilleCourant, message, bgcolor, textcolor);
+                            dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "red");
+                            listeErreurSimple.push({x: coordonneGrilleCourant.x, y: coordonneGrilleCourant.y});
+                        }
+
+                        break;
+                    case "action":
+                        if (positionBontton.val === "del") {
+                            EffacerEcritureUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                        }
+                        if (positionBontton.val === "equal") {
+
+                            afficherResultatOperation(typeOperation);
+                        }
+                        break;
+                }
+            } else {
+                switch (positionBontton.type) {
+                    case "chiffre":
+                        ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, positionBontton.val, "black");
+                        break;
+                    case "action":
+                        if (positionBontton.val === "del") {
+                            EffacerEcritureUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
+                        }
+                        break;
+
+                }
+            }
+        } else {
+            alert("Veuillez selectionner d'abort une cellule");
+        }
 
     };
     /**
@@ -107,69 +151,69 @@ function Grillage(idDiv) {
         if (y >= 0 && y < 35) {
             if (x >= 0 && x <= 37) {
                 //contextOutils.fillRect(0, 0, 37, 35);
-                return {x: 0, y: 0, val: "1"};
+                return {x: 0, y: 0, val: "1", type: "chiffre"};
             }
             if (x >= 38 && x <= 74) {
                 // contextOutils.fillRect(38, 0, 37, 35);
-                return {x: 38, y: 0, val: "2"};
+                return {x: 38, y: 0, val: "2", type: "chiffre"};
             }
             if (x >= 75 && x <= 111) {
                 // contextOutils.fillRect(75, 0, 37, 35);
-                return {x: 75, y: 0, val: "3"};
+                return {x: 75, y: 0, val: "3", type: "chiffre"};
             }
             if (x >= 112 && x <= 148) {
                 //contextOutils.fillRect(112, 0, 37, 35);
-                return {x: 112, y: 0, val: "4"};
+                return {x: 112, y: 0, val: "4", type: "chiffre"};
             }
             if (x >= 149 && x <= 186) {
                 // contextOutils.fillRect(150, 0, 37, 35);
-                return {x: 150, y: 0, val: "5"};
+                return {x: 150, y: 0, val: "5", type: "chiffre"};
             }
             if (x >= 187 && x <= 222) {
                 // contextOutils.fillRect(187, 0, 37, 35);
-                return {x: 187, y: 0, val: "+"};
+                return {x: 187, y: 0, val: "+", type: "operateur"};
             }
             if (x >= 223 && x <= 259) {
                 //contextOutils.fillRect(224, 0, 37, 35);
-                return {x: 224, y: 0, val: "*"};
+                return {x: 224, y: 0, val: "*", type: "operateur"};
             }
             if (x >= 260 && x <= 296) {
                 // contextOutils.fillRect(261, 0, 37, 35);
-                return {x: 261, y: 0, val: "del"};
+                return {x: 261, y: 0, val: "del", type: "action"};
             }
         }
         if (y >= 36 && y <= 72) {
             if (x >= 0 && x <= 37) {
                 // contextOutils.fillRect(0, 35, 37, 35);
-                return {x: 0, y: 35, val: "6"};
+                return {x: 0, y: 35, val: "6", type: "chiffre"};
             }
             if (x >= 38 && x <= 74) {
                 // contextOutils.fillRect(38, 35, 37, 35);
-                return {x: 38, y: 35, val: "7"};
+                return {x: 38, y: 35, val: "7", type: "chiffre"};
             }
             if (x >= 75 && x <= 111) {
                 // contextOutils.fillRect(75, 35, 37, 35);
-                return {x: 75, y: 35, val: "8"};
+                return {x: 75, y: 35, val: "8", type: "chiffre"};
             }
             if (x >= 112 && x <= 148) {
                 //  contextOutils.fillRect(112, 35, 37, 35);
-                return {x: 112, y: 35, val: "9"};
+                return {x: 112, y: 35, val: "9", type: "chiffre"};
             }
             if (x >= 149 && x <= 186) {
                 //contextOutils.fillRect(150, 35, 37, 35);
-                return {x: 150, y: 35, val: "0"};
+                return {x: 150, y: 35, val: "0", type: "chiffre"};
             }
             if (x >= 187 && x <= 222) {
                 // contextOutils.fillRect(187, 35, 37, 35);
-                return {x: 187, y: 35, val: "-"};
+                return {x: 187, y: 35, val: "-", type: "operateur"};
             }
             if (x >= 223 && x <= 259) {
                 // contextOutils.fillRect(224, 35, 37, 35);
-                return {x: 224, y: 35, val: "/"};
+                return {x: 224, y: 35, val: "/", type: "operateur"};
             }
             if (x >= 260 && x <= 296) {
                 // contextOutils.fillRect(261, 35, 37, 35);
-                return {x: 261, y: 35, val: "equal"};
+                return {x: 261, y: 35, val: "equal", type: "action"};
             }
         }
     }
@@ -177,7 +221,7 @@ function Grillage(idDiv) {
         contextOutils.globalAlpha = 1;
         contextOutils.fillRect(x, y, 37, 35);
     }
-    
+
     /**
      * @description Obtenir les coordonnées par rapport à l'interieur du div des menu
      * @param {type} event
@@ -246,19 +290,19 @@ function Grillage(idDiv) {
      * @type cellule contient un élément canvas sélectionné
      */
     var CanvasCelluleSelectionne;
-    
+
     /**
      * 
      * @type Array
      */
     var listeErreurSimple = [];
-    
+
     /**
      * 
      * @type Array Ce tableau contient les valeurs de chaque cellule à tout moment
      */
     var listeDonneeDeChaqueCellule = {};
-    
+
     /*******************************************************************************
      * Ici nous dessinons la grille et on stocke dans tableauDeGille les coordonnées 
      * de chaque cellule
@@ -268,36 +312,36 @@ function Grillage(idDiv) {
         for (var j = 0; j < parseInt(heightCanvas / tailleCase); j++) {
             contextCanvasGrille.fillRect(i * 32, j * 32, 30, 30);
             tableauDeGille.push({x: i * 32, y: j * 32});
-            listeDonneeDeChaqueCellule[String(i * 32)+"_"+String(j * 32)]= "";
+            listeDonneeDeChaqueCellule[String(i * 32) + "_" + String(j * 32)] = "";
         }
     }
-    
+
     /*******************************************************************************
      * On insert la div.grille dans le div.content 
      */
     content.appendChild(grille);
-    
+
     /**
      * @description Cette funtion nous retourne la valeur d'une cellule en lui passant en paramètre son coordonnée
      * @param {type} x
      * @param {type} y
      * @returns {int}
      */
-    function getValeurUneCellule(x,y){
-        return parseInt(listeDonneeDeChaqueCellule[String(x)+"_"+String(y)]);
+    function getValeurUneCellule(x, y) {
+        return parseInt(listeDonneeDeChaqueCellule[String(x) + "_" + String(y)]);
     }
-    
+
     /***
      * @description Cette function enregistre la valeur d'une 
      * @param {type} x
      * @param {type} y
      * @param {type} val
      */
-    function setValeurUneCellule(x,y,val){
-        listeDonneeDeChaqueCellule[String(x)+"_"+String(y)] = String(val);
+    function setValeurUneCellule(x, y, val) {
+        listeDonneeDeChaqueCellule[String(x) + "_" + String(y)] = String(val);
     }
-    
-    
+
+
     /*******************************************************************************
      * @description Cette fonction nous donnes la position de la sourcie par rapport 
      * à l'élement canvas.canvasGrille.
@@ -455,7 +499,7 @@ function Grillage(idDiv) {
         setValeurUneCellule(x, y, "");
     }
     function EffacerLesDonneeCellule(x, y) {
-        
+
         contextCanvasGrille.clearRect(x, y, 30, 30);
         contextCanvasGrille.fillStyle = "#fff";
         contextCanvasGrille.fillRect(x, y, 30, 30);
@@ -652,6 +696,8 @@ function Grillage(idDiv) {
             //effacerContour(listeErreurSimple[i].x, listeErreurSimple[i].y);
         }
     }
+
+    var coordonneGrilleCourant;
     /**
      * Cette methode correspond à l'évenement faite quand on click dans la grille
      * @param {type} event
@@ -665,7 +711,7 @@ function Grillage(idDiv) {
          * On appelle la @function recupererCordonneeCaseCourant pour recuperer les coordonnées de 
          * cellule la cellule selectionnée
          */
-        var coordonneGrilleCourant = recupererCordonneeCaseCourant(positionGrilleCanvas.x, positionGrilleCanvas.y);
+        coordonneGrilleCourant = recupererCordonneeCaseCourant(positionGrilleCanvas.x, positionGrilleCanvas.y);
 
         /**
          * On verifie qu'on n'a pas clické que la même cellule
@@ -862,7 +908,7 @@ function Grillage(idDiv) {
                                 suiviCorrectionAddition(donnekey, coordonneGrilleCourant, DernierCelluleSelectionne);
 
                                 ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#000");
-                                
+
                                 effacerDivForTooltip(DernierCelluleSelectionne.x, DernierCelluleSelectionne.y);
                                 effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
                                 listeErreurSimple.push({x: coordonneGrilleCourant.x, y: coordonneGrilleCourant.y});
@@ -1036,7 +1082,7 @@ function Grillage(idDiv) {
                         v = -2;
                     }
                     if (v === -2 && u >= 0) {
-                        ecrireDansUneCelluleAvecTransparance(caseResultat[i-2].x, caseResultat[i-2].y, String(resultat.getPartieEntiere()[u]), "#C03000", "rgba(173, 207, 79, 0.3)");
+                        ecrireDansUneCelluleAvecTransparance(caseResultat[i - 2].x, caseResultat[i - 2].y, String(resultat.getPartieEntiere()[u]), "#C03000", "rgba(173, 207, 79, 0.3)");
                         u--;
                     }
                 }
