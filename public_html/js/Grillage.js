@@ -1072,8 +1072,8 @@ function Grillage(idDiv) {
                         u--;
                     }
                 }
-
-
+                
+                
                 break;
 
         }
