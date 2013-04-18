@@ -1372,7 +1372,63 @@ function Grillage(idDiv) {
 
     };
 
+    /**
+     * 
+     * @param {type} typeOperation
+     * @param {type} operation
+     * @returns {objet[x_y]:(val,ordre,statu}
+     */
+    function getStructureResultatAvantComparaison(typeOperation, operation) {
+        if (operationEnCours) {
+            switch (typeOperation) {
+                case "addition":
+                    var tableauAvecResultatDansOrdre = {};
+                    var tableauPartieRetenue = [];
+                    var tableauPartieResultat = [];
+                    var retenue = operation.getRetenues();
+                    var resultat = operation.getResultat();
 
+                    var yDebut = TableauDesCelluleAutorise[0].y
+                    for (i = 0; i < TableauDesCelluleAutorise.length; i++) {
+                        if (TableauDesCelluleAutorise[i].y === yDebut) {
+                            tableauPartieRetenue.push(TableauDesCelluleAutorise[i]);
+                        } else {
+                            tableauPartieResultat.push(TableauDesCelluleAutorise[i]);
+                        }
+                    }
+                    var tabDecimale = resultat.getPartieDecimale();
+                    var tabEntiere = resultat.getPartieEntiere();
+                    var ordre = tabDecimale.length * 2 - 1;
+                    for (i = 0; i < tabDecimale.length; i++) {
+                        tableauAvecResultatDansOrdre[tableauPartieResultat[tableauPartieResultat.length - 1 - i].x + "_" + tableauPartieResultat[tableauPartieResultat.length - 1 - i].y] = {val: tabDecimale[i], ordre: ordre, statu: false};
+                        ordre = ordre - 2;
+                        if (i === tabDecimale.length - 1) {
+                            tableauAvecResultatDansOrdre[tableauPartieResultat[tableauPartieResultat.length - 2 - i ].x + "_" + tableauPartieResultat[tableauPartieResultat.length - 2 - i].y] = {val: ",", ordre: tabDecimale.length * 2, statu: false};
+                        }
+                    }
+                    var ordre2 = tabDecimale.length * 2 + 1;
+                    for (i = 0; i < tabEntiere.length; i++) {
+                        tableauAvecResultatDansOrdre[tableauPartieResultat[tableauPartieResultat.length - 2 - i - tabDecimale.length].x + "_" + tableauPartieResultat[tableauPartieResultat.length - 2 - i - tabDecimale.length].y] = {val: tabEntiere[tabEntiere.length - 1 - i], ordre: ordre2, statu: false};
+                        ordre2 = ordre2 + 2;
+                    }
+                    var ordre3 = 2;
+                    var j = 0;
+                    for (i = retenue.length - 2; i >= 0; i--) {
+                        
+                        if (retenue[i]) {
+                            tableauAvecResultatDansOrdre[tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].x + "_" + tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].y] = {val: retenue[i], ordre: ordre3, statu: false};
+                            ordre3 = ordre3 + 2;
+                        } else {
+                            ordre3 = ordre3 + 2;
+                        }
+                        j++;
+                    }
+                    
+                    return tableauAvecResultatDansOrdre;
+                    break;
+            }
+        }
+    }
 
 }
 
