@@ -52,33 +52,11 @@ function Grillage(idDiv) {
     buttonCorriger.setAttribute("style", styleButtonCorriger);
     buttonCorriger.innerHTML = "Corriger";
     content.appendChild(buttonCorriger);
-	
+
     buttonCorriger.addEventListener('click', function(e) {
-    	lancerCorrectionSimple();
+        lancerCorrectionSimple();
     }, false);
 
-    /*****************************************************************************
-     * @description Création du button "Operateurn" qui servira à afficher la bare d'outils
-     * @type @exp;document@call;createElement
-     */
-    var vuBareOutils = false;
-    var buttonOperateur = document.createElement("button");
-    var styleButtonOperateur = "position: relative;right: -600px;";
-    buttonOperateur.setAttribute("id", "buttonOperateur");
-    buttonOperateur.setAttribute("class", "buttonPoseurOperation");
-    buttonOperateur.setAttribute("style", styleButtonOperateur);
-    buttonOperateur.innerHTML = "Outils";
-    content.appendChild(buttonOperateur);
-
-    buttonOperateur.addEventListener('click', function(e) {
-        if (vuBareOutils === false) {
-            document.getElementById(idDiv).querySelector("#barreOutil").style.display = "run-in";
-            vuBareOutils = true;
-        } else {
-            document.getElementById(idDiv).querySelector("#barreOutil").style.display = "none";
-            vuBareOutils = false;
-        }
-    }, false);
 
     /**
      * @description Le div qui contient la bare d'outils cotament les chiffres et les opérateurs
@@ -86,8 +64,8 @@ function Grillage(idDiv) {
      */
     var divoutil = document.createElement("div");
     var styleMenu = 'border:inset 5px #5cbeff;-moz-border-radius: 5px;-webkit-border-radius: 5px;\n\
-                    border-radius: 5px;z-index: 5;margin-left: 390px;margin-top: -35px;\n\
-                    position: absolute;display:none;width: 300px;height: 70px;cursor: pointer;';
+                    border-radius: 5px;z-index: 5;margin-left: 495px;margin-top: -35px;\n\
+                    position: absolute;width: 300px;height: 70px;cursor: pointer;';
     divoutil.setAttribute("style", styleMenu);
     divoutil.setAttribute("id", "barreOutil");
 
@@ -599,8 +577,8 @@ function Grillage(idDiv) {
         KEY_ENTER = 13;
         KEY_ESC = 27;
         KEY_DEL = 46;
-		KEY_SUPPR = 8;
-		console.log(intKeyCode+' '+caractere)
+        KEY_SUPPR = 8;
+        console.log(intKeyCode + ' ' + caractere)
         if (intKeyCode === KEY_ENTER) {
             return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "entrer", "type": "action"};
         }
@@ -614,10 +592,10 @@ function Grillage(idDiv) {
             return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "del", "type": "action"};
         }
         if (expReg.test(caractere)) {
-			return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": caractere, "type": "chiffre"};
-		}
-		if(caractere=="+" || caractere=="-" || caractere=="*" || caractere=="/" || caractere=="," ){
-        	return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": caractere, "type": "operateur"};
+            return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": caractere, "type": "chiffre"};
+        }
+        if (caractere == "+" || caractere == "-" || caractere == "*" || caractere == "/" || caractere == ",") {
+            return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": caractere, "type": "operateur"};
         }
         if (intKeyCode >= 37 && intKeyCode <= 40) {
             switch (intKeyCode) {
@@ -722,9 +700,9 @@ function Grillage(idDiv) {
                                     afficherResultatOperation("addition");
                                     //ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#000");
                                     break;
-								case ",":
-                                	ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#000");
-									
+                                case ",":
+                                    ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#000");
+
                             }
                             break;
                     }
@@ -838,8 +816,8 @@ function Grillage(idDiv) {
                     listeErreurSimple.push({x: coordonneGrilleCourant.x, y: coordonneGrilleCourant.y});
                     break;
             }
-        } 
-		else {
+        }
+        else {
             switch (donnekey.type) {
                 /**
                  * 
@@ -1002,15 +980,19 @@ function Grillage(idDiv) {
                 canvasCelluleSelectionne = cellule;
 
                 //Si on click sur le clavier
-				
-				//Hack pour safari et chrome
-				if(window.devicePixelRatio) {
-					document.onkeypress = function(eventClavier) {traiterEntreeClavier(eventClavier);}
-				}
-				//Hack pour firefox
-				else{
-					document.onkeydown = function(eventClavier) {traiterEntreeClavier(eventClavier);}
-				}   
+
+                //Hack pour safari et chrome
+                if (window.devicePixelRatio) {
+                    document.onkeypress = function(eventClavier) {
+                        traiterEntreeClavier(eventClavier);
+                    }
+                }
+                //Hack pour firefox
+                else {
+                    document.onkeydown = function(eventClavier) {
+                        traiterEntreeClavier(eventClavier);
+                    }
+                }
             }
             dernierCelluleSelectionne.x = coordonneGrilleCourant.x;
             dernierCelluleSelectionne.y = coordonneGrilleCourant.y;
@@ -1072,17 +1054,20 @@ function Grillage(idDiv) {
                         u--;
                     }
                 }
-                
-                
+
+
                 break;
 
         }
     }
-	
-	
-	function lancerCorrectionSimple(){
-		console.log(TableauDesCelluleAutorise);
-	}
+
+
+    function lancerCorrectionSimple() {
+        console.log(TableauDesCelluleAutorise);
+        var tableauDesResulat = getStructureResultatAvantComparaison(typeOperation, operation);
+
+        console.log(tableauDesResulat);
+    }
     /****************************************************************************************
      * @description  Cette fonction prend en entrer un canvas et dessine la flèche du tooltip
      * @param {type} canvasToolTip
@@ -1383,6 +1368,7 @@ function Grillage(idDiv) {
             switch (typeOperation) {
                 case "addition":
                     var tableauAvecResultatDansOrdre = {};
+                    var tableauAvecResultatDansOrdreTrier=[];
                     var tableauPartieRetenue = [];
                     var tableauPartieResultat = [];
                     var retenue = operation.getRetenues();
@@ -1401,33 +1387,57 @@ function Grillage(idDiv) {
                     var ordre = tabDecimale.length * 2 - 1;
                     for (i = 0; i < tabDecimale.length; i++) {
                         tableauAvecResultatDansOrdre[tableauPartieResultat[tableauPartieResultat.length - 1 - i].x + "_" + tableauPartieResultat[tableauPartieResultat.length - 1 - i].y] = {val: tabDecimale[i], ordre: ordre, statu: false};
+                        tableauAvecResultatDansOrdreTrier.push({x:tableauPartieResultat[tableauPartieResultat.length - 1 - i].x,y:tableauPartieResultat[tableauPartieResultat.length - 1 - i].y,val: tabDecimale[i], ordre: ordre, statu: false});
                         ordre = ordre - 2;
                         if (i === tabDecimale.length - 1) {
                             tableauAvecResultatDansOrdre[tableauPartieResultat[tableauPartieResultat.length - 2 - i ].x + "_" + tableauPartieResultat[tableauPartieResultat.length - 2 - i].y] = {val: ",", ordre: tabDecimale.length * 2, statu: false};
+                            tableauAvecResultatDansOrdreTrier.push({x:tableauPartieResultat[tableauPartieResultat.length - 2 - i].x,y:tableauPartieResultat[tableauPartieResultat.length - 2 - i].y,val: ",", ordre: tabDecimale.length * 2, statu: false});
                         }
                     }
                     var ordre2 = tabDecimale.length * 2 + 1;
                     for (i = 0; i < tabEntiere.length; i++) {
                         tableauAvecResultatDansOrdre[tableauPartieResultat[tableauPartieResultat.length - 2 - i - tabDecimale.length].x + "_" + tableauPartieResultat[tableauPartieResultat.length - 2 - i - tabDecimale.length].y] = {val: tabEntiere[tabEntiere.length - 1 - i], ordre: ordre2, statu: false};
+                        tableauAvecResultatDansOrdreTrier.push({x:tableauPartieResultat[tableauPartieResultat.length - 2 - i - tabDecimale.length].x,y:tableauPartieResultat[tableauPartieResultat.length - 2 - i - tabDecimale.length].y,val: tabEntiere[tabEntiere.length - 1 - i], ordre: ordre2, statu: false});
                         ordre2 = ordre2 + 2;
                     }
                     var ordre3 = 2;
                     var j = 0;
                     for (i = retenue.length - 2; i >= 0; i--) {
-                        
+
                         if (retenue[i]) {
                             tableauAvecResultatDansOrdre[tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].x + "_" + tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].y] = {val: retenue[i], ordre: ordre3, statu: false};
+                            tableauAvecResultatDansOrdreTrier.push({x:tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].x,y:tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].y,val: retenue[i], ordre: ordre3, statu: false});
                             ordre3 = ordre3 + 2;
                         } else {
                             ordre3 = ordre3 + 2;
                         }
                         j++;
                     }
-                    
+                    //var tmp = sortHashTable(tableauAvecResultatDansOrdreTrier,'ordre', true);
                     return tableauAvecResultatDansOrdre;
                     break;
             }
         }
+    }
+    
+    /**
+     * 
+     * @param {type} hashTable
+     * @param {type} key
+     * @param {type} removeKey
+     * @returns {unresolved}
+     */
+    function sortHashTable(hashTable, key, removeKey) {
+        hashTable = (hashTable instanceof Array ? hashTable : []);
+        var newHashTable = hashTable.sort(function(a, b) {
+            return (typeof(a[key]) === 'number' ? a[key] - b[key] : a[key] > b[key]);
+        });
+        if (removeKey) {
+            for (i in newHashTable) {
+                delete newHashTable[i][key];
+            }
+        }
+        return newHashTable;
     }
 
 }
