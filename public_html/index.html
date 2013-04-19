@@ -12,24 +12,23 @@ and open the template in the editor.
         <script type="text/javascript" src="js/Grillage.js"></script>
         <script type="text/javascript" src="js/Nombre.js"></script>
         <script type="text/javascript" src="js/Addition.js"></script>
-        
+
     </head>
     <body>
-        <div id="cercle">
-            
-        </div>
         <div id="operation">
 
         </div>
-        
+
         <script type="text/javascript">
             var grille = new Grillage("operation");
-            var addition = new Addition(2678.545,42.819,987.825);
+            var addition = new Addition(2678.545, 42.819, 987.825);
             addition.resoudreAddition();
             console.log(addition.getRetenues());
-            console.log(addition.getResultat().getPartieEntiere(),addition.getResultat().getPartieDecimale());
-           grille.poserOparationAddition(addition);
+            console.log(addition.getResultat().getPartieEntiere(), addition.getResultat().getPartieDecimale());
+            var textEnonce = "La sommme des termes 2678.545, 42.819 et 98005.";
             
+            grille.poserOparationAddition(addition,textEnonce);
+
         </script>
         <script type="text/javascript" src="js/AnimationGrillage.js"></script>
     </body>

@@ -32,13 +32,113 @@ function Grillage(idDiv) {
      * @description Création du button "Enoncé" qui servira à afficher l'énoncé d'un exercice. 
      * @type @exp;document@call;createElement
      */
-    var buttonEnonce = document.createElement("button");
+    var buttonAfficherResultat = document.createElement("button");
     var styleButtonEnonce = "";
-    buttonEnonce.setAttribute("id", "buttonEnonce");
-    buttonEnonce.setAttribute("class", "buttonPoseurOperation");
-    buttonEnonce.setAttribute("style", styleButtonEnonce);
-    buttonEnonce.innerHTML = "Enoncé";
-    content.appendChild(buttonEnonce);
+    buttonAfficherResultat.setAttribute("id", "buttonEnonce");
+    buttonAfficherResultat.setAttribute("class", "buttonPoseurOperation");
+    buttonAfficherResultat.setAttribute("style", styleButtonEnonce);
+    buttonAfficherResultat.innerHTML = "Afficher Résultat";
+    content.appendChild(buttonAfficherResultat);
+
+    var enonce = document.createElement("div");
+    var stylePostie = 'position: absolute; margin-left: 812px; margin-top: 145px;';
+    enonce.setAttribute("style", stylePostie);
+    enonce.setAttribute("id", "enonceAffice");
+    content.appendChild(enonce);
+
+    var canvasPosti = document.createElement("canvas");
+    canvasPosti.setAttribute("width", 300);
+    canvasPosti.setAttribute("height", 300);
+    canvasPosti.setAttribute("id", "canvasElementPosti");
+    enonce.appendChild(canvasPosti);
+
+    function afficherEnonce(contenuEnonce) {
+        var contextPosti = canvasPosti.getContext('2d');
+        var imagePosti = new Image(300, 300);
+        imagePosti.src = './img/PostIt.svg';
+        imagePosti.onload = function() {
+            contextPosti.drawImage(imagePosti, 0, 0, imagePosti.width, imagePosti.height);
+            contextPosti.lineWidth = 2;
+//            contextPosti.strokeStyle = "rgba(35, 70, 237, .8)";
+            contextPosti.shadowColor = "rgb(190, 190, 190)";
+            contextPosti.shadowOffsetX = 1;
+            contextPosti.shadowOffsetY = 1;
+            contextPosti.font = "10.5pt sans-serif";
+            contextPosti.rotate(-0.05);
+            console.log(contenuEnonce.length);
+            j = 0;
+            for (i = 0; i < contenuEnonce.length; i++) {
+                textCouper = contenuEnonce.substring(i, i + 36);
+                contextPosti.fillText(textCouper, 10, 70 + j);
+                i = i + 35;
+                j = j + 20;
+            }
+        };
+    }
+
+    var simpleActive = false;
+    var suiviActive = false;
+
+    var groupeRadio = document.createElement("p");
+    groupeRadio.setAttribute("style", "position: absolute;margin-left: 175px;margin-top: -28px;");
+    groupeRadio.setAttribute("class", "radio-group-choixTypeDeCorrection");
+    groupeRadio.setAttribute("id", "choixTypeDeCorrection");
+    var simple = document.createElement("input");
+    simple.setAttribute("type", "radio");
+    simple.setAttribute("name", "typeCorrection");
+    simple.setAttribute("value", "correctionSimple");
+    simple.setAttribute("id", "correctionSimple");
+    var labelSimple = document.createElement("label");
+    labelSimple.setAttribute("for", "correctionSimple");
+    labelSimple.innerHTML = "Simple";
+    var suivi = document.createElement("input");
+    suivi.setAttribute("type", "radio");
+    suivi.setAttribute("name", "typeCorrection");
+    suivi.setAttribute("value", "correctionSuivi");
+    suivi.setAttribute("id", "correctionSuivi");
+    var labelSuivi = document.createElement("label");
+    labelSuivi.setAttribute("for", "correctionSuivi");
+    labelSuivi.innerHTML = "Suivi";
+    groupeRadio.appendChild(simple);
+    groupeRadio.appendChild(labelSimple);
+    groupeRadio.appendChild(suivi);
+    groupeRadio.appendChild(labelSuivi);
+    content.appendChild(groupeRadio);
+
+    var divAffichageTypeCorrection = document.createElement("button");
+    var styleAffichageTypeCorrection = 'position: fixed;width: 150px;height: 70px;margin-left: 300px;margin-top: -33px; display:none;';
+    divAffichageTypeCorrection.setAttribute("style", styleAffichageTypeCorrection);
+    divAffichageTypeCorrection.setAttribute("id", "affichageypeCorrection");
+    
+    content.appendChild(divAffichageTypeCorrection);
+
+    suivi.addEventListener('click', function(e) {
+        if (suiviActive) {
+            simple.checked = false;
+        } else {
+            suiviActive = true;
+            simpleActive = false;
+            typeDeCorrection = "Suivi";
+            divAffichageTypeCorrection.innerHTML = "Correction: " + typeDeCorrection;
+            document.getElementById(idDiv).querySelector("#buttonCorriger").style.display = "none";
+            document.getElementById(idDiv).querySelector("#affichageypeCorrection").style.display = "run-in";
+            groupeRadio.style.display = "none";
+        }
+    }, false);
+
+    simple.addEventListener('click', function(e) {
+        if (simpleActive) {
+
+        } else {
+            suiviActive = false;
+            simpleActive = true;
+            typeDeCorrection = "Simple";
+            divAffichageTypeCorrection.innerHTML = "Correction: " + typeDeCorrection;
+            document.getElementById(idDiv).querySelector("#buttonCorriger").style.display = "run-in";
+            document.getElementById(idDiv).querySelector("#affichageypeCorrection").style.display = "run-in";
+            groupeRadio.style.display = "none";
+        }
+    }, false);
 
 
     /*****************************************************************************
@@ -46,7 +146,7 @@ function Grillage(idDiv) {
      * @type @exp;document@call;createElement
      */
     var buttonCorriger = document.createElement("button");
-    var styleButtonCorriger = "";
+    var styleButtonCorriger = "position:absolute;display:none;";
     buttonCorriger.setAttribute("id", "buttonCorriger");
     buttonCorriger.setAttribute("class", "buttonPoseurOperation");
     buttonCorriger.setAttribute("style", styleButtonCorriger);
@@ -54,7 +154,9 @@ function Grillage(idDiv) {
     content.appendChild(buttonCorriger);
 
     buttonCorriger.addEventListener('click', function(e) {
-        lancerCorrectionSimple();
+        if(simpleActive){
+            lancerCorrectionSimple();
+        }
     }, false);
 
 
@@ -297,6 +399,8 @@ function Grillage(idDiv) {
      * @type Array Ce tableau contient les valeurs de chaque cellule à tout moment
      */
     var listeDonneeDeChaqueCellule = {};
+
+    var typeDeCorrection;
 
     /*******************************************************************************
      * Ici nous dessinons la grille et on stocke dans tableauDeGille les coordonnées 
@@ -631,8 +735,8 @@ function Grillage(idDiv) {
 
         var taille = 0;
         var active = false;
-        while (taille < TableauDesCelluleAutorise.length && active === false) {
-            if (TableauDesCelluleAutorise[taille].x === x && TableauDesCelluleAutorise[taille].y === y) {
+        while (taille < tableauDesCelluleAutorise.length && active === false) {
+            if (tableauDesCelluleAutorise[taille].x === x && tableauDesCelluleAutorise[taille].y === y) {
                 active = true;
             }
             taille++;
@@ -1003,6 +1107,10 @@ function Grillage(idDiv) {
 
     };
 
+
+
+
+
     /****************************************************************************************
      * 
      * @param {type} reponse
@@ -1023,12 +1131,12 @@ function Grillage(idDiv) {
                 var resultat = operation.getResultat();
                 var caseRetenue = [];
                 var caseResultat = [];
-                for (j = 0; j < TableauDesCelluleReserver.length; j++) {
-                    if (TableauDesCelluleReserver[j].ligne === 1) {
-                        caseRetenue.push({x: TableauDesCelluleReserver[j].x, y: TableauDesCelluleReserver[j].y});
+                for (j = 0; j < tableauDesCelluleReserver.length; j++) {
+                    if (tableauDesCelluleReserver[j].ligne === 1) {
+                        caseRetenue.push({x: tableauDesCelluleReserver[j].x, y: tableauDesCelluleReserver[j].y});
                     }
-                    if (TableauDesCelluleReserver[j].ligne === (operation.getOperande().length + 3)) {
-                        caseResultat.push({x: TableauDesCelluleReserver[j].x, y: TableauDesCelluleReserver[j].y});
+                    if (tableauDesCelluleReserver[j].ligne === (operation.getOperande().length + 3)) {
+                        caseResultat.push({x: tableauDesCelluleReserver[j].x, y: tableauDesCelluleReserver[j].y});
 
                     }
 
@@ -1063,7 +1171,7 @@ function Grillage(idDiv) {
 
 
     function lancerCorrectionSimple() {
-        console.log(TableauDesCelluleAutorise);
+        console.log(tableauDesCelluleAutorise);
         var tableauDesResulat = getStructureResultatAvantComparaison(typeOperation, operation);
 
         console.log(tableauDesResulat);
@@ -1176,7 +1284,7 @@ function Grillage(idDiv) {
      * 
      * @type Boolean operationEnCours
      * @type Object:{Addition, Soustraction, Multiplication, dition} operation 
-     * @type Array TableauDesCelluleActiveNonActive
+     * @type Array tableauDesCelluleActiveNonActive
      * @type Number postXContante
      * @type Number postYContante
      * @type Object(x,y) positionInitialPourPoserUneOperation 
@@ -1184,22 +1292,24 @@ function Grillage(idDiv) {
     var operationEnCours = false;
     var operation;
     var typeOperation;
-    var TableauDesCelluleActiveNonActive = [];
-    var TableauDesCelluleReserver = [];
-    var TableauDesCelluleAutorise = [];
+    var tableauDesCelluleActiveNonActive = [];
+    var tableauDesCelluleReserver = [];
+    var tableauDesCelluleAutorise = [];
     var postXContante = 160;
     var postYContante = 64;
     var positionInitialPourPoserUneOperation = {x: postXContante, y: postYContante};
 
     /***********************************************************************************************
      * @description Cette fonction nous permet d'afficher ¬l'opération
-     * @param {type} Addition
-     * @returns {undefined}
+     * @param {Addition} addition
+     * @param {String} textEnonce 
      */
-    this.poserOparationAddition = function poserOparationAddition(addition) {
+    this.poserOparationAddition = function poserOparationAddition(addition, textEnonce) {
+
         operationEnCours = true;
         operation = addition;
         typeOperation = "addition";
+        afficherEnonce(textEnonce);
         var nombreCelluleAReserverVerticalement = operation.getOperande().length + 3;
         var nombreCelluleAReserverHorizontalement = 0;
         var operande = operation.getOperande();
@@ -1233,21 +1343,21 @@ function Grillage(idDiv) {
 
                 }
                 p = {x: postXContante + j * 32, y: postYContante + i * 32, ligne: numLigne, valMaxByLigne: 0, valChamp: ""};
-                TableauDesCelluleReserver.push(p);
+                tableauDesCelluleReserver.push(p);
 
             }
-            for (k = 0; k < TableauDesCelluleReserver.length; k++) {
-                if (TableauDesCelluleReserver[k].ligne === numLigne) {
-                    TableauDesCelluleReserver[k].valMaxByLigne = valMaxByLigne;
+            for (k = 0; k < tableauDesCelluleReserver.length; k++) {
+                if (tableauDesCelluleReserver[k].ligne === numLigne) {
+                    tableauDesCelluleReserver[k].valMaxByLigne = valMaxByLigne;
                 }
             }
             numLigne++;
             valMaxByLigne = 0;
         }
-        for (j = 0; j < TableauDesCelluleReserver.length; j++) {
+        for (j = 0; j < tableauDesCelluleReserver.length; j++) {
             for (i = 0; i < tableauDeGille.length; i++) {
-                if (tableauDeGille[i].x !== TableauDesCelluleReserver[j].x && tableauDeGille[i].y !== TableauDesCelluleReserver[j].y) {
-                    TableauDesCelluleActiveNonActive.push(tableauDeGille[i]);
+                if (tableauDeGille[i].x !== tableauDesCelluleReserver[j].x && tableauDeGille[i].y !== tableauDesCelluleReserver[j].y) {
+                    tableauDesCelluleActiveNonActive.push(tableauDeGille[i]);
                 }
             }
         }
@@ -1268,28 +1378,28 @@ function Grillage(idDiv) {
         for (i = 0; i < operande.length; i++) {
             if (operande[i].getPartieDecimale().length === maxDecimale) {
                 decimale = operande[i].getPartieDecimale();
-                for (j = 0; j < TableauDesCelluleReserver.length; j++) {
-                    if (TableauDesCelluleReserver[j].ligne === numLigne) {
+                for (j = 0; j < tableauDesCelluleReserver.length; j++) {
+                    if (tableauDesCelluleReserver[j].ligne === numLigne) {
                         for (k = 0; k < decimale.length; k++) {
-                            ecrireDansUneCelluleAvecTransparance(TableauDesCelluleReserver[j].valMaxByLigne - ((decimale.length - 1 - k) * 32), TableauDesCelluleReserver[j].y, String(decimale[k]), "green", couleurTransparenceOperandeDecimal);
+                            ecrireDansUneCelluleAvecTransparance(tableauDesCelluleReserver[j].valMaxByLigne - ((decimale.length - 1 - k) * 32), tableauDesCelluleReserver[j].y, String(decimale[k]), "green", couleurTransparenceOperandeDecimal);
 
                         }
                     }
                 }
             } else {
                 decimale = operande[i].getPartieDecimale();
-                for (j = 0; j < TableauDesCelluleReserver.length; j++) {
-                    if (TableauDesCelluleReserver[j].ligne === numLigne) {
+                for (j = 0; j < tableauDesCelluleReserver.length; j++) {
+                    if (tableauDesCelluleReserver[j].ligne === numLigne) {
                         for (k = 0; k < decimale.length; k++) {
-                            ecrireDansUneCelluleAvecTransparance(TableauDesCelluleReserver[j].valMaxByLigne - ((maxDecimale - 1 - k) * 32), TableauDesCelluleReserver[j].y, String(decimale[k]), "green", couleurTransparenceOperandeDecimal);
+                            ecrireDansUneCelluleAvecTransparance(tableauDesCelluleReserver[j].valMaxByLigne - ((maxDecimale - 1 - k) * 32), tableauDesCelluleReserver[j].y, String(decimale[k]), "green", couleurTransparenceOperandeDecimal);
 
                         }
                     }
                 }
             }
-            for (j = 0; j < TableauDesCelluleReserver.length; j++) {
-                if (TableauDesCelluleReserver[j].ligne === numLigne) {
-                    ecrireDansUneCelluleAvecTransparance(TableauDesCelluleReserver[j].valMaxByLigne - ((maxDecimale) * 32), TableauDesCelluleReserver[j].y, String(","), "black", "rgba(238, 213, 184, 0.2)");
+            for (j = 0; j < tableauDesCelluleReserver.length; j++) {
+                if (tableauDesCelluleReserver[j].ligne === numLigne) {
+                    ecrireDansUneCelluleAvecTransparance(tableauDesCelluleReserver[j].valMaxByLigne - ((maxDecimale) * 32), tableauDesCelluleReserver[j].y, String(","), "black", "rgba(238, 213, 184, 0.2)");
                 }
             }
             numLigne++;
@@ -1301,19 +1411,19 @@ function Grillage(idDiv) {
         for (i = 0; i < operande.length; i++) {
             entiere = operande[i].getPartieEntiere();
             if (entiere.length === maxEntiere) {
-                for (j = 0; j < TableauDesCelluleReserver.length; j++) {
-                    if (TableauDesCelluleReserver[j].ligne === numLigne) {
+                for (j = 0; j < tableauDesCelluleReserver.length; j++) {
+                    if (tableauDesCelluleReserver[j].ligne === numLigne) {
                         for (k = entiere.length - 1; k >= 0; k--) {
-                            ecrireDansUneCelluleAvecTransparance(TableauDesCelluleReserver[j].valMaxByLigne - ((maxDecimale + 1 + maxEntiere - 1 - k) * 32), TableauDesCelluleReserver[j].y, String(entiere[k]), "black", couleurTransparenceOperandeEntiere);
+                            ecrireDansUneCelluleAvecTransparance(tableauDesCelluleReserver[j].valMaxByLigne - ((maxDecimale + 1 + maxEntiere - 1 - k) * 32), tableauDesCelluleReserver[j].y, String(entiere[k]), "black", couleurTransparenceOperandeEntiere);
 
                         }
                     }
                 }
             } else {
-                for (j = 0; j < TableauDesCelluleReserver.length; j++) {
-                    if (TableauDesCelluleReserver[j].ligne === numLigne) {
+                for (j = 0; j < tableauDesCelluleReserver.length; j++) {
+                    if (tableauDesCelluleReserver[j].ligne === numLigne) {
                         for (k = entiere.length - 1; k >= 0; k--) {
-                            ecrireDansUneCelluleAvecTransparance(TableauDesCelluleReserver[j].valMaxByLigne - ((maxDecimale + 1 + entiere.length - 1 - k) * 32), TableauDesCelluleReserver[j].y, String(entiere[k]), "black", couleurTransparenceOperandeEntiere);
+                            ecrireDansUneCelluleAvecTransparance(tableauDesCelluleReserver[j].valMaxByLigne - ((maxDecimale + 1 + entiere.length - 1 - k) * 32), tableauDesCelluleReserver[j].y, String(entiere[k]), "black", couleurTransparenceOperandeEntiere);
 
                         }
                     }
@@ -1323,32 +1433,32 @@ function Grillage(idDiv) {
             numLigne++;
         }
         var trouver = false;
-        for (j = 0; j < TableauDesCelluleReserver.length; j++) {
-            if (TableauDesCelluleReserver[j].ligne === nombreCelluleAReserverVerticalement - 2) {
+        for (j = 0; j < tableauDesCelluleReserver.length; j++) {
+            if (tableauDesCelluleReserver[j].ligne === nombreCelluleAReserverVerticalement - 2) {
                 if (trouver === false) {
-                    ecrireDansUneCellule(TableauDesCelluleReserver[j].x, TableauDesCelluleReserver[j].y, "+", "red");
+                    ecrireDansUneCellule(tableauDesCelluleReserver[j].x, tableauDesCelluleReserver[j].y, "+", "red");
                     trouver = true;
                 }
 
             }
         }
         var mettre = false;
-        for (j = 0; j < TableauDesCelluleReserver.length; j++) {
-            if (TableauDesCelluleReserver[j].ligne === nombreCelluleAReserverVerticalement - 1) {
-                dessinerBaseOperation(TableauDesCelluleReserver[j].x, TableauDesCelluleReserver[j].y, "red");
+        for (j = 0; j < tableauDesCelluleReserver.length; j++) {
+            if (tableauDesCelluleReserver[j].ligne === nombreCelluleAReserverVerticalement - 1) {
+                dessinerBaseOperation(tableauDesCelluleReserver[j].x, tableauDesCelluleReserver[j].y, "red");
             }
 
-            if (TableauDesCelluleReserver[j].ligne === 1) {
-                ecrireDansUneCelluleAvecTransparance(TableauDesCelluleReserver[j].x, TableauDesCelluleReserver[j].y, "", "white", couleurTransparenceRetenue);
-                TableauDesCelluleAutorise.push({x: TableauDesCelluleReserver[j].x, y: TableauDesCelluleReserver[j].y});
+            if (tableauDesCelluleReserver[j].ligne === 1) {
+                ecrireDansUneCelluleAvecTransparance(tableauDesCelluleReserver[j].x, tableauDesCelluleReserver[j].y, "", "white", couleurTransparenceRetenue);
+                tableauDesCelluleAutorise.push({x: tableauDesCelluleReserver[j].x, y: tableauDesCelluleReserver[j].y});
             }
-            if (TableauDesCelluleReserver[j].ligne === nombreCelluleAReserverVerticalement) {
+            if (tableauDesCelluleReserver[j].ligne === nombreCelluleAReserverVerticalement) {
                 if (mettre === false) {
-                    ecrireDansUneCellule(TableauDesCelluleReserver[j].x, TableauDesCelluleReserver[j].y, "=", "red");
+                    ecrireDansUneCellule(tableauDesCelluleReserver[j].x, tableauDesCelluleReserver[j].y, "=", "red");
                     mettre = true;
                 } else {
-                    ecrireDansUneCelluleAvecTransparance(TableauDesCelluleReserver[j].x, TableauDesCelluleReserver[j].y, "", "white", couleurTransparenceResultat);
-                    TableauDesCelluleAutorise.push({x: TableauDesCelluleReserver[j].x, y: TableauDesCelluleReserver[j].y});
+                    ecrireDansUneCelluleAvecTransparance(tableauDesCelluleReserver[j].x, tableauDesCelluleReserver[j].y, "", "white", couleurTransparenceResultat);
+                    tableauDesCelluleAutorise.push({x: tableauDesCelluleReserver[j].x, y: tableauDesCelluleReserver[j].y});
                 }
             }
 
@@ -1368,18 +1478,18 @@ function Grillage(idDiv) {
             switch (typeOperation) {
                 case "addition":
                     var tableauAvecResultatDansOrdre = {};
-                    var tableauAvecResultatDansOrdreTrier=[];
+                    var tableauAvecResultatDansOrdreTrier = [];
                     var tableauPartieRetenue = [];
                     var tableauPartieResultat = [];
                     var retenue = operation.getRetenues();
                     var resultat = operation.getResultat();
 
-                    var yDebut = TableauDesCelluleAutorise[0].y
-                    for (i = 0; i < TableauDesCelluleAutorise.length; i++) {
-                        if (TableauDesCelluleAutorise[i].y === yDebut) {
-                            tableauPartieRetenue.push(TableauDesCelluleAutorise[i]);
+                    var yDebut = tableauDesCelluleAutorise[0].y
+                    for (i = 0; i < tableauDesCelluleAutorise.length; i++) {
+                        if (tableauDesCelluleAutorise[i].y === yDebut) {
+                            tableauPartieRetenue.push(tableauDesCelluleAutorise[i]);
                         } else {
-                            tableauPartieResultat.push(TableauDesCelluleAutorise[i]);
+                            tableauPartieResultat.push(tableauDesCelluleAutorise[i]);
                         }
                     }
                     var tabDecimale = resultat.getPartieDecimale();
@@ -1387,17 +1497,17 @@ function Grillage(idDiv) {
                     var ordre = tabDecimale.length * 2 - 1;
                     for (i = 0; i < tabDecimale.length; i++) {
                         tableauAvecResultatDansOrdre[tableauPartieResultat[tableauPartieResultat.length - 1 - i].x + "_" + tableauPartieResultat[tableauPartieResultat.length - 1 - i].y] = {val: tabDecimale[i], ordre: ordre, statu: false};
-                        tableauAvecResultatDansOrdreTrier.push({x:tableauPartieResultat[tableauPartieResultat.length - 1 - i].x,y:tableauPartieResultat[tableauPartieResultat.length - 1 - i].y,val: tabDecimale[i], ordre: ordre, statu: false});
+                        tableauAvecResultatDansOrdreTrier.push({x: tableauPartieResultat[tableauPartieResultat.length - 1 - i].x, y: tableauPartieResultat[tableauPartieResultat.length - 1 - i].y, val: tabDecimale[i], ordre: ordre, statu: false});
                         ordre = ordre - 2;
                         if (i === tabDecimale.length - 1) {
                             tableauAvecResultatDansOrdre[tableauPartieResultat[tableauPartieResultat.length - 2 - i ].x + "_" + tableauPartieResultat[tableauPartieResultat.length - 2 - i].y] = {val: ",", ordre: tabDecimale.length * 2, statu: false};
-                            tableauAvecResultatDansOrdreTrier.push({x:tableauPartieResultat[tableauPartieResultat.length - 2 - i].x,y:tableauPartieResultat[tableauPartieResultat.length - 2 - i].y,val: ",", ordre: tabDecimale.length * 2, statu: false});
+                            tableauAvecResultatDansOrdreTrier.push({x: tableauPartieResultat[tableauPartieResultat.length - 2 - i].x, y: tableauPartieResultat[tableauPartieResultat.length - 2 - i].y, val: ",", ordre: tabDecimale.length * 2, statu: false});
                         }
                     }
                     var ordre2 = tabDecimale.length * 2 + 1;
                     for (i = 0; i < tabEntiere.length; i++) {
                         tableauAvecResultatDansOrdre[tableauPartieResultat[tableauPartieResultat.length - 2 - i - tabDecimale.length].x + "_" + tableauPartieResultat[tableauPartieResultat.length - 2 - i - tabDecimale.length].y] = {val: tabEntiere[tabEntiere.length - 1 - i], ordre: ordre2, statu: false};
-                        tableauAvecResultatDansOrdreTrier.push({x:tableauPartieResultat[tableauPartieResultat.length - 2 - i - tabDecimale.length].x,y:tableauPartieResultat[tableauPartieResultat.length - 2 - i - tabDecimale.length].y,val: tabEntiere[tabEntiere.length - 1 - i], ordre: ordre2, statu: false});
+                        tableauAvecResultatDansOrdreTrier.push({x: tableauPartieResultat[tableauPartieResultat.length - 2 - i - tabDecimale.length].x, y: tableauPartieResultat[tableauPartieResultat.length - 2 - i - tabDecimale.length].y, val: tabEntiere[tabEntiere.length - 1 - i], ordre: ordre2, statu: false});
                         ordre2 = ordre2 + 2;
                     }
                     var ordre3 = 2;
@@ -1406,7 +1516,7 @@ function Grillage(idDiv) {
 
                         if (retenue[i]) {
                             tableauAvecResultatDansOrdre[tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].x + "_" + tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].y] = {val: retenue[i], ordre: ordre3, statu: false};
-                            tableauAvecResultatDansOrdreTrier.push({x:tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].x,y:tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].y,val: retenue[i], ordre: ordre3, statu: false});
+                            tableauAvecResultatDansOrdreTrier.push({x: tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].x, y: tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].y, val: retenue[i], ordre: ordre3, statu: false});
                             ordre3 = ordre3 + 2;
                         } else {
                             ordre3 = ordre3 + 2;
@@ -1419,7 +1529,7 @@ function Grillage(idDiv) {
             }
         }
     }
-    
+
     /**
      * 
      * @param {type} hashTable
