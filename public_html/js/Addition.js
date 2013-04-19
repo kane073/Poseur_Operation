@@ -73,7 +73,7 @@ function Addition() {
         }
         return longueurMax;
     }
-    function longueurMaxPartieDecimale() {
+    function longueurMaxPartieDecimale() {  
         var longueurMax = 0;
         if (listArgument.length > 0) {
             for (i = 0; i < operande.length; i++) {
