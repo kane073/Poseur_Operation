@@ -37,11 +37,11 @@ function Grillage(idDiv) {
     buttonAfficherResultat.setAttribute("id", "buttonEnonce");
     buttonAfficherResultat.setAttribute("class", "buttonPoseurOperation");
     buttonAfficherResultat.setAttribute("style", styleButtonEnonce);
-    buttonAfficherResultat.innerHTML = "Afficher Résultat";
+    buttonAfficherResultat.innerHTML = "Correction";
     content.appendChild(buttonAfficherResultat);
 
     var enonce = document.createElement("div");
-    var stylePostie = 'position: absolute; margin-left: 812px; margin-top: 145px;';
+    var stylePostie = 'position: absolute; margin-left: 10px; margin-top: 60px;z-index:1';
     enonce.setAttribute("style", stylePostie);
     enonce.setAttribute("id", "enonceAffice");
     content.appendChild(enonce);
@@ -54,7 +54,7 @@ function Grillage(idDiv) {
 
     function afficherEnonce(contenuEnonce) {
         var contextPosti = canvasPosti.getContext('2d');
-        var imagePosti = new Image(300, 300);
+        var imagePosti = new Image(180, 180);
         imagePosti.src = './img/PostIt.svg';
         imagePosti.onload = function() {
             contextPosti.drawImage(imagePosti, 0, 0, imagePosti.width, imagePosti.height);
@@ -68,9 +68,9 @@ function Grillage(idDiv) {
             console.log(contenuEnonce.length);
             j = 0;
             for (i = 0; i < contenuEnonce.length; i++) {
-                textCouper = contenuEnonce.substring(i, i + 36);
-                contextPosti.fillText(textCouper, 10, 70 + j);
-                i = i + 35;
+                textCouper = contenuEnonce.substring(i, i + 23);
+                contextPosti.fillText(textCouper, 12, 70 + j);
+                i = i + 22;
                 j = j + 20;
             }
         };
@@ -166,7 +166,7 @@ function Grillage(idDiv) {
      */
     var divoutil = document.createElement("div");
     var styleMenu = 'border:inset 5px #5cbeff;-moz-border-radius: 5px;-webkit-border-radius: 5px;\n\
-                    border-radius: 5px;z-index: 5;margin-left: 495px;margin-top: -35px;\n\
+                    border-radius: 5px;z-index: 5;margin-left: 495px;margin-top: -32px;\n\
                     position: absolute;width: 300px;height: 70px;cursor: pointer;';
     divoutil.setAttribute("style", styleMenu);
     divoutil.setAttribute("id", "barreOutil");
@@ -339,7 +339,7 @@ function Grillage(idDiv) {
      * @type @exp;document@call;createElement
      */
     var grille = document.createElement("div");
-    var styleGrille = "position: relative;background-color: #CCBEBE;border: 2px solid #CCBEBE;width: 801px;height: 512px;bottom: -50px;margin-left: auto;margin-right: auto;"
+    var styleGrille = "position: relative;background-color: #CCBEBE;border: 2px solid #CCBEBE;width: 798px;height: 512px;bottom: -50px;margin-left: auto;margin-right: auto;"
     grille.setAttribute("id", "grille");
     grille.setAttribute("style", styleGrille);
 
@@ -349,7 +349,7 @@ function Grillage(idDiv) {
      */
     var canvasGrille = document.createElement("canvas");
     var widthCanvas = 800;
-    var heightCanvas = 512;
+    var heightCanvas = 510;
     var styleCanvasGrille = "position: absolute;";
     canvasGrille.setAttribute("width", widthCanvas);
     canvasGrille.setAttribute("height", heightCanvas);
@@ -414,6 +414,11 @@ function Grillage(idDiv) {
             listeDonneeDeChaqueCellule[String(i * 32) + "_" + String(j * 32)] = "";
         }
     }
+	
+	/*Ici nous dessinons la marge*/
+    contextCanvasGrille.fillStyle = "red";
+    contextCanvasGrille.fillRect(126, 0, 2 ,512);
+
 
     /*******************************************************************************
      * On insert la div.grille dans le div.content 
@@ -1295,8 +1300,8 @@ function Grillage(idDiv) {
     var tableauDesCelluleActiveNonActive = [];
     var tableauDesCelluleReserver = [];
     var tableauDesCelluleAutorise = [];
-    var postXContante = 160;
-    var postYContante = 64;
+    var postXContante = 224;
+    var postYContante = 32;
     var positionInitialPourPoserUneOperation = {x: postXContante, y: postYContante};
 
     /***********************************************************************************************
