@@ -39,16 +39,20 @@ function Grillage(idDiv) {
     buttonAfficherResultat.setAttribute("style", styleButtonEnonce);
     buttonAfficherResultat.innerHTML = "Correction";
     content.appendChild(buttonAfficherResultat);
+	
+    buttonAfficherResultat.addEventListener('click', function(e) {
+		lancerCorrectionSimple();
+    }, false);
 
     var enonce = document.createElement("div");
-    var stylePostie = 'position: absolute; margin-left: 10px; margin-top: 60px;z-index:1';
+    var stylePostie = 'position: absolute; margin-left: -1px; margin-top: 42px;z-index:1';
     enonce.setAttribute("style", stylePostie);
     enonce.setAttribute("id", "enonceAffice");
     content.appendChild(enonce);
 
     var canvasPosti = document.createElement("canvas");
-    canvasPosti.setAttribute("width", 300);
-    canvasPosti.setAttribute("height", 300);
+    canvasPosti.setAttribute("width", 200);
+    canvasPosti.setAttribute("height", 200);
     canvasPosti.setAttribute("id", "canvasElementPosti");
     enonce.appendChild(canvasPosti);
 
@@ -153,11 +157,11 @@ function Grillage(idDiv) {
     buttonCorriger.innerHTML = "Corriger";
     content.appendChild(buttonCorriger);
 
-    buttonCorriger.addEventListener('click', function(e) {
-        if(simpleActive){
-            lancerCorrectionSimple();
-        }
-    }, false);
+    // buttonCorriger.addEventListener('click', function(e) {
+    //     if(simpleActive){
+    //         lancerCorrectionSimple();
+    //     }
+    // }, false);
 
 
     /**
@@ -432,7 +436,7 @@ function Grillage(idDiv) {
      * @returns {int}
      */
     function getValeurUneCellule(x, y) {
-        return parseInt(listeDonneeDeChaqueCellule[String(x) + "_" + String(y)]);
+    	return listeDonneeDeChaqueCellule[String(x) + "_" + String(y)];
     }
 
     /***
@@ -687,7 +691,6 @@ function Grillage(idDiv) {
         KEY_ESC = 27;
         KEY_DEL = 46;
         KEY_SUPPR = 8;
-        console.log(intKeyCode + ' ' + caractere)
         if (intKeyCode === KEY_ENTER) {
             return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "entrer", "type": "action"};
         }
@@ -721,6 +724,10 @@ function Grillage(idDiv) {
                     return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "bas", "type": "direction"};
                     break;
             }
+        }
+		//Touche tab
+        if (intKeyCode == 09) {
+			return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "droit", "type": "direction"};
         }
 
         if (intKeyCode >= 8 && intKeyCode <= 46) {
@@ -1056,6 +1063,7 @@ function Grillage(idDiv) {
      * @param {type} event
      */
     canvasGrille.onmousedown = function(event) {
+		
         /**
          * On appelle la @function getSourisPosition qui nous donne position de la sourie
          */
@@ -1070,7 +1078,7 @@ function Grillage(idDiv) {
          * On verifie qu'on n'a pas clické que la même cellule
          */
         if (dernierCelluleSelectionne.x !== coordonneGrilleCourant.x || dernierCelluleSelectionne.y !== coordonneGrilleCourant.y) {
-            //On éfface le coutour de la cellule precedente
+			//On éfface le coutour de la cellule precedente
             effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
             //On efface aussi l'élement canvas que se trouve au-dessus de l'anciène cellule
             supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
@@ -1124,11 +1132,11 @@ function Grillage(idDiv) {
      * @returns {undefined}
      */
     function suiviCorrectionAddition(reponse, coordonneGrilleCourant, dernierCelluleSelectionne) {
-        console.log(coordonneGrilleCourant);
-        console.log(dernierCelluleSelectionne);
-        console.log(reponse);
-
+        // console.log(coordonneGrilleCourant);
+        // console.log(dernierCelluleSelectionne);
+        // console.log(reponse);
     }
+	
     function afficherResultatOperation(typeoperation) {
         switch (typeoperation) {
             case "addition":
@@ -1173,13 +1181,49 @@ function Grillage(idDiv) {
 
         }
     }
+	
 
 
     function lancerCorrectionSimple() {
-        console.log(tableauDesCelluleAutorise);
-        var tableauDesResulat = getStructureResultatAvantComparaison(typeOperation, operation);
-
-        console.log(tableauDesResulat);
+		var tableauDesResulat = getStructureResultatAvantComparaison(typeOperation, operation);
+		console.log("Reception fonction correction Simple");
+		//Pour chaque cellule editable
+		for(i=0;i<tableauDesCelluleAutorise.length;i++){
+			varX = tableauDesCelluleAutorise[i].x
+			varY = tableauDesCelluleAutorise[i].y
+			//Si l'utilisateur a rempli cette case
+			if(getValeurUneCellule(varX,varY) || getValeurUneCellule(varX,varY)===0){
+				//Si une valeur est attendue
+				if(tableauDesResulat[varX+"_"+varY]){
+					console.log("valeur recu :"+getValeurUneCellule(varX,varY)+"/"+tableauDesResulat[varX+"_"+varY].val)
+					valeurAttendue = tableauDesResulat[varX+"_"+varY].val
+					//Si valeur entrée = valeur attendue
+					if(getValeurUneCellule(varX,varY)==valeurAttendue){
+						//Bonne Reponse
+				        ecrireDansUneCelluleAvecTransparance(varX, varY, String(getValeurUneCellule(varX,varY)), "black", "rgba(0, 102, 0, 0.4)");
+					}
+					//Sinon <=> valeur entrée != valeur attendue
+					else{
+						//Mauvaise Réponse
+				        ecrireDansUneCelluleAvecTransparance(varX, varY, String(getValeurUneCellule(varX,varY)), "black", "rgba(255, 0, 0, 0.4)");
+					}
+				}
+				//Sinon, si aucune valeur attendu
+				else{
+					console.log("valeur recu :"+getValeurUneCellule(varX,varY)+"/?")
+					//Si valeur entrée = 0
+					if(getValeurUneCellule(varX,varY)==0){
+						//Bonne Reponse
+				        ecrireDansUneCelluleAvecTransparance(varX, varY, String(getValeurUneCellule(varX,varY)), "black", "rgba(0, 102, 0, 0.4)");
+					}
+					//Sinon <=> valeur entrée != 0
+					else{
+						//Mauvaise Réponse
+				        ecrireDansUneCelluleAvecTransparance(varX, varY, String(getValeurUneCellule(varX,varY)), "black", "rgba(255, 0, 0, 0.4)");
+					}
+				}
+			}
+		}	
     }
     /****************************************************************************************
      * @description  Cette fonction prend en entrer un canvas et dessine la flèche du tooltip
@@ -1386,7 +1430,7 @@ function Grillage(idDiv) {
                 for (j = 0; j < tableauDesCelluleReserver.length; j++) {
                     if (tableauDesCelluleReserver[j].ligne === numLigne) {
                         for (k = 0; k < decimale.length; k++) {
-                            ecrireDansUneCelluleAvecTransparance(tableauDesCelluleReserver[j].valMaxByLigne - ((decimale.length - 1 - k) * 32), tableauDesCelluleReserver[j].y, String(decimale[k]), "green", couleurTransparenceOperandeDecimal);
+                            ecrireDansUneCelluleAvecTransparance(tableauDesCelluleReserver[j].valMaxByLigne - ((decimale.length - 1 - k) * 32), tableauDesCelluleReserver[j].y, String(decimale[k]), "black", couleurTransparenceOperandeDecimal);
 
                         }
                     }
@@ -1396,7 +1440,7 @@ function Grillage(idDiv) {
                 for (j = 0; j < tableauDesCelluleReserver.length; j++) {
                     if (tableauDesCelluleReserver[j].ligne === numLigne) {
                         for (k = 0; k < decimale.length; k++) {
-                            ecrireDansUneCelluleAvecTransparance(tableauDesCelluleReserver[j].valMaxByLigne - ((maxDecimale - 1 - k) * 32), tableauDesCelluleReserver[j].y, String(decimale[k]), "green", couleurTransparenceOperandeDecimal);
+                            ecrireDansUneCelluleAvecTransparance(tableauDesCelluleReserver[j].valMaxByLigne - ((maxDecimale - 1 - k) * 32), tableauDesCelluleReserver[j].y, String(decimale[k]), "black", couleurTransparenceOperandeDecimal);
 
                         }
                     }
@@ -1476,7 +1520,7 @@ function Grillage(idDiv) {
      * 
      * @param {type} typeOperation
      * @param {type} operation
-     * @returns {objet[x_y]:(val,ordre,statu}
+     * @returns {objet[x_y]:(val,ordre,statu)}
      */
     function getStructureResultatAvantComparaison(typeOperation, operation) {
         if (operationEnCours) {
@@ -1501,8 +1545,8 @@ function Grillage(idDiv) {
                     var tabEntiere = resultat.getPartieEntiere();
                     var ordre = tabDecimale.length * 2 - 1;
                     for (i = 0; i < tabDecimale.length; i++) {
-                        tableauAvecResultatDansOrdre[tableauPartieResultat[tableauPartieResultat.length - 1 - i].x + "_" + tableauPartieResultat[tableauPartieResultat.length - 1 - i].y] = {val: tabDecimale[i], ordre: ordre, statu: false};
-                        tableauAvecResultatDansOrdreTrier.push({x: tableauPartieResultat[tableauPartieResultat.length - 1 - i].x, y: tableauPartieResultat[tableauPartieResultat.length - 1 - i].y, val: tabDecimale[i], ordre: ordre, statu: false});
+                        tableauAvecResultatDansOrdre[tableauPartieResultat[tableauPartieResultat.length - 1 - i].x + "_" + tableauPartieResultat[tableauPartieResultat.length - 1 - i].y] = {val: tabDecimale[tabDecimale.length - 1 - i], ordre: ordre, statu: false};
+                        tableauAvecResultatDansOrdreTrier.push({x: tableauPartieResultat[tableauPartieResultat.length - 1 - i].x, y: tableauPartieResultat[tableauPartieResultat.length - 1 - i].y, val: tabDecimale[tabDecimale.length - 1 - i], ordre: ordre, statu: false});
                         ordre = ordre - 2;
                         if (i === tabDecimale.length - 1) {
                             tableauAvecResultatDansOrdre[tableauPartieResultat[tableauPartieResultat.length - 2 - i ].x + "_" + tableauPartieResultat[tableauPartieResultat.length - 2 - i].y] = {val: ",", ordre: tabDecimale.length * 2, statu: false};
@@ -1517,7 +1561,7 @@ function Grillage(idDiv) {
                     }
                     var ordre3 = 2;
                     var j = 0;
-                    for (i = retenue.length - 2; i >= 0; i--) {
+                    for (i = retenue.length - 1; i >= 0; i--) {
 
                         if (retenue[i]) {
                             tableauAvecResultatDansOrdre[tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].x + "_" + tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].y] = {val: retenue[i], ordre: ordre3, statu: false};

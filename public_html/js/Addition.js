@@ -147,7 +147,7 @@ function Addition() {
                     f = String(tmpSomme[i]).substring(0, taille - 1);
                     tmpSomme[i] = parseInt(p);
                     if (i <= 0) {
-                        retenues.unshift("");
+                        retenues.unshift(" ");
                         tmpSomme.unshift(".");
                         tmpSomme.unshift(parseInt(f));
                         retenues.unshift(parseInt(f));
