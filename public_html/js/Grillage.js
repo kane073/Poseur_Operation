@@ -41,7 +41,9 @@ function Grillage(idDiv) {
     content.appendChild(buttonAfficherResultat);
 
     buttonAfficherResultat.addEventListener('click', function(e) {
-        lancerCorrectionSimple();
+        if(!suiviEnCours){
+            lancerCorrectionSimple();
+        }
     }, false);
 
     var enonce = document.createElement("div");
