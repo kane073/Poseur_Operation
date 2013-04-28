@@ -42,9 +42,9 @@ function Grillage(idDiv) {
 
     buttonAfficherResultat.addEventListener('click', function(e) {
         //Condition pour ne pas lancer une correction pendant une suivie de correction
-        if(!suiviEnCours){
+        if (!suiviEnCours) {
             lancerCorrectionSimple();
-        }else{
+        } else {
             alert("Veuillez arrêter la correction suivi.");
         }
     }, false);
@@ -649,6 +649,36 @@ function Grillage(idDiv) {
         contextCanvasGrille.strokeStyle = couleur;
         contextCanvasGrille.stroke();
     }
+
+
+    function chargerImageContourError(x, y, r, color) {
+        contextCanvasGrille.beginPath();
+        contextCanvasGrille.arc(x + 15, y + 15, 14, r, Math.PI * 2, true);
+        contextCanvasGrille.lineWidth = 2;
+        contextCanvasGrille.strokeStyle = color;
+        contextCanvasGrille.stroke();
+
+    }
+
+    var r = 1;
+    var tableauDesImagesAnnimer = {};
+    function annimerIgame(x, y) {
+        chargerImageContourError(x, y, 0, "white")
+        chargerImageContourError(x, y, r, "#FC0E0E");
+
+        if (r <= 5) {
+            r += 0.5;
+        } else {
+            r = 0;
+        }
+
+    }
+    function commencerAnnimation(x, y) {
+        return setInterval(function() {
+            annimerIgame(x, y)
+        }, 50);
+    }
+
     /**
      * @description Cette fonction prend les coordonnées d'une cellule et crèe un element canvas donc l'id est la syntaxte suivante:
      * cellule_x_y avec x et y les coordonnées respectives de la cellule.
@@ -685,8 +715,7 @@ function Grillage(idDiv) {
     }
 
     /**
-     * @description Cette fonction, selon le type de navigateur, retourne l'objet 'event' approprié.
-     * @param {type} _event_
+     * @description Cette fonction, selon le type de navigateur, retourne l'objet 'event' approprié.      * @param {type} _event_
      * @returns {@exp;window@pro;event}
      */
     function checkEventObj(_event_) {
@@ -771,7 +800,6 @@ function Grillage(idDiv) {
      * @returns {Boolean}
      */
     function verifierQueLaCelluleEstActive(x, y) {
-
         var taille = 0;
         var active = false;
         while (taille < tableauDesCelluleAutorise.length && active === false) {
@@ -820,8 +848,8 @@ function Grillage(idDiv) {
 
                     } else {
                         var message = '<img style="position: absolute;margin-left: -16px;margin-top: -8px;" src=\"./img/icone_erreur.png\"/>\n\
-                                <em style="margin-left: 15px;">Erreur : Vous ne pouvez pas ecrire dans cette zone.<br> Veuillez\n\
-                                ecrire dans les zone autorisé.</em>';
+                        <em style="margin-left: 15px;">Erreur : Vous ne pouvez pas ecrire dans cette zone.<br> Veuillez\n\
+                        ecrire dans les zone autorisé.</em>';
                         var bgcolor = "#FF332F";
                         var textcolor = "#FFFCFB";
                         afficheMessageTooltip(coordonneGrilleCourant, message, bgcolor, textcolor);
@@ -875,7 +903,6 @@ function Grillage(idDiv) {
                                 listeErreurSimple.push({x: coordonneGrilleCourant.x, y: coordonneGrilleCourant.y});
                             }
                             break;
-
                         case "echap":
                             effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
                             effacerContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
@@ -950,8 +977,8 @@ function Grillage(idDiv) {
                      */
                 case "interdit":
                     var message = '<img style="position: absolute;margin-left: -16px;margin-top: -8px;" src=\"./img/icone_erreur.png\"/>\n\
-                <em style="margin-left: 15px;">Erreur : seul les caractères numerique sont permise <br> dans cette cellule. \n\
-                Exemple : 0, 1, 2, 5 etc...</em>';
+                    <em style="margin-left: 15px;">Erreur : seul les caractères numerique sont permise <br> dans cette cellule. \n\
+                    Exemple : 0, 1, 2, 5 etc...</em>';
                     var bgcolor = "#FF332F";
                     var textcolor = "#FFFCFB";
                     afficheMessageTooltip(coordonneGrilleCourant, message, bgcolor, textcolor);
@@ -999,7 +1026,6 @@ function Grillage(idDiv) {
                             effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
                             dessineContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y, "green");
                             break;
-
                         case "echap":
                             effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
                             effacerContour(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
@@ -1074,8 +1100,8 @@ function Grillage(idDiv) {
                      */
                 case "interdit":
                     var message = '<img style="position: absolute;margin-left: -16px;margin-top: -8px;" src=\"./img/icone_erreur.png\"/>\n\
-                <em style="margin-left: 15px;">Erreur : seul les caractères numerique sont permise <br> dans cette cellule. \n\
-                Exemple : 0, 1, 2, 5 etc...</em>';
+                    <em style="margin-left: 15px;">Erreur : seul les caractères numerique sont permise <br> dans cette cellule. \n\
+                    Exemple : 0, 1, 2, 5 etc...</em>';
                     var bgcolor = "#FF332F";
                     var textcolor = "#FFFCFB";
                     afficheMessageTooltip(coordonneGrilleCourant, message, bgcolor, textcolor);
@@ -1159,7 +1185,7 @@ function Grillage(idDiv) {
      */
     function suiviCorrectionAddition() {
         if (tableauDesValeursAttendu) {
-            
+
             if (suiviEnCours === false) {
                 var tmp = getStructureResultatAvantComparaison(typeOperation, operation);
                 tableauDesValeursAttendu = tmp.tableau;
@@ -1185,10 +1211,16 @@ function Grillage(idDiv) {
                     if (!tableauDesValeursAttendu[i].statu) {
                         tableauDesValeursAttendu[i].statu = true;
                         ecrireDansUneCelluleAvecTransparance(tableauDesValeursAttendu[i].x, tableauDesValeursAttendu[i].y, String(courant), "black", "rgba(0, 102, 0, 0.4)");
+                        if(tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y]){
+                             clearInterval(tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].stop);
+                             chargerImageContourError(tableauDesValeursAttendu[i].x, tableauDesValeursAttendu[i].y, 0, "white")
+                        }
                     }
+                    dessineContour(tableauDesValeursAttendu[i].x, tableauDesValeursAttendu[i].y, "green");
                 } else {
                     tableauDesValeursAttendu[i].statu = false;
-                    //dessineContour(tableauDesValeursAttendu[i].x, tableauDesValeursAttendu[i].y, "red");
+
+
 
                 }
                 if (courant) {
@@ -1196,23 +1228,27 @@ function Grillage(idDiv) {
                 }
                 correct = tableauDesValeursAttendu[i].statu;
             }
-            
+
             if (indicemax) {
                 for (v = 1; v <= indicemax; v++) {
                     if (tableauDesValeursAttendu[v].statu === false) {
 
-                        dessineContour(tableauDesValeursAttendu[v].x, tableauDesValeursAttendu[v].y, "red");
-
+                       // dessineContour(tableauDesValeursAttendu[v].x, tableauDesValeursAttendu[v].y, "red");
+                        if (!tableauDesImagesAnnimer[tableauDesValeursAttendu[v].x + "_" + tableauDesValeursAttendu[v].y]) {
+                            var stopDessinerContour = commencerAnnimation(tableauDesValeursAttendu[v].x, tableauDesValeursAttendu[v].y);
+                            tableauDesImagesAnnimer[tableauDesValeursAttendu[v].x + "_" + tableauDesValeursAttendu[v].y] = {stop:stopDessinerContour, statu:true};
+                        }
+                        
                     }
                 }
             }
-            for (j = 1;j < tableauDesValeursAttendu.length; j++) {
-                if(tableauDesValeursAttendu[j].statu===false){
+            for (j = 1; j < tableauDesValeursAttendu.length; j++) {
+                if (tableauDesValeursAttendu[j].statu === false) {
                     correct = false;
                     continue;
                 }
             }
-            if(correct){
+            if (correct) {
                 stropSuiviCorrectionAddition();
                 buttonCorrectionSuivi.innerHTML = "Correction suivi";
                 suiviEnCours = false;
@@ -1231,7 +1267,7 @@ function Grillage(idDiv) {
             buttonCorrectionSuivi.appendChild(imagecargement);
             suiviEnCours = true;
         }
-        
+
     }
     function stropSuiviCorrectionAddition()
     {
@@ -1278,7 +1314,6 @@ function Grillage(idDiv) {
                     }
                 }
 
-
                 break;
 
         }
@@ -1298,10 +1333,8 @@ function Grillage(idDiv) {
                 //Si une valeur est attendue
                 if (tableauDesResulat.object[varX + "_" + varY]) {
                     console.log("valeur recu :" + getValeurUneCellule(varX, varY) + "/" + tableauDesResulat.object[varX + "_" + varY].val)
-                    valeurAttendue = tableauDesResulat.object[varX + "_" + varY].val
-                    //Si valeur entrée = valeur attendue
-                    if (getValeurUneCellule(varX, varY) == valeurAttendue) {
-                        //Bonne Reponse
+                    valeurAttendue = tableauDesResulat.object[varX + "_" + varY].val                     //Si valeur entrée = valeur attendue
+                    if (getValeurUneCellule(varX, varY) == valeurAttendue) {                         //Bonne Reponse
                         ecrireDansUneCelluleAvecTransparance(varX, varY, String(getValeurUneCellule(varX, varY)), "black", "rgba(0, 102, 0, 0.4)");
                     }
                     //Sinon <=> valeur entrée != valeur attendue
@@ -1314,8 +1347,7 @@ function Grillage(idDiv) {
                 else {
                     console.log("valeur recu :" + getValeurUneCellule(varX, varY) + "/?")
                     //Si valeur entrée = 0
-                    if (getValeurUneCellule(varX, varY) == 0) {
-                        //Bonne Reponse
+                    if (getValeurUneCellule(varX, varY) == 0) {                         //Bonne Reponse
                         ecrireDansUneCelluleAvecTransparance(varX, varY, String(getValeurUneCellule(varX, varY)), "black", "rgba(0, 102, 0, 0.4)");
                     }
                     //Sinon <=> valeur entrée != 0
@@ -1352,8 +1384,7 @@ function Grillage(idDiv) {
      * @param {type} bgcolor
      * @param {type} borderwidth
      * @param {type} textcolor
-     * @param {type} message
-     * @param {type} tipbot
+     * @param {type} message      * @param {type} tipbot
      * @param {type} bordercolor
      */
     function dessinerDivForTooltip(posleft, postop, bordercolor, bgcolor, borderwidth, textcolor, message, tipbot, bordercolor) {
@@ -1402,8 +1433,7 @@ function Grillage(idDiv) {
      * @description Cette fonction affiche le tootltip
      * @param {type} coordonneGrilleCourant
      * @param {type} message
-     * @param {type} bgcolor
-     * @returns {undefined}
+     * @param {type} bgcolor      * @returns {undefined}
      */
     function afficheMessageTooltip(coordonneGrilleCourant, message, bgcolor, textcolor) {
         var bordercolor = '#666666';
@@ -1417,10 +1447,7 @@ function Grillage(idDiv) {
     /*********************************************************************************************
      * @description cette fonction prend en entré les coordonnée d'une cellule et efface le tooltip
      * qui lui correspond dans la grille
-     * @param {type} x
-     * @param {type} y
-     */
-    function effacerDivForTooltip(x, y) {
+     * @param {type} x      * @param {type} y      */     function effacerDivForTooltip(x, y) {
         var id_tooltip = "tooltip_" + x + "_" + y;
         var tooltip = grille.querySelector("#" + id_tooltip);
         if (tooltip) {
@@ -1436,9 +1463,7 @@ function Grillage(idDiv) {
      * @type Boolean operationEnCours
      * @type Object:{Addition, Soustraction, Multiplication, dition} operation 
      * @type Array tableauDesCelluleActiveNonActive
-     * @type Number postXContante
-     * @type Number postYContante
-     * @type Object(x,y) positionInitialPourPoserUneOperation 
+     * @type Number postXContante      * @type Number postYContante      * @type Object(x,y) positionInitialPourPoserUneOperation 
      */
     var operationEnCours = false;
     var operation;
@@ -1521,7 +1546,6 @@ function Grillage(idDiv) {
         /**
          * Opérande
          */
-
         /**
          * Partie Decimal
          */
@@ -1533,7 +1557,6 @@ function Grillage(idDiv) {
                     if (tableauDesCelluleReserver[j].ligne === numLigne) {
                         for (k = 0; k < decimale.length; k++) {
                             ecrireDansUneCelluleAvecTransparance(tableauDesCelluleReserver[j].valMaxByLigne - ((decimale.length - 1 - k) * 32), tableauDesCelluleReserver[j].y, String(decimale[k]), "black", couleurTransparenceOperandeDecimal);
-
                         }
                     }
                 }
@@ -1554,8 +1577,7 @@ function Grillage(idDiv) {
                 }
             }
             numLigne++;
-        }
-        /**
+        }         /**
          * Partie entière
          */
         numLigne = 2;
@@ -1566,7 +1588,6 @@ function Grillage(idDiv) {
                     if (tableauDesCelluleReserver[j].ligne === numLigne) {
                         for (k = entiere.length - 1; k >= 0; k--) {
                             ecrireDansUneCelluleAvecTransparance(tableauDesCelluleReserver[j].valMaxByLigne - ((maxDecimale + 1 + maxEntiere - 1 - k) * 32), tableauDesCelluleReserver[j].y, String(entiere[k]), "black", couleurTransparenceOperandeEntiere);
-
                         }
                     }
                 }
@@ -1685,8 +1706,7 @@ function Grillage(idDiv) {
      * 
      * @param {type} hashTable
      * @param {type} key
-     * @param {type} removeKey
-     * @returns {unresolved}
+     * @param {type} removeKey      * @returns {unresolved}
      */
     function sortHashTable(hashTable, key, removeKey) {
         hashTable = (hashTable instanceof Array ? hashTable : []);
