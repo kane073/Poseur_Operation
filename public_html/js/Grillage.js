@@ -41,8 +41,11 @@ function Grillage(idDiv) {
     content.appendChild(buttonAfficherResultat);
 
     buttonAfficherResultat.addEventListener('click', function(e) {
+        //Condition pour ne pas lancer une correction pendant une suivie de correction
         if(!suiviEnCours){
             lancerCorrectionSimple();
+        }else{
+            alert("Veuillez arrêter la correction suivi.");
         }
     }, false);
 
@@ -1170,7 +1173,7 @@ function Grillage(idDiv) {
             }
             var courant;
             var indicemax = 1;
-
+            var correct = true;
             for (i = 1; i < tableauDesValeursAttendu.length; i++) {
 
                 if (isInt(tableauDesValeursAttendu[i].val)) {
@@ -1191,6 +1194,7 @@ function Grillage(idDiv) {
                 if (courant) {
                     indicemax = i;
                 }
+                correct = tableauDesValeursAttendu[i].statu;
             }
             
             if (indicemax) {
@@ -1202,7 +1206,18 @@ function Grillage(idDiv) {
                     }
                 }
             }
-
+            for (j = 1;j < tableauDesValeursAttendu.length; j++) {
+                if(tableauDesValeursAttendu[j].statu===false){
+                    correct = false;
+                    continue;
+                }
+            }
+            if(correct){
+                stropSuiviCorrectionAddition();
+                buttonCorrectionSuivi.innerHTML = "Correction suivi";
+                suiviEnCours = false;
+                alert("Correction terminée!");
+            }
 
         } else {
             //Appelle de la getStructureResultatAvantComparaison pour verifier les champs saisit par l'utilisateur
@@ -1216,7 +1231,7 @@ function Grillage(idDiv) {
             buttonCorrectionSuivi.appendChild(imagecargement);
             suiviEnCours = true;
         }
-
+        
     }
     function stropSuiviCorrectionAddition()
     {
