@@ -661,15 +661,18 @@ function Grillage(idDiv) {
     }
 
     var r = 1;
+    var tableauRadiumIncrementation = {};
     var tableauDesImagesAnnimer = {};
     function annimerIgame(x, y) {
+        if (!tableauRadiumIncrementation[x + "_" + y]) {
+            tableauRadiumIncrementation[x + "_" + y] = {r: r};
+        }
         chargerImageContourError(x, y, 0, "white")
-        chargerImageContourError(x, y, r, "#FC0E0E");
-
-        if (r <= 5) {
-            r += 0.5;
+        chargerImageContourError(x, y, tableauRadiumIncrementation[x + "_" + y].r, "#FC0E0E");
+        if (tableauRadiumIncrementation[x + "_" + y].r <= 5) {
+            tableauRadiumIncrementation[x + "_" + y].r = 0.5 + tableauRadiumIncrementation[x + "_" + y].r;
         } else {
-            r = 0;
+            tableauRadiumIncrementation[x + "_" + y].r = 0;
         }
 
     }
@@ -1211,16 +1214,23 @@ function Grillage(idDiv) {
                     if (!tableauDesValeursAttendu[i].statu) {
                         tableauDesValeursAttendu[i].statu = true;
                         ecrireDansUneCelluleAvecTransparance(tableauDesValeursAttendu[i].x, tableauDesValeursAttendu[i].y, String(courant), "black", "rgba(0, 102, 0, 0.4)");
-                        if(tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y]){
-                             clearInterval(tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].stop);
-                             chargerImageContourError(tableauDesValeursAttendu[i].x, tableauDesValeursAttendu[i].y, 0, "white")
+                        if (tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y]) {
+                            clearInterval(tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].stop);
+                            chargerImageContourError(tableauDesValeursAttendu[i].x, tableauDesValeursAttendu[i].y, 0, "white");
+                            tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].statu = false;
                         }
                     }
                     dessineContour(tableauDesValeursAttendu[i].x, tableauDesValeursAttendu[i].y, "green");
                 } else {
                     tableauDesValeursAttendu[i].statu = false;
 
-
+                    if (courant) {
+                        if (tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].statu===false) {
+                            var stopDessinerContour2 = commencerAnnimation(tableauDesValeursAttendu[i].x, tableauDesValeursAttendu[i].y);
+                            tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].stop = stopDessinerContour2;
+                            tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].statu = true;
+                        }
+                    }
 
                 }
                 if (courant) {
@@ -1233,12 +1243,12 @@ function Grillage(idDiv) {
                 for (v = 1; v <= indicemax; v++) {
                     if (tableauDesValeursAttendu[v].statu === false) {
 
-                       // dessineContour(tableauDesValeursAttendu[v].x, tableauDesValeursAttendu[v].y, "red");
+                        // dessineContour(tableauDesValeursAttendu[v].x, tableauDesValeursAttendu[v].y, "red");
                         if (!tableauDesImagesAnnimer[tableauDesValeursAttendu[v].x + "_" + tableauDesValeursAttendu[v].y]) {
                             var stopDessinerContour = commencerAnnimation(tableauDesValeursAttendu[v].x, tableauDesValeursAttendu[v].y);
-                            tableauDesImagesAnnimer[tableauDesValeursAttendu[v].x + "_" + tableauDesValeursAttendu[v].y] = {stop:stopDessinerContour, statu:true};
+                            tableauDesImagesAnnimer[tableauDesValeursAttendu[v].x + "_" + tableauDesValeursAttendu[v].y] = {stop: stopDessinerContour, statu: true};
                         }
-                        
+
                     }
                 }
             }
