@@ -679,7 +679,7 @@ function Grillage(idDiv) {
     function commencerAnnimation(x, y) {
         return setInterval(function() {
             annimerIgame(x, y)
-        }, 50);
+        }, 100);
     }
 
     /**
@@ -1220,15 +1220,20 @@ function Grillage(idDiv) {
                             tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].statu = false;
                         }
                     }
-                    dessineContour(tableauDesValeursAttendu[i].x, tableauDesValeursAttendu[i].y, "green");
+                    
                 } else {
                     tableauDesValeursAttendu[i].statu = false;
 
                     if (courant) {
-                        if (tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].statu===false) {
-                            var stopDessinerContour2 = commencerAnnimation(tableauDesValeursAttendu[i].x, tableauDesValeursAttendu[i].y);
-                            tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].stop = stopDessinerContour2;
-                            tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].statu = true;
+                        if (tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y]) {
+                            if (tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].statu === false) {
+                                var stopDessinerContour2 = commencerAnnimation(tableauDesValeursAttendu[i].x, tableauDesValeursAttendu[i].y);
+                                tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].stop = stopDessinerContour2;
+                                tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].statu = true;
+                            }
+                        }else{
+                            var stopDessinerContour3 = commencerAnnimation(tableauDesValeursAttendu[i].x, tableauDesValeursAttendu[i].y);
+                            tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y] = {stop: stopDessinerContour3, statu: true};
                         }
                     }
 
