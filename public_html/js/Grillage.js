@@ -69,7 +69,6 @@ function Grillage(idDiv) {
             contextPosti.shadowOffsetY = 1;
             contextPosti.font = "10.5pt sans-serif";
             contextPosti.rotate(-0.05);
-            console.log(contenuEnonce.length);
             j = 0;
             for (i = 0; i < contenuEnonce.length; i++) {
                 textCouper = contenuEnonce.substring(i, i + 23);
@@ -84,7 +83,7 @@ function Grillage(idDiv) {
     var suiviActive = false;
 
     var groupeRadio = document.createElement("p");
-    groupeRadio.setAttribute("style", "position: absolute;margin-left: 175px;margin-top: -28px;");
+    groupeRadio.setAttribute("style", "position: absolute;margin-left: 175px;margin-top: -28px;display:none;");
     groupeRadio.setAttribute("class", "radio-group-choixTypeDeCorrection");
     groupeRadio.setAttribute("id", "choixTypeDeCorrection");
     var simple = document.createElement("input");
@@ -149,19 +148,34 @@ function Grillage(idDiv) {
      * @description Création du button "Corriger" qui servira à afficher le Corriger. 
      * @type @exp;document@call;createElement
      */
-    var buttonCorriger = document.createElement("button");
-    var styleButtonCorriger = "position:absolute;display:none;";
-    buttonCorriger.setAttribute("id", "buttonCorriger");
-    buttonCorriger.setAttribute("class", "buttonPoseurOperation");
-    buttonCorriger.setAttribute("style", styleButtonCorriger);
-    buttonCorriger.innerHTML = "Corriger";
-    content.appendChild(buttonCorriger);
+    var buttonCorrectionSuivi = document.createElement("button");
+    var styleButtonCorrectionSuivi = "";
+    buttonCorrectionSuivi.setAttribute("id", "buttonCorrectionSuivi");
+    buttonCorrectionSuivi.setAttribute("class", "buttonPoseurOperation");
+    buttonCorrectionSuivi.setAttribute("style", styleButtonCorrectionSuivi);
+    buttonCorrectionSuivi.innerHTML = "Correction suivi";
+    content.appendChild(buttonCorrectionSuivi);
+    var mySuiviCorrection;
+    var suiviEnCours = false;
+    buttonCorrectionSuivi.addEventListener('click', function(e) {
+        if (!suiviEnCours) {
+            buttonCorrectionSuivi.innerHTML = "Lancement...";
+        }
+        switch (typeOperation) {
+            case "addition":
+                if (!suiviEnCours) {
+                    mySuiviCorrection = setInterval(function() {
+                        suiviCorrectionAddition();
+                    }, 1000);
 
-    // buttonCorriger.addEventListener('click', function(e) {
-    //     if(simpleActive){
-    //         lancerCorrectionSimple();
-    //     }
-    // }, false);
+                } else {
+                    suiviEnCours = false;
+                    stropSuiviCorrectionAddition(mySuiviCorrection);
+                    buttonCorrectionSuivi.innerHTML = "Correction suivi";
+                }
+                break;
+        }
+    }, false);
 
 
     /**
@@ -419,11 +433,15 @@ function Grillage(idDiv) {
         }
     }
 
-    /*Ici nous dessinons la marge*/
-    contextCanvasGrille.fillStyle = "red";
-    contextCanvasGrille.fillRect(126, 0, 2, 512);
-
-
+    /**
+     *@description Cette function dessine la marge
+     */
+    function dessinerMarge() {
+        contextCanvasGrille.fillStyle = "red";
+        contextCanvasGrille.fillRect(126, 0, 2, 512);
+    }
+    /*On dessine la marge*/
+    dessinerMarge();
     /*******************************************************************************
      * On insert la div.grille dans le div.content 
      */
@@ -539,6 +557,8 @@ function Grillage(idDiv) {
         contextCanvasGrille.lineTo(x + tailleCase, y - 1 + tailleCase + 2);
         contextCanvasGrille.strokeStyle = couleur;
         contextCanvasGrille.stroke();
+
+        dessinerMarge();
     }
 
     /**
@@ -552,6 +572,8 @@ function Grillage(idDiv) {
         contextCanvasGrille.clearRect(x - 2, y - 2, 2, tailleCase + 2);
         contextCanvasGrille.clearRect(x - 2, y + tailleCase, tailleCase + 2, 2);
         contextCanvasGrille.clearRect(x + tailleCase, y - 2, 2, tailleCase + 2);
+
+        dessinerMarge();
     }
 
     /**
@@ -782,7 +804,7 @@ function Grillage(idDiv) {
 
                         switch (typeOperation) {
                             case 'addition':
-                                suiviCorrectionAddition(donnekey, coordonneGrilleCourant, dernierCelluleSelectionne);
+
 
                                 ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#000");
 
@@ -812,9 +834,9 @@ function Grillage(idDiv) {
                             switch (donnekey.val) {
                                 case "equal":
 
-                                    //suiviCorrectionAddition(donnekey, coordonneGrilleCourant, dernierCelluleSelectionne);
+
                                     afficherResultatOperation("addition");
-                                    //ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#000");
+
                                     break;
                                 case ",":
                                     ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#000");
@@ -939,7 +961,7 @@ function Grillage(idDiv) {
                  * 
                  */
                 case "chiffre":
-                    suiviCorrectionAddition(donnekey, coordonneGrilleCourant, dernierCelluleSelectionne);
+
 
                     ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#000");
 
@@ -949,7 +971,7 @@ function Grillage(idDiv) {
                     break;
 
                 case "operateur":
-                    suiviCorrectionAddition(donnekey, coordonneGrilleCourant, dernierCelluleSelectionne);
+
 
                     ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#00F");
 
@@ -1122,20 +1144,83 @@ function Grillage(idDiv) {
 
 
 
-
-
-    /****************************************************************************************
-     * 
-     * @param {type} reponse
-     * @param {type} coordonneGrilleCourant
-     * @param {type} dernierCelluleSelectionne
-     * @returns {undefined}
+    /**
+     * Variable global dans la qualle on stock les resultats attendu
+     * @type @exp;tmp@pro;tableau|@exp;tmp@pro;tableau
      */
-    function suiviCorrectionAddition(reponse, coordonneGrilleCourant, dernierCelluleSelectionne) {
-        // console.log(coordonneGrilleCourant);
-        // console.log(dernierCelluleSelectionne);
-        // console.log(reponse);
+    var tableauDesValeursAttendu;
+    /****************************************************************************************
+     * Cette function verifie le champs remplit pendant la correction et aussi les champs déjà remplit.
+     */
+    function suiviCorrectionAddition() {
+        if (tableauDesValeursAttendu) {
+            
+            if (suiviEnCours === false) {
+                var tmp = getStructureResultatAvantComparaison(typeOperation, operation);
+                tableauDesValeursAttendu = tmp.tableau;
+                buttonCorrectionSuivi.innerHTML = "Suivi de la correction en cours...";
+                var imagecargement = document.createElement("img");
+                imagecargement.setAttribute("src", "./img/loadinfo.gif");
+                imagecargement.setAttribute("style", "width: 20px;height: 14px");
+                buttonCorrectionSuivi.appendChild(imagecargement);
+                suiviEnCours = true;
+
+            }
+            var courant;
+            var indicemax = 1;
+
+            for (i = 1; i < tableauDesValeursAttendu.length; i++) {
+
+                if (isInt(tableauDesValeursAttendu[i].val)) {
+                    courant = parseInt(getValeurUneCellule(tableauDesValeursAttendu[i].x, tableauDesValeursAttendu[i].y));
+                } else {
+                    courant = getValeurUneCellule(tableauDesValeursAttendu[i].x, tableauDesValeursAttendu[i].y);
+                }
+                if (tableauDesValeursAttendu[i].val === courant) {
+                    if (!tableauDesValeursAttendu[i].statu) {
+                        tableauDesValeursAttendu[i].statu = true;
+                        ecrireDansUneCelluleAvecTransparance(tableauDesValeursAttendu[i].x, tableauDesValeursAttendu[i].y, String(courant), "black", "rgba(0, 102, 0, 0.4)");
+                    }
+                } else {
+                    tableauDesValeursAttendu[i].statu = false;
+                    //dessineContour(tableauDesValeursAttendu[i].x, tableauDesValeursAttendu[i].y, "red");
+
+                }
+                if (courant) {
+                    indicemax = i;
+                }
+            }
+            
+            if (indicemax) {
+                for (v = 1; v <= indicemax; v++) {
+                    if (tableauDesValeursAttendu[v].statu === false) {
+
+                        dessineContour(tableauDesValeursAttendu[v].x, tableauDesValeursAttendu[v].y, "red");
+
+                    }
+                }
+            }
+
+
+        } else {
+            //Appelle de la getStructureResultatAvantComparaison pour verifier les champs saisit par l'utilisateur
+            var tmp = getStructureResultatAvantComparaison(typeOperation, operation);
+            tableauDesValeursAttendu = tmp.tableau;
+            //Changement du style bu button et chargement de l'image gif
+            buttonCorrectionSuivi.innerHTML = "Suivi de la correction en cours...";
+            var imagecargement = document.createElement("img");
+            imagecargement.setAttribute("src", "./img/loadinfo.gif");
+            imagecargement.setAttribute("style", "width: 20px;height: 14px");
+            buttonCorrectionSuivi.appendChild(imagecargement);
+            suiviEnCours = true;
+        }
+
     }
+    function stropSuiviCorrectionAddition()
+    {
+        clearInterval(mySuiviCorrection);
+    }
+
 
     function afficherResultatOperation(typeoperation) {
         switch (typeoperation) {
@@ -1194,9 +1279,9 @@ function Grillage(idDiv) {
             //Si l'utilisateur a rempli cette case
             if (getValeurUneCellule(varX, varY) || getValeurUneCellule(varX, varY) === 0) {
                 //Si une valeur est attendue
-                if (tableauDesResulat[varX + "_" + varY]) {
-                    console.log("valeur recu :" + getValeurUneCellule(varX, varY) + "/" + tableauDesResulat[varX + "_" + varY].val)
-                    valeurAttendue = tableauDesResulat[varX + "_" + varY].val
+                if (tableauDesResulat.object[varX + "_" + varY]) {
+                    console.log("valeur recu :" + getValeurUneCellule(varX, varY) + "/" + tableauDesResulat.object[varX + "_" + varY].val)
+                    valeurAttendue = tableauDesResulat.object[varX + "_" + varY].val
                     //Si valeur entrée = valeur attendue
                     if (getValeurUneCellule(varX, varY) == valeurAttendue) {
                         //Bonne Reponse
@@ -1345,7 +1430,7 @@ function Grillage(idDiv) {
     var tableauDesCelluleReserver = [];
     var tableauDesCelluleAutorise = [];
     var postXContante = 224;
-    var postYContante = 32;
+    var postYContante = 96;
     var positionInitialPourPoserUneOperation = {x: postXContante, y: postYContante};
 
     /***********************************************************************************************
@@ -1543,37 +1628,37 @@ function Grillage(idDiv) {
                     }
                     var tabDecimale = resultat.getPartieDecimale();
                     var tabEntiere = resultat.getPartieEntiere();
-                    var ordre = tabDecimale.length * 2 - 1;
+                    var ordre = 1;
                     for (i = 0; i < tabDecimale.length; i++) {
                         tableauAvecResultatDansOrdre[tableauPartieResultat[tableauPartieResultat.length - 1 - i].x + "_" + tableauPartieResultat[tableauPartieResultat.length - 1 - i].y] = {val: tabDecimale[tabDecimale.length - 1 - i], ordre: ordre, statu: false};
-                        tableauAvecResultatDansOrdreTrier.push({x: tableauPartieResultat[tableauPartieResultat.length - 1 - i].x, y: tableauPartieResultat[tableauPartieResultat.length - 1 - i].y, val: tabDecimale[tabDecimale.length - 1 - i], ordre: ordre, statu: false});
-                        ordre = ordre - 2;
+                        tableauAvecResultatDansOrdreTrier.push({x: tableauPartieResultat[tableauPartieResultat.length - 1 - i].x, y: tableauPartieResultat[tableauPartieResultat.length - 1 - i].y, val: tabDecimale[tabDecimale.length - 1 - i], ordre: ordre, order: ordre, statu: false});
+                        ordre = ordre + 2;
                         if (i === tabDecimale.length - 1) {
                             tableauAvecResultatDansOrdre[tableauPartieResultat[tableauPartieResultat.length - 2 - i ].x + "_" + tableauPartieResultat[tableauPartieResultat.length - 2 - i].y] = {val: ",", ordre: tabDecimale.length * 2, statu: false};
-                            tableauAvecResultatDansOrdreTrier.push({x: tableauPartieResultat[tableauPartieResultat.length - 2 - i].x, y: tableauPartieResultat[tableauPartieResultat.length - 2 - i].y, val: ",", ordre: tabDecimale.length * 2, statu: false});
+                            tableauAvecResultatDansOrdreTrier.push({x: tableauPartieResultat[tableauPartieResultat.length - 2 - i].x, y: tableauPartieResultat[tableauPartieResultat.length - 2 - i].y, val: ",", ordre: tabDecimale.length * 2, order: tabDecimale.length * 2, statu: false});
                         }
                     }
                     var ordre2 = tabDecimale.length * 2 + 1;
                     for (i = 0; i < tabEntiere.length; i++) {
                         tableauAvecResultatDansOrdre[tableauPartieResultat[tableauPartieResultat.length - 2 - i - tabDecimale.length].x + "_" + tableauPartieResultat[tableauPartieResultat.length - 2 - i - tabDecimale.length].y] = {val: tabEntiere[tabEntiere.length - 1 - i], ordre: ordre2, statu: false};
-                        tableauAvecResultatDansOrdreTrier.push({x: tableauPartieResultat[tableauPartieResultat.length - 2 - i - tabDecimale.length].x, y: tableauPartieResultat[tableauPartieResultat.length - 2 - i - tabDecimale.length].y, val: tabEntiere[tabEntiere.length - 1 - i], ordre: ordre2, statu: false});
+                        tableauAvecResultatDansOrdreTrier.push({x: tableauPartieResultat[tableauPartieResultat.length - 2 - i - tabDecimale.length].x, y: tableauPartieResultat[tableauPartieResultat.length - 2 - i - tabDecimale.length].y, val: tabEntiere[tabEntiere.length - 1 - i], ordre: ordre2, order: ordre2, statu: false});
                         ordre2 = ordre2 + 2;
                     }
-                    var ordre3 = 2;
+                    var ordre3 = 0;
                     var j = 0;
                     for (i = retenue.length - 1; i >= 0; i--) {
-
-                        if (retenue[i]) {
+                        if (retenue[i] !== " ") {
                             tableauAvecResultatDansOrdre[tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].x + "_" + tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].y] = {val: retenue[i], ordre: ordre3, statu: false};
-                            tableauAvecResultatDansOrdreTrier.push({x: tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].x, y: tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].y, val: retenue[i], ordre: ordre3, statu: false});
+                            tableauAvecResultatDansOrdreTrier.push({x: tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].x, y: tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].y, val: retenue[i], ordre: ordre3, order: ordre3, statu: false});
                             ordre3 = ordre3 + 2;
                         } else {
                             ordre3 = ordre3 + 2;
                         }
+
                         j++;
                     }
-                    //var tmp = sortHashTable(tableauAvecResultatDansOrdreTrier,'ordre', true);
-                    return tableauAvecResultatDansOrdre;
+                    var tmp = sortHashTable(tableauAvecResultatDansOrdreTrier, 'order', true);
+                    return {object: tableauAvecResultatDansOrdre, tableau: tmp};
                     break;
             }
         }
