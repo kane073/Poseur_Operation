@@ -39,9 +39,9 @@ function Grillage(idDiv) {
     buttonAfficherResultat.setAttribute("style", styleButtonEnonce);
     buttonAfficherResultat.innerHTML = "Correction";
     content.appendChild(buttonAfficherResultat);
-	
+
     buttonAfficherResultat.addEventListener('click', function(e) {
-		lancerCorrectionSimple();
+        lancerCorrectionSimple();
     }, false);
 
     var enonce = document.createElement("div");
@@ -113,7 +113,7 @@ function Grillage(idDiv) {
     var styleAffichageTypeCorrection = 'position: fixed;width: 150px;height: 70px;margin-left: 300px;margin-top: -33px; display:none;';
     divAffichageTypeCorrection.setAttribute("style", styleAffichageTypeCorrection);
     divAffichageTypeCorrection.setAttribute("id", "affichageypeCorrection");
-    
+
     content.appendChild(divAffichageTypeCorrection);
 
     suivi.addEventListener('click', function(e) {
@@ -418,10 +418,10 @@ function Grillage(idDiv) {
             listeDonneeDeChaqueCellule[String(i * 32) + "_" + String(j * 32)] = "";
         }
     }
-	
-	/*Ici nous dessinons la marge*/
+
+    /*Ici nous dessinons la marge*/
     contextCanvasGrille.fillStyle = "red";
-    contextCanvasGrille.fillRect(126, 0, 2 ,512);
+    contextCanvasGrille.fillRect(126, 0, 2, 512);
 
 
     /*******************************************************************************
@@ -436,7 +436,7 @@ function Grillage(idDiv) {
      * @returns {int}
      */
     function getValeurUneCellule(x, y) {
-    	return listeDonneeDeChaqueCellule[String(x) + "_" + String(y)];
+        return listeDonneeDeChaqueCellule[String(x) + "_" + String(y)];
     }
 
     /***
@@ -725,9 +725,9 @@ function Grillage(idDiv) {
                     break;
             }
         }
-		//Touche tab
+        //Touche tab
         if (intKeyCode == 09) {
-			return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "droit", "type": "direction"};
+            return {"intKeyCode": intKeyCode, "intAltKey": intAltKey, "intCtrlKey": intCtrlKey, "val": "droit", "type": "direction"};
         }
 
         if (intKeyCode >= 8 && intKeyCode <= 46) {
@@ -1063,7 +1063,7 @@ function Grillage(idDiv) {
      * @param {type} event
      */
     canvasGrille.onmousedown = function(event) {
-		
+
         /**
          * On appelle la @function getSourisPosition qui nous donne position de la sourie
          */
@@ -1078,7 +1078,7 @@ function Grillage(idDiv) {
          * On verifie qu'on n'a pas clické que la même cellule
          */
         if (dernierCelluleSelectionne.x !== coordonneGrilleCourant.x || dernierCelluleSelectionne.y !== coordonneGrilleCourant.y) {
-			//On éfface le coutour de la cellule precedente
+            //On éfface le coutour de la cellule precedente
             effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
             //On efface aussi l'élement canvas que se trouve au-dessus de l'anciène cellule
             supprimerCanvasCellule(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
@@ -1136,7 +1136,7 @@ function Grillage(idDiv) {
         // console.log(dernierCelluleSelectionne);
         // console.log(reponse);
     }
-	
+
     function afficherResultatOperation(typeoperation) {
         switch (typeoperation) {
             case "addition":
@@ -1181,49 +1181,49 @@ function Grillage(idDiv) {
 
         }
     }
-	
+
 
 
     function lancerCorrectionSimple() {
-		var tableauDesResulat = getStructureResultatAvantComparaison(typeOperation, operation);
-		console.log("Reception fonction correction Simple");
-		//Pour chaque cellule editable
-		for(i=0;i<tableauDesCelluleAutorise.length;i++){
-			varX = tableauDesCelluleAutorise[i].x
-			varY = tableauDesCelluleAutorise[i].y
-			//Si l'utilisateur a rempli cette case
-			if(getValeurUneCellule(varX,varY) || getValeurUneCellule(varX,varY)===0){
-				//Si une valeur est attendue
-				if(tableauDesResulat[varX+"_"+varY]){
-					console.log("valeur recu :"+getValeurUneCellule(varX,varY)+"/"+tableauDesResulat[varX+"_"+varY].val)
-					valeurAttendue = tableauDesResulat[varX+"_"+varY].val
-					//Si valeur entrée = valeur attendue
-					if(getValeurUneCellule(varX,varY)==valeurAttendue){
-						//Bonne Reponse
-				        ecrireDansUneCelluleAvecTransparance(varX, varY, String(getValeurUneCellule(varX,varY)), "black", "rgba(0, 102, 0, 0.4)");
-					}
-					//Sinon <=> valeur entrée != valeur attendue
-					else{
-						//Mauvaise Réponse
-				        ecrireDansUneCelluleAvecTransparance(varX, varY, String(getValeurUneCellule(varX,varY)), "black", "rgba(255, 0, 0, 0.4)");
-					}
-				}
-				//Sinon, si aucune valeur attendu
-				else{
-					console.log("valeur recu :"+getValeurUneCellule(varX,varY)+"/?")
-					//Si valeur entrée = 0
-					if(getValeurUneCellule(varX,varY)==0){
-						//Bonne Reponse
-				        ecrireDansUneCelluleAvecTransparance(varX, varY, String(getValeurUneCellule(varX,varY)), "black", "rgba(0, 102, 0, 0.4)");
-					}
-					//Sinon <=> valeur entrée != 0
-					else{
-						//Mauvaise Réponse
-				        ecrireDansUneCelluleAvecTransparance(varX, varY, String(getValeurUneCellule(varX,varY)), "black", "rgba(255, 0, 0, 0.4)");
-					}
-				}
-			}
-		}	
+        var tableauDesResulat = getStructureResultatAvantComparaison(typeOperation, operation);
+        console.log("Reception fonction correction Simple");
+        //Pour chaque cellule editable
+        for (i = 0; i < tableauDesCelluleAutorise.length; i++) {
+            varX = tableauDesCelluleAutorise[i].x
+            varY = tableauDesCelluleAutorise[i].y
+            //Si l'utilisateur a rempli cette case
+            if (getValeurUneCellule(varX, varY) || getValeurUneCellule(varX, varY) === 0) {
+                //Si une valeur est attendue
+                if (tableauDesResulat[varX + "_" + varY]) {
+                    console.log("valeur recu :" + getValeurUneCellule(varX, varY) + "/" + tableauDesResulat[varX + "_" + varY].val)
+                    valeurAttendue = tableauDesResulat[varX + "_" + varY].val
+                    //Si valeur entrée = valeur attendue
+                    if (getValeurUneCellule(varX, varY) == valeurAttendue) {
+                        //Bonne Reponse
+                        ecrireDansUneCelluleAvecTransparance(varX, varY, String(getValeurUneCellule(varX, varY)), "black", "rgba(0, 102, 0, 0.4)");
+                    }
+                    //Sinon <=> valeur entrée != valeur attendue
+                    else {
+                        //Mauvaise Réponse
+                        ecrireDansUneCelluleAvecTransparance(varX, varY, String(getValeurUneCellule(varX, varY)), "black", "rgba(255, 0, 0, 0.4)");
+                    }
+                }
+                //Sinon, si aucune valeur attendu
+                else {
+                    console.log("valeur recu :" + getValeurUneCellule(varX, varY) + "/?")
+                    //Si valeur entrée = 0
+                    if (getValeurUneCellule(varX, varY) == 0) {
+                        //Bonne Reponse
+                        ecrireDansUneCelluleAvecTransparance(varX, varY, String(getValeurUneCellule(varX, varY)), "black", "rgba(0, 102, 0, 0.4)");
+                    }
+                    //Sinon <=> valeur entrée != 0
+                    else {
+                        //Mauvaise Réponse
+                        ecrireDansUneCelluleAvecTransparance(varX, varY, String(getValeurUneCellule(varX, varY)), "black", "rgba(255, 0, 0, 0.4)");
+                    }
+                }
+            }
+        }
     }
     /****************************************************************************************
      * @description  Cette fonction prend en entrer un canvas et dessine la flèche du tooltip
@@ -1456,7 +1456,7 @@ function Grillage(idDiv) {
         /**
          * Partie entière
          */
-        numLigne = 2
+        numLigne = 2;
         for (i = 0; i < operande.length; i++) {
             entiere = operande[i].getPartieEntiere();
             if (entiere.length === maxEntiere) {
@@ -1533,7 +1533,7 @@ function Grillage(idDiv) {
                     var retenue = operation.getRetenues();
                     var resultat = operation.getResultat();
 
-                    var yDebut = tableauDesCelluleAutorise[0].y
+                    var yDebut = tableauDesCelluleAutorise[0].y;
                     for (i = 0; i < tableauDesCelluleAutorise.length; i++) {
                         if (tableauDesCelluleAutorise[i].y === yDebut) {
                             tableauPartieRetenue.push(tableauDesCelluleAutorise[i]);
