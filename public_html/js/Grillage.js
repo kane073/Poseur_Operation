@@ -177,6 +177,13 @@ function Grillage(idDiv) {
                     suiviEnCours = false;
                     stropSuiviCorrectionAddition(mySuiviCorrection);
                     buttonCorrectionSuivi.innerHTML = "Correction suivi";
+//                    for(i=0;i<tableauDesValeursAttendu.length;i++){
+//                        if(tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x+"_"+tableauDesValeursAttendu[i].y]){
+//                            clearInterval(tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].stop);
+//                            chargerImageContourError(tableauDesValeursAttendu[i].x, tableauDesValeursAttendu[i].y, 0, "white");
+//                            tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].statu = false;
+//                        }
+//                    }
                 }
                 break;
         }
