@@ -658,7 +658,7 @@ function Grillage(idDiv) {
     }
 
 
-    function chargerImageContourError(x, y, r, color) {
+    function chargerImageContourError(x, y, r, color) {        
         contextCanvasGrille.beginPath();
         contextCanvasGrille.arc(x + 15, y + 15, 14, r, Math.PI * 2, true);
         contextCanvasGrille.lineWidth = 2;
