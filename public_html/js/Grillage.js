@@ -1,24 +1,34 @@
-/****************************************************************************************************** 
- * @description Projet ingénieur de Télécom bretagne - Poseur d'opération
+/**
+ * Projet ingénieur de Télécom bretagne - Poseur d'opération
  * @version 1.0
- * Date de la dernière modification : 14/04/2013
- * @author Alassane KANE
- *******************************************************************************************************/
-/********************************************************************************************************
- * @description Cette classe affiche la grille et grère aussi toute les actions faite dans la grille.
- *              Elle servira à afficher les differentes opérations et à les résoudres aussi.
- * 
- * @argument {type} idDiv est le id de l'element div qui va contenir la grille.             
+ * @author <a href="mailto:alassane.kane@telecom-bretagne.eu">Alassane KANE</a>
+ * @author <a href="mailto:alassane.kane@telecom-bretagne.eu">Alassane KANE</a>
+ * @author <a href="mailto:alassane.kane@telecom-bretagne.eu">Alassane KANE</a>
+ * @author <a href="mailto:alassane.kane@telecom-bretagne.eu">Alassane KANE</a>
+ * @author <a href="mailto:alassane.kane@telecom-bretagne.eu">Alassane KANE</a>
+ */
+/**
+ * @class Cette classe affiche la grille et grère aussi toute les actions faite dans la grille. Elle servira à afficher les differentes opérations et à les résoudres aussi. 
+ * @constructor 
+ * @argument {string} idDiv est le id de l'element div qui va contenir la grille.
  * @returns {Grillage}
  */
 function Grillage(idDiv) {
 
 
-    /***************************************************************************
-     * @description On applique un style au contenaire principal, 
-     * @type @exp;document@call;getElementById
+    
+    /**
+     * @description Il va contenir le l'element div obtenue grace à l'idDiv avec la fonction document.getElementById
+     * @private
+     * @type ElementDiv
      */
     var content = document.getElementById(idDiv);
+    /**
+     * @description Contient le du contenaire principal
+     * @private
+     * @constant
+     * @type String
+     */
     var styleContent = "border: 2px solid #000;width: 810px; height: 600px; border:dashed 5px #5cbeff;\n\
                         -moz-border-radius-topleft: 6px;-moz-border-radius-topright:5px;\n\
                         -moz-border-radius-bottomleft:5px;-moz-border-radius-bottomright:5px;\n\
@@ -28,9 +38,9 @@ function Grillage(idDiv) {
                         border-bottom-left-radius:5px;border-bottom-right-radius:5px;";
     content.setAttribute("style", styleContent);
 
-    /*****************************************************************************
-     * @description Création du button "Enoncé" qui servira à afficher l'énoncé d'un exercice. 
-     * @type @exp;document@call;createElement
+    /**
+     * @description Création du button "Correction" qui servira à corriger les réponses de l'élève. 
+     * @type ElementButton
      */
     var buttonAfficherResultat = document.createElement("button");
     var styleButtonEnonce = "";
@@ -39,7 +49,12 @@ function Grillage(idDiv) {
     buttonAfficherResultat.setAttribute("style", styleButtonEnonce);
     buttonAfficherResultat.innerHTML = "Correction";
     content.appendChild(buttonAfficherResultat);
-
+    
+    /**
+     * @event
+     * @param {MyEventObject} e 
+     * @requires la variable suiviEnCours
+     */
     buttonAfficherResultat.addEventListener('click', function(e) {
         //Condition pour ne pas lancer une correction pendant une suivie de correction
         if (!suiviEnCours) {
@@ -48,19 +63,30 @@ function Grillage(idDiv) {
             alert("Veuillez arrêter la correction suivi.");
         }
     }, false);
-
+    /**
+     * @description Le div qui va contenir l'element canvas pour afficher le Posti.
+     * @type ElementDiv
+     */
     var enonce = document.createElement("div");
     var stylePostie = 'position: absolute; margin-left: -1px; margin-top: 42px;z-index:1';
     enonce.setAttribute("style", stylePostie);
     enonce.setAttribute("id", "enonceAffice");
     content.appendChild(enonce);
-
+    
+    /**
+     * @description Le canvas qui servira pour afficher l'enoncé.
+     * @type ElementCanvas
+     */
     var canvasPosti = document.createElement("canvas");
     canvasPosti.setAttribute("width", 200);
     canvasPosti.setAttribute("height", 200);
     canvasPosti.setAttribute("id", "canvasElementPosti");
     enonce.appendChild(canvasPosti);
-
+    
+    /**
+     * @description Cette function affichera l'énoncé de l'exercice.
+     * @param {String} contenuEnonce contient l'énoncé de l'exercice
+     */
     function afficherEnonce(contenuEnonce) {
         var contextPosti = canvasPosti.getContext('2d');
         var imagePosti = new Image(180, 180);
@@ -149,9 +175,10 @@ function Grillage(idDiv) {
     }, false);
 
 
-    /*****************************************************************************
-     * @description Création du button "Corriger" qui servira à afficher le Corriger. 
-     * @type @exp;document@call;createElement
+    /**
+     * @description Création du button "Correction suivi" qui une foi lancer suivra l'élève dans sa resolution de l'exercice.. 
+     * @private
+     * @type ElementDiv
      */
     var buttonCorrectionSuivi = document.createElement("button");
     var styleButtonCorrectionSuivi = "";
@@ -160,8 +187,22 @@ function Grillage(idDiv) {
     buttonCorrectionSuivi.setAttribute("style", styleButtonCorrectionSuivi);
     buttonCorrectionSuivi.innerHTML = "Correction suivi";
     content.appendChild(buttonCorrectionSuivi);
+    
+    /**
+     * @private
+     * @type event 
+     */
     var mySuiviCorrection;
+    
+    /**
+     * @private
+     * @type Boolean
+     */
     var suiviEnCours = false;
+    
+    /**
+     * @event
+     */
     buttonCorrectionSuivi.addEventListener('click', function(e) {
         if (!suiviEnCours) {
             buttonCorrectionSuivi.innerHTML = "Lancement...";
