@@ -1,22 +1,40 @@
 /** 
- * @description Projet ingénieur de Télécom bretagne - Poseur d'opération
+ * @fileOverview Projet ingénieur de Télécom bretagne - Poseur d'opération
  * @version 1.0
- * Date de la dernière modification : 09/04/2013
- * @author Alassane KANE, Tenfei Zhai
+ * @author Alassane KANE, Tenfei Zhai, Corto Carde
  */
+
 /**
- * @description Cette classe servira à créer des opérations de type addition
+ * @class  Cette classe servira à créer des opérations de type addition
+ * @constructor 
+ * @argument [Nombre,Nombre,...,Nombre] Elle prend en paramètre une liste d'élement type Nombre
  * @returns {Addition}
  */
 function Addition() {
+    /**
+     * 
+     * @type arguments
+     */
     var listArgument = arguments;
+    /**
+     * @private
+     * @type Array
+     */
     var operande = [];
+    /**
+     * @private
+     * @type Array
+     */
     var retenues = [0];
+    /**
+     * @private
+     * @type Nombre
+     */
     var resultat = new Nombre(0);
 
     /**
-     * Crèe des types Nombres et les mets dans l'atribut operande
-     * @returns {nothing}
+     * @private
+     * @description Crèe des types Nombres et les mets dans l'atribut operande
      */
     function remplissageOperande() {
         if (listArgument.length > 0) {
@@ -32,7 +50,8 @@ function Addition() {
     remplissageOperande();
 
     /**
-     * Vérifie que le nombre d'argument passé en paramètre est compris entre 2 et 10
+     * @private
+     * @description Vérifie que le nombre d'argument passé en paramètre est compris entre 2 et 10
      * @returns {Boolean}
      */
     function verifieNumbreArgument() {
@@ -45,7 +64,8 @@ function Addition() {
     }
     ;
     /**
-     * Verifie que chaque argument est compris entre 1 et 18 chiffre
+     * @private
+     * @description Verifie que chaque argument est compris entre 1 et 18 chiffre
      * @returns {Boolean}
      */
     function verifieLongueurDeChaqueArgument() {
@@ -61,7 +81,12 @@ function Addition() {
         return reponse;
     }
     ;
-
+    /**
+     * @private
+     * @description 
+     * @requires listArgument, operande
+     * @returns {integer}
+     */
     function longueurMaxPartieEntiere() {
         var longueurMax = 0;
         if (listArgument.length > 0) {
@@ -73,6 +98,12 @@ function Addition() {
         }
         return longueurMax;
     }
+    /**
+     * @private
+     * @description 
+     * @requires listArgument, operande
+     * @returns {integer}
+     */
     function longueurMaxPartieDecimale() {  
         var longueurMax = 0;
         if (listArgument.length > 0) {
@@ -85,14 +116,15 @@ function Addition() {
         return longueurMax;
     }
     if (verifieLongueurDeChaqueArgument() && verifieNumbreArgument()) {
+        
         this.isEmpty = function isEmpty() {
 
         };
-
-        this.addition = function addition() {
-
-        };
-
+        /**
+         * @public
+         * @description text 
+         * @requires operande
+         */
         this.resoudreAddition = function resoudreAddition() {
             var MaxPartieEntiere = longueurMaxPartieEntiere();
             var MaxPartieDecimale = longueurMaxPartieDecimale();
@@ -236,17 +268,24 @@ function Addition() {
         };
 
         /**
-         * 
+         * @public
+         * @description text
          * @returns {Nombre}
          */
         this.getResultat = function getResultat() {
             return resultat;
         };
+        /**
+         * @public
+         * @description text
+         * @returns {Array}
+         */
         this.getRetenues = function getRetenues() {
             return retenues;
         };
         /**
-         * 
+         * @public
+         * @description text
          * @returns {Array}
          */
         this.getOperande = function getOperande() {

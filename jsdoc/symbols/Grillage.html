@@ -1,0 +1,3984 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		<title>Grillage | JsDoc Reference</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+		<meta name="mobileoptimized" content="0" />
+	
+		<link rel="stylesheet" href="../css/all.css" media="all" />
+		<link rel="stylesheet" href="../css/handheld.css" media="only screen and (max-width: 660px)" />
+		<link rel="stylesheet" href="../css/handheld.css" media="handheld" />
+		<link rel="stylesheet" href="../css/screen.css" media="screen and (min-width: 661px)" />
+
+		<script src="../javascript/all.js"></script>
+		<!--[if lt IE 9]>
+			<script src="../javascript/html5.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+<div class="index">
+	<div class="menu">
+		<div class="indexLinks">
+			<a href="../index.html">Classes</a>
+			<a href="../files.html">Files</a>
+		</div>
+	
+		<h2 class="heading1">Classes</h2>
+		
+		<input type="text" name="classFilter" class="classFilter" id="ClassFilter" placeholder="Filter"></input>
+		
+		<nav>
+			<ul class="classList" id="ClassList">
+				
+					<li><a href="../symbols/_global_.html">_global_</a></li>
+				
+					<li><a href="../symbols/Addition.html">Addition</a></li>
+				
+					<li><a href="../symbols/Grillage.html">Grillage</a></li>
+				
+					<li><a href="../symbols/Nombre.html">Nombre</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	<div class="fineprint" style="clear:both">
+		<footer>
+			
+			Documentation generator: <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0<br />
+			Template: <a href="http://www.thebrightlines.com/2010/05/06/new-template-for-jsdoctoolkit-codeview/" target="_blank">Codeview</a> 1.2<br />
+			Generated on:
+			<time datetime='2013-3-30' pubdate>2013-3-30 0:48</time>
+		</footer>
+	</div>
+</div>
+
+<div class="index indexStatic"></div>
+
+<div class="content">
+	<div class="innerContent">
+		<article>
+			<header>
+				<h1 class="classTitle">
+					
+					Class <span>Grillage</span>
+				</h1>
+				
+				<div class="intro">
+					<p class="description summary">
+						Cette classe affiche la grille et grère aussi toute les actions faite dans la grille. Elle servira à afficher les differentes opérations et à les résoudres aussi.
+					</p>
+						
+					
+						<ul class="summary">
+							
+							
+							
+								<li>Defined in: <a href="../symbols/src/poseurOperation_Grillage.js.html">Grillage.js</a></li>
+							
+							
+						</ul>
+					
+				</div>
+			</header>
+			
+			
+				<section>
+					<div class="props">
+						<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class Grillage.">
+							<caption class="sectionTitle">Class Summary</caption>
+							<thead>
+								<tr>
+									<th scope="col">Constructor Attributes</th>
+									<th scope="col">Constructor Name and Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription" >
+										<div class="fixedFont">
+											<b><a href="../symbols/Grillage.html#constructor">Grillage</a></b>()
+										</div>
+										<div class="description"></div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</section>
+			
+			
+			
+				
+				<section>
+					
+						<nav>
+							<div class="props">
+								<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class Grillage.">
+									<caption class="sectionTitle">Field Summary</caption>
+									
+									<thead>
+										<tr>
+											<th scope="col">Field Attributes</th>
+											<th scope="col">Field Name and Description</th>
+										</tr>
+									</thead>
+									
+									<tbody>
+										
+											<tr>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-buttonAfficherResultat">buttonAfficherResultat</a></b>
+													</div>
+													<div class="description">Création du button "Correction" qui servira à corriger les réponses de l'élève.</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-buttonCorrectionSuivi">buttonCorrectionSuivi</a></b>
+													</div>
+													<div class="description">Création du button "Correction suivi" qui une foi lancer suivra l'élève dans sa resolution de l'exercice.</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-canvasCelluleSelectionne">canvasCelluleSelectionne</a></b>
+													</div>
+													<div class="description">Contient toujours les coordonnées de la cellule canvas sélectionné</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-canvasGrille">canvasGrille</a></b>
+													</div>
+													<div class="description">Création d'un élément canvas, dans le quel sera déssiné la grille.</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-canvasOutil">canvasOutil</a></b>
+													</div>
+													<div class="description"></div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-canvasPosti">canvasPosti</a></b>
+													</div>
+													<div class="description">Le canvas qui servira pour afficher l'enoncé.</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-content">content</a></b>
+													</div>
+													<div class="description">Il va contenir le l'element div obtenue grace à l'idDiv avec la fonction document.getElementById</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-contextCanvasGrille">contextCanvasGrille</a></b>
+													</div>
+													<div class="description">Appelle de la méthode getContext, il sera l'élément 
+central de gestion de Canvas.</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-coordonneGrilleCourant">coordonneGrilleCourant</a></b>
+													</div>
+													<div class="description">contient toujours les coordonnées de la cellule ou se trouvre le curseur</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-dernierCelluleSelectionne">dernierCelluleSelectionne</a></b>
+													</div>
+													<div class="description">Contient toujours les coordonnée de la dernière cellule selectionné dans la grille.</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-divoutil">divoutil</a></b>
+													</div>
+													<div class="description">Le div qui contient la bare d'outils contenant les chiffres et les opérateurs</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-enonce">enonce</a></b>
+													</div>
+													<div class="description">Le div qui va contenir l'element canvas pour afficher le Posti.</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-grille">grille</a></b>
+													</div>
+													<div class="description">Création du div "grille" qui contiendra la grille</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-listeDonneeDeChaqueCellule">listeDonneeDeChaqueCellule</a></b>
+													</div>
+													<div class="description">Ce tableau contient les valeurs de chaque cellule à tout moment</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-listeErreurSimple">listeErreurSimple</a></b>
+													</div>
+													<div class="description">Contient les coordonnées des diffentes cellules où il y a eu des affichages de message d'érreur</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-mySuiviCorrection">mySuiviCorrection</a></b>
+													</div>
+													<div class="description">Va contenir l'objet timer qui permettra d'arreter l'evenement la suivi de correction.</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-operation">operation</a></b>
+													</div>
+													<div class="description"></div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-operationEnCours">operationEnCours</a></b>
+													</div>
+													<div class="description"></div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-positionInitialPourPoserUneOperation">positionInitialPourPoserUneOperation</a></b>
+													</div>
+													<div class="description"></div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;inner&gt; &lt;constant&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-postXContante">postXContante</a></b>
+													</div>
+													<div class="description"></div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;inner&gt; &lt;constant&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-postYContante">postYContante</a></b>
+													</div>
+													<div class="description"></div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;private&gt; &lt;inner&gt; &lt;constant&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-r">r</a></b>
+													</div>
+													<div class="description">text</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;private&gt; &lt;inner&gt; &lt;constant&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-styleContent">styleContent</a></b>
+													</div>
+													<div class="description">Contient le du contenaire principal</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-suiviEnCours">suiviEnCours</a></b>
+													</div>
+													<div class="description">Elle permet de savoir si la suivi de correction est en cours ou pas.</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-tableauDeGille">tableauDeGille</a></b>
+													</div>
+													<div class="description">Contient les coordonnées de chaque cellule de la grille</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-tableauDesCelluleActiveNonActive">tableauDesCelluleActiveNonActive</a></b>
+													</div>
+													<div class="description"></div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-tableauDesCelluleAutorise">tableauDesCelluleAutorise</a></b>
+													</div>
+													<div class="description"></div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-tableauDesCelluleReserver">tableauDesCelluleReserver</a></b>
+													</div>
+													<div class="description"></div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-tableauDesImagesAnnimer">tableauDesImagesAnnimer</a></b>
+													</div>
+													<div class="description">tex</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-tableauDesValeursAttendu">tableauDesValeursAttendu</a></b>
+													</div>
+													<div class="description">Variable global dans la qualle on stock les resultats attendu</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-tableauRadiumIncrementation">tableauRadiumIncrementation</a></b>
+													</div>
+													<div class="description">tex</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;inner&gt; &lt;constant&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-tailleCase">tailleCase</a></b>
+													</div>
+													<div class="description">C'est la longueur et largueur d'une cellule de la grille</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-typeDeCorrection">typeDeCorrection</a></b>
+													</div>
+													<div class="description">Contient l'information du type de correction qui en cours</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/Grillage.html#-typeOperation">typeOperation</a></b>
+													</div>
+													<div class="description"></div>
+												</td>
+											</tr>
+										
+									</tbody>
+								</table>
+							</div>
+						</nav>
+					
+					
+					
+				</section>
+			
+	<!--
+	#### METHODS SUMMARY
+	-->
+			
+				<section>
+					
+					
+					<div class="props">
+						<h2 class="sectionTitle">Method Summary</h2>
+						
+						
+							<nav>
+								<table class="summaryTable" id="MethodsList" cellspacing="0" summary="A summary of the methods documented in the class Grillage.">
+									<thead>
+										<tr>
+											<th scope="col">Method Attributes</th>
+											<th scope="col">Method Name and Description</th>
+										</tr>
+									</thead>
+									
+									<tbody>
+										
+										
+											<tr
+												 class='item0'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-afficheMessageTooltip">afficheMessageTooltip</a></b>(coordonneGrilleCourant, message, bgcolor, textcolor)
+													</div>
+													<div class="description">Cette fonction affiche le tootltip</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item1'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-afficherEnonce">afficherEnonce</a></b>(contenuEnonce)
+													</div>
+													<div class="description">Cette function affichera l'énoncé de l'exercice.</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item2'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-afficherResultatOperation">afficherResultatOperation</a></b>(typeoperation)
+													</div>
+													<div class="description"></div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item3'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-annimerIgame">annimerIgame</a></b>(x, y)
+													</div>
+													<div class="description"></div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item4'
+											>
+												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-chargerImageContourError">chargerImageContourError</a></b>(x, y, r, color)
+													</div>
+													<div class="description">tex</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item5'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-checkEventObj">checkEventObj</a></b>(_event_)
+													</div>
+													<div class="description">Cette fonction, selon le type de navigateur, retourne l'objet 'event' approprié.</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item6'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-clavier">clavier</a></b>(event)
+													</div>
+													<div class="description">Cette fonction est appellé quand on click sur une touche du clavier.</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item7'
+											>
+												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-commencerAnnimation">commencerAnnimation</a></b>(x, y)
+													</div>
+													<div class="description">text</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item8'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-creerCanvasCellule">creerCanvasCellule</a></b>(x, y)
+													</div>
+													<div class="description">Cette fonction prend les coordonnées d'une cellule et crèe un element canvas donc l'id est la syntaxte suivante:
+cellule_x_y avec x et y les coordonnées respectives de la cellule.</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item9'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-dessineCanvasTooltip">dessineCanvasTooltip</a></b>(canvasToolTip, posx, posy, bordercolor)
+													</div>
+													<div class="description">Cette fonction prend en entrer un canvas et dessine la flèche du tooltip</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item10'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-dessineContour">dessineContour</a></b>(x, y, couleur)
+													</div>
+													<div class="description">Cette fonction prend en entrer les coordonnées d'une cellule 
+et dessine un contour d'épaisseur 2px selon la couleur aussi passé en paramètre</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item11'
+											>
+												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-dessinerBaseOperation">dessinerBaseOperation</a></b>(x, y, couleur)
+													</div>
+													<div class="description">tex</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item12'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-dessinerDivForTooltip">dessinerDivForTooltip</a></b>(posleft, postop, bordercolor$1, bgcolor, borderwidth, textcolor, message, tipbot, bordercolor)
+													</div>
+													<div class="description">Cette fonction dessine le tootltip</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item13'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-dessinerMarge">dessinerMarge</a></b>()
+													</div>
+													<div class="description">Cette function dessine la marge</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item14'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-ecrireDansUneCellule">ecrireDansUneCellule</a></b>(x, y, caractere, couleur)
+													</div>
+													<div class="description">Cette fonction prend les coordonnées d'une cellule, un caractère, une couleur et ecrit le carectère
+dans la cellule avec une taille police 30px et de couleur celui passé en paramètre.</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item15'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-ecrireDansUneCelluleAvecTransparance">ecrireDansUneCelluleAvecTransparance</a></b>(x, y, caractere, couleurText, couleurTransparence)
+													</div>
+													<div class="description"></div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item16'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-effaceOpaciteMenuOutil">effaceOpaciteMenuOutil</a></b>(x, y)
+													</div>
+													<div class="description"></div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item17'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-effacerContour">effacerContour</a></b>(x, y)
+													</div>
+													<div class="description">Cette fonction prend en entrer les coordonnées d'une cellule et efface son coutour de 2px.</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item18'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-effacerDivForTooltip">effacerDivForTooltip</a></b>(x, y)
+													</div>
+													<div class="description">cette fonction prend en entré les coordonnée d'une cellule et efface le tooltip
+qui lui correspond dans la grille</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item19'
+											>
+												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-effacerEcritureUneCellule">effacerEcritureUneCellule</a></b>(x, y)
+													</div>
+													<div class="description">Cette fonction prend les coordonnées d'une cellule et efface le caractère ecrit à l'intérieur.</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item20'
+											>
+												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-effacerEcritureUneCelluleException">effacerEcritureUneCelluleException</a></b>(x, y, couleur)
+													</div>
+													<div class="description">tex</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item21'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-effacerErreurTooltipSimple">effacerErreurTooltipSimple</a></b>()
+													</div>
+													<div class="description"></div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item22'
+											>
+												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-effacerLesDonneeCellule">effacerLesDonneeCellule</a></b>(x, y)
+													</div>
+													<div class="description">tex</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item23'
+											>
+												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-getCoordonneButtonOutils">getCoordonneButtonOutils</a></b>(x, y)
+													</div>
+													<div class="description">Fonction pour obtenir les coordonnées dans le div du bare d'outils</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item24'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-getSourisPosition">getSourisPosition</a></b>(event)
+													</div>
+													<div class="description">Cette fonction nous donnes la position de la sourcie par rapport à l'élement canvas.canvasGrille.</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item25'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-getSourisPositionMenuOutils">getSourisPositionMenuOutils</a></b>(event)
+													</div>
+													<div class="description">Obtenir les coordonnées par rapport à l'interieur du div des menu</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item26'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-getStructureResultatAvantComparaison">getStructureResultatAvantComparaison</a></b>(typeOperation, operation)
+													</div>
+													<div class="description">text</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item27'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-getValeurUneCellule">getValeurUneCellule</a></b>(x, y)
+													</div>
+													<div class="description">Cette funtion nous retourne la valeur d'une cellule en lui passant en paramètre les coordonnées de celui-ci</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item28'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-lancerCorrectionSimple">lancerCorrectionSimple</a></b>()
+													</div>
+													<div class="description"></div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item29'
+											>
+												<td class="attributes">&nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#poserOparationAddition">poserOparationAddition</a></b>(addition, textEnonce)
+													</div>
+													<div class="description">Cette fonction nous permet d'afficher ¬l'opération</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item30'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-recupererCordonneeCaseCourant">recupererCordonneeCaseCourant</a></b>(x, y)
+													</div>
+													<div class="description">Cette fonction prend en entrer les coordonnées de la souris 
+par rapport au canvasGrille et retourne les coordonnées en X et Y 
+de la cellule courante</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item31'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-setValeurUneCellule">setValeurUneCellule</a></b>(x, y, val)
+													</div>
+													<div class="description">Cette function enregistre la valeur d'une cellule</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item32'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-sortHashTable">sortHashTable</a></b>(hashTable, key, removeKey)
+													</div>
+													<div class="description">text</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item33'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-stropSuiviCorrectionAddition">stropSuiviCorrectionAddition</a></b>()
+													</div>
+													<div class="description"></div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item34'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-suiviCorrectionAddition">suiviCorrectionAddition</a></b>()
+													</div>
+													<div class="description">Cette function verifie le champs remplit pendant la correction et aussi les champs déjà remplit.</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item35'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-supprimerCanvasCellule">supprimerCanvasCellule</a></b>(x, y)
+													</div>
+													<div class="description">Cette fonction prend les coordonnées d'une cellule et supprime element canvas.cellule_x_y qui se trouve superposé 
+à la cellule.</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item36'
+											>
+												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-traiterEntreeClavier">traiterEntreeClavier</a></b>(event)
+													</div>
+													<div class="description">text</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item37'
+											>
+												<td class="attributes">&lt;inner&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/Grillage.html#-verifierQueLaCelluleEstActive">verifierQueLaCelluleEstActive</a></b>(x, y)
+													</div>
+													<div class="description"></div>
+												</td>
+											</tr>
+										
+									</tbody>
+								</table>
+							</nav>
+						
+					
+						
+					</div>
+				</section>
+			
+			
+	<!--
+	#### EVENTS SUMMARY
+	-->
+			
+	<!--
+	#### CONSTRUCTOR DETAILS
+	-->
+			
+				<section>
+					<div class="details props">
+						<div class="innerProps">
+							<h2 class="sectionTitle" id="constructor">
+								Class Detail
+							</h2>
+							
+							<div class="fixedFont">
+								<b>Grillage</b>()
+							</div>
+							
+							<div class="description">
+								
+								
+							</div>
+							
+							
+						
+							
+								<dl class="detailList params">
+									<dt class="heading">Parameters:</dt>
+									
+										<dt>
+											<span class="light fixedFont">{string}</span>  <b></b>
+											
+										</dt>
+										<dd>idDiv est le id de l'element div qui va contenir la grille.</dd>
+									
+								</dl>
+							
+							
+							
+								<dl class="detailList nomargin">
+									
+									
+									
+									
+									
+									
+									
+										<dt class="heading">Returns:</dt>
+										
+												<dd><span class="light fixedFont">{<a href="../symbols/Grillage.html">Grillage</a>}</span> </dd>
+										
+									
+									
+									
+									
+									
+								</dl>
+							
+						</div>
+					</div>
+				</section>
+			
+	<!--
+	#### FIELD DETAILS
+	-->
+			
+				<section>
+					<div class="details props">
+						<div class="innerProps">
+							<h2 class="sectionTitle">
+								Field Detail
+							</h2>
+							
+							
+								<div class="fixedFont heading" id="-buttonAfficherResultat">
+									<span class='lighter'>
+									&lt;inner&gt; 
+									</span>
+									
+									<span class="light">{ElementButton}</span>
+									
+									<b>buttonAfficherResultat</b>							
+								</div>
+								
+								<div class="description">
+									Création du button "Correction" qui servira à corriger les réponses de l'élève.
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-buttonCorrectionSuivi">
+									<span class='lighter'>
+									&lt;private&gt; &lt;inner&gt; 
+									</span>
+									
+									<span class="light">{ElementDiv}</span>
+									
+									<b>buttonCorrectionSuivi</b>							
+								</div>
+								
+								<div class="description">
+									Création du button "Correction suivi" qui une foi lancer suivra l'élève dans sa resolution de l'exercice..
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-canvasCelluleSelectionne">
+									<span class='lighter'>
+									&lt;private&gt; &lt;inner&gt; 
+									</span>
+									
+									
+									
+									<b>canvasCelluleSelectionne</b>							
+								</div>
+								
+								<div class="description">
+									Contient toujours les coordonnées de la cellule canvas sélectionné
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-canvasGrille">
+									<span class='lighter'>
+									&lt;private&gt; &lt;inner&gt; 
+									</span>
+									
+									<span class="light">{ElementCanvas}</span>
+									
+									<b>canvasGrille</b>							
+								</div>
+								
+								<div class="description">
+									Création d'un élément canvas, dans le quel sera déssiné la grille.
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-canvasOutil">
+									<span class='lighter'>
+									&lt;inner&gt; 
+									</span>
+									
+									<span class="light">{@exp;document@call;createElement}</span>
+									
+									<b>canvasOutil</b>							
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-canvasPosti">
+									<span class='lighter'>
+									&lt;inner&gt; 
+									</span>
+									
+									<span class="light">{ElementCanvas}</span>
+									
+									<b>canvasPosti</b>							
+								</div>
+								
+								<div class="description">
+									Le canvas qui servira pour afficher l'enoncé.
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-content">
+									<span class='lighter'>
+									&lt;private&gt; &lt;inner&gt; 
+									</span>
+									
+									<span class="light">{ElementDiv}</span>
+									
+									<b>content</b>							
+								</div>
+								
+								<div class="description">
+									Il va contenir le l'element div obtenue grace à l'idDiv avec la fonction document.getElementById
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-contextCanvasGrille">
+									<span class='lighter'>
+									&lt;private&gt; &lt;inner&gt; 
+									</span>
+									
+									<span class="light">{Context2d}</span>
+									
+									<b>contextCanvasGrille</b>							
+								</div>
+								
+								<div class="description">
+									Appelle de la méthode getContext, il sera l'élément 
+central de gestion de Canvas.
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-coordonneGrilleCourant">
+									<span class='lighter'>
+									&lt;inner&gt; 
+									</span>
+									
+									
+									
+									<b>coordonneGrilleCourant</b>							
+								</div>
+								
+								<div class="description">
+									contient toujours les coordonnées de la cellule ou se trouvre le curseur
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-dernierCelluleSelectionne">
+									<span class='lighter'>
+									&lt;private&gt; &lt;inner&gt; 
+									</span>
+									
+									
+									
+									<b>dernierCelluleSelectionne</b>							
+								</div>
+								
+								<div class="description">
+									Contient toujours les coordonnée de la dernière cellule selectionné dans la grille.
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-divoutil">
+									<span class='lighter'>
+									&lt;private&gt; &lt;inner&gt; 
+									</span>
+									
+									<span class="light">{ElementDiv}</span>
+									
+									<b>divoutil</b>							
+								</div>
+								
+								<div class="description">
+									Le div qui contient la bare d'outils contenant les chiffres et les opérateurs
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-enonce">
+									<span class='lighter'>
+									&lt;inner&gt; 
+									</span>
+									
+									<span class="light">{ElementDiv}</span>
+									
+									<b>enonce</b>							
+								</div>
+								
+								<div class="description">
+									Le div qui va contenir l'element canvas pour afficher le Posti.
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-grille">
+									<span class='lighter'>
+									&lt;private&gt; &lt;inner&gt; 
+									</span>
+									
+									<span class="light">{ElementDiv}</span>
+									
+									<b>grille</b>							
+								</div>
+								
+								<div class="description">
+									Création du div "grille" qui contiendra la grille
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-listeDonneeDeChaqueCellule">
+									<span class='lighter'>
+									&lt;inner&gt; 
+									</span>
+									
+									<span class="light">{Array}</span>
+									
+									<b>listeDonneeDeChaqueCellule</b>							
+								</div>
+								
+								<div class="description">
+									Ce tableau contient les valeurs de chaque cellule à tout moment
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-listeErreurSimple">
+									<span class='lighter'>
+									&lt;private&gt; &lt;inner&gt; 
+									</span>
+									
+									<span class="light">{Array}</span>
+									
+									<b>listeErreurSimple</b>							
+								</div>
+								
+								<div class="description">
+									Contient les coordonnées des diffentes cellules où il y a eu des affichages de message d'érreur
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-mySuiviCorrection">
+									<span class='lighter'>
+									&lt;private&gt; &lt;inner&gt; 
+									</span>
+									
+									<span class="light">{event}</span>
+									
+									<b>mySuiviCorrection</b>							
+								</div>
+								
+								<div class="description">
+									Va contenir l'objet timer qui permettra d'arreter l'evenement la suivi de correction.
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-operation">
+									<span class='lighter'>
+									&lt;inner&gt; 
+									</span>
+									
+									
+									
+									<b>operation</b>							
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-operationEnCours">
+									<span class='lighter'>
+									&lt;inner&gt; 
+									</span>
+									
+									<span class="light">{Boolean}</span>
+									
+									<b>operationEnCours</b>							
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-positionInitialPourPoserUneOperation">
+									<span class='lighter'>
+									&lt;inner&gt; 
+									</span>
+									
+									
+									
+									<b>positionInitialPourPoserUneOperation</b>							
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-postXContante">
+									<span class='lighter'>
+									&lt;inner&gt; &lt;constant&gt; 
+									</span>
+									
+									<span class="light">{Number}</span>
+									
+									<b>postXContante</b>							
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-postYContante">
+									<span class='lighter'>
+									&lt;inner&gt; &lt;constant&gt; 
+									</span>
+									
+									<span class="light">{Number}</span>
+									
+									<b>postYContante</b>							
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-r">
+									<span class='lighter'>
+									&lt;private&gt; &lt;inner&gt; &lt;constant&gt; 
+									</span>
+									
+									<span class="light">{Number}</span>
+									
+									<b>r</b>							
+								</div>
+								
+								<div class="description">
+									text
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-styleContent">
+									<span class='lighter'>
+									&lt;private&gt; &lt;inner&gt; &lt;constant&gt; 
+									</span>
+									
+									<span class="light">{String}</span>
+									
+									<b>styleContent</b>							
+								</div>
+								
+								<div class="description">
+									Contient le du contenaire principal
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-suiviEnCours">
+									<span class='lighter'>
+									&lt;private&gt; &lt;inner&gt; 
+									</span>
+									
+									<span class="light">{Boolean}</span>
+									
+									<b>suiviEnCours</b>							
+								</div>
+								
+								<div class="description">
+									Elle permet de savoir si la suivi de correction est en cours ou pas.
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-tableauDeGille">
+									<span class='lighter'>
+									&lt;inner&gt; 
+									</span>
+									
+									<span class="light">{Array}</span>
+									
+									<b>tableauDeGille</b>							
+								</div>
+								
+								<div class="description">
+									Contient les coordonnées de chaque cellule de la grille
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-tableauDesCelluleActiveNonActive">
+									<span class='lighter'>
+									&lt;inner&gt; 
+									</span>
+									
+									<span class="light">{Array}</span>
+									
+									<b>tableauDesCelluleActiveNonActive</b>							
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-tableauDesCelluleAutorise">
+									<span class='lighter'>
+									&lt;inner&gt; 
+									</span>
+									
+									<span class="light">{Array}</span>
+									
+									<b>tableauDesCelluleAutorise</b>							
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-tableauDesCelluleReserver">
+									<span class='lighter'>
+									&lt;inner&gt; 
+									</span>
+									
+									<span class="light">{Array}</span>
+									
+									<b>tableauDesCelluleReserver</b>							
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-tableauDesImagesAnnimer">
+									<span class='lighter'>
+									&lt;private&gt; &lt;inner&gt; 
+									</span>
+									
+									<span class="light">{type}</span>
+									
+									<b>tableauDesImagesAnnimer</b>							
+								</div>
+								
+								<div class="description">
+									tex
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-tableauDesValeursAttendu">
+									<span class='lighter'>
+									&lt;inner&gt; 
+									</span>
+									
+									<span class="light">{Array}</span>
+									
+									<b>tableauDesValeursAttendu</b>							
+								</div>
+								
+								<div class="description">
+									Variable global dans la qualle on stock les resultats attendu
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-tableauRadiumIncrementation">
+									<span class='lighter'>
+									&lt;private&gt; &lt;inner&gt; 
+									</span>
+									
+									<span class="light">{type}</span>
+									
+									<b>tableauRadiumIncrementation</b>							
+								</div>
+								
+								<div class="description">
+									tex
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-tailleCase">
+									<span class='lighter'>
+									&lt;inner&gt; &lt;constant&gt; 
+									</span>
+									
+									<span class="light">{Number}</span>
+									
+									<b>tailleCase</b>							
+								</div>
+								
+								<div class="description">
+									C'est la longueur et largueur d'une cellule de la grille
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-typeDeCorrection">
+									<span class='lighter'>
+									&lt;private&gt; &lt;inner&gt; 
+									</span>
+									
+									<span class="light">{String}</span>
+									
+									<b>typeDeCorrection</b>							
+								</div>
+								
+								<div class="description">
+									Contient l'information du type de correction qui en cours
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="-typeOperation">
+									<span class='lighter'>
+									&lt;inner&gt; 
+									</span>
+									
+									<span class="light">{String}</span>
+									
+									<b>typeOperation</b>							
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								
+							
+						</div>
+					</div>
+				</section>
+			
+	<!--
+	#### METHOD DETAILS
+	-->		
+			
+				<section>
+					<div class="details props">
+						<div class="innerProps">
+							<h2 class="sectionTitle">
+								Method Detail
+							</h2>
+							
+							<ul class="methodDetail" id="MethodDetail">
+								
+								
+									<li 
+										 class='item0'
+									>
+										<div class="fixedFont heading" id="-afficheMessageTooltip">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											
+											
+											<b>afficheMessageTooltip</b>(coordonneGrilleCourant, message, bgcolor, textcolor)
+										</div>
+										
+										<div class="description">
+											Cette fonction affiche le tootltip
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>coordonneGrilleCourant</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>message</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>bgcolor</b>
+														
+													</dt>
+													<dd>* @returns {undefined}</dd>
+												
+													<dt>
+														<b>textcolor</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item1'
+									>
+										<div class="fixedFont heading" id="-afficherEnonce">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											
+											
+											<b>afficherEnonce</b>(contenuEnonce)
+										</div>
+										
+										<div class="description">
+											Cette function affichera l'énoncé de l'exercice.
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{String}</span> <b>contenuEnonce</b>
+														
+													</dt>
+													<dd>contient l'énoncé de l'exercice</dd>
+												
+											</dl>
+										
+										
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item2'
+									>
+										<div class="fixedFont heading" id="-afficherResultatOperation">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											
+											
+											<b>afficherResultatOperation</b>(typeoperation)
+										</div>
+										
+										<div class="description">
+											
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<b>typeoperation</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item3'
+									>
+										<div class="fixedFont heading" id="-annimerIgame">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											
+											
+											<b>annimerIgame</b>(x, y)
+										</div>
+										
+										<div class="description">
+											
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<b>x</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<b>y</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item4'
+									>
+										<div class="fixedFont heading" id="-chargerImageContourError">
+											<span class='lighter'>
+											&lt;private&gt; &lt;inner&gt; 
+											</span>
+											
+											<span class="light">{undefined}</span>
+											
+											<b>chargerImageContourError</b>(x, y, r, color)
+										</div>
+										
+										<div class="description">
+											tex
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>x</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>y</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>r</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>color</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+											<dl class="detailList nomargin">
+											
+												
+												
+												
+												
+												
+												
+												
+													<dt class="heading">Returns:</dt>
+													
+														<dd><span class="light fixedFont">{undefined}</span> </dd>
+													
+												
+												
+												
+												
+												
+											
+											</dl>
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item5'
+									>
+										<div class="fixedFont heading" id="-checkEventObj">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											<span class="light">{@exp;window@pro;event}</span>
+											
+											<b>checkEventObj</b>(_event_)
+										</div>
+										
+										<div class="description">
+											Cette fonction, selon le type de navigateur, retourne l'objet 'event' approprié.      * @param {type} _event_
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<b>_event_</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+											<dl class="detailList nomargin">
+											
+												
+												
+												
+												
+												
+												
+												
+													<dt class="heading">Returns:</dt>
+													
+														<dd><span class="light fixedFont">{@exp;window@pro;event}</span> </dd>
+													
+												
+												
+												
+												
+												
+											
+											</dl>
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item6'
+									>
+										<div class="fixedFont heading" id="-clavier">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											<span class="light">{Grillage.clavier.Object(intKeyCode|intAltKey|intCtrlKey|val|type)}</span>
+											
+											<b>clavier</b>(event)
+										</div>
+										
+										<div class="description">
+											Cette fonction est appellé quand on click sur une touche du clavier.
+Elle retourne une object avec Object(intKeyCode,intAltKey,intCtrlKey,val,type)
+intKeyCode correstion au code ascii de la touche apuyé 
+val c'est la valeur qui correspond à la touche donc on fait appelle à la methode String.fromCharCode(intKeyCode)
+type est la catégorie, cette catégorisation est là pour determiner le type d'action à faire.
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>event</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+											<dl class="detailList nomargin">
+											
+												
+												
+												
+												
+												
+												
+												
+													<dt class="heading">Returns:</dt>
+													
+														<dd><span class="light fixedFont">{Grillage.clavier.Object(intKeyCode|intAltKey|intCtrlKey|val|type)}</span> </dd>
+													
+												
+												
+												
+												
+												
+											
+											</dl>
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item7'
+									>
+										<div class="fixedFont heading" id="-commencerAnnimation">
+											<span class='lighter'>
+											&lt;private&gt; &lt;inner&gt; 
+											</span>
+											
+											<span class="light">{unresolved}</span>
+											
+											<b>commencerAnnimation</b>(x, y)
+										</div>
+										
+										<div class="description">
+											text
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>x</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>y</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+											<dl class="detailList nomargin">
+											
+												
+												
+												
+												
+												
+												
+												
+													<dt class="heading">Returns:</dt>
+													
+														<dd><span class="light fixedFont">{unresolved}</span> </dd>
+													
+												
+												
+												
+												
+												
+											
+											</dl>
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item8'
+									>
+										<div class="fixedFont heading" id="-creerCanvasCellule">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											
+											
+											<b>creerCanvasCellule</b>(x, y)
+										</div>
+										
+										<div class="description">
+											Cette fonction prend les coordonnées d'une cellule et crèe un element canvas donc l'id est la syntaxte suivante:
+cellule_x_y avec x et y les coordonnées respectives de la cellule.
+Cet element canvas.cellule_x_y se trouvera au dessus de la cellule et on s'en servira pour notifier que la cellule.
+Noté que nous avons crée un style particulier pour ces éléments : ils ont un fond (background) rouge et l'opacité 
+de l'élément est de 0.7 donc transparent.
+est selectionnée.
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>x</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>y</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item9'
+									>
+										<div class="fixedFont heading" id="-dessineCanvasTooltip">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											
+											
+											<b>dessineCanvasTooltip</b>(canvasToolTip, posx, posy, bordercolor)
+										</div>
+										
+										<div class="description">
+											Cette fonction prend en entrer un canvas et dessine la flèche du tooltip
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>canvasToolTip</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>posx</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>posy</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>bordercolor</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item10'
+									>
+										<div class="fixedFont heading" id="-dessineContour">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											
+											
+											<b>dessineContour</b>(x, y, couleur)
+										</div>
+										
+										<div class="description">
+											Cette fonction prend en entrer les coordonnées d'une cellule 
+et dessine un contour d'épaisseur 2px selon la couleur aussi passé en paramètre
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{integer}</span> <b>x</b>
+														
+													</dt>
+													<dd>coordonnée de la cellule en x</dd>
+												
+													<dt>
+														<span class="light fixedFont">{integer}</span> <b>y</b>
+														
+													</dt>
+													<dd>coordonnée de la cellule en y</dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>couleur</b>
+														
+													</dt>
+													<dd>couleur du contour</dd>
+												
+											</dl>
+										
+										
+										
+											<dl class="detailList nomargin">
+											
+												
+												
+												
+												
+												
+												
+												
+												
+												
+													<dt class="heading">Requires:</dt>
+													
+														<dd>contextCanvasGrille</dd>
+													
+												
+												
+												
+													<dt class="heading">See:</dt>
+													
+														<dd>recupererCordonneeCaseCourant</dd>
+													
+												
+											
+											</dl>
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item11'
+									>
+										<div class="fixedFont heading" id="-dessinerBaseOperation">
+											<span class='lighter'>
+											&lt;private&gt; &lt;inner&gt; 
+											</span>
+											
+											<span class="light">{undefined}</span>
+											
+											<b>dessinerBaseOperation</b>(x, y, couleur)
+										</div>
+										
+										<div class="description">
+											tex
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>x</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>y</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>couleur</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+											<dl class="detailList nomargin">
+											
+												
+												
+												
+												
+												
+												
+												
+													<dt class="heading">Returns:</dt>
+													
+														<dd><span class="light fixedFont">{undefined}</span> </dd>
+													
+												
+												
+												
+												
+												
+											
+											</dl>
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item12'
+									>
+										<div class="fixedFont heading" id="-dessinerDivForTooltip">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											
+											
+											<b>dessinerDivForTooltip</b>(posleft, postop, bordercolor$1, bgcolor, borderwidth, textcolor, message, tipbot, bordercolor)
+										</div>
+										
+										<div class="description">
+											Cette fonction dessine le tootltip
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>posleft</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>postop</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>bordercolor$1</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>bgcolor</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>borderwidth</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>textcolor</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>message</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>tipbot</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>bordercolor</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item13'
+									>
+										<div class="fixedFont heading" id="-dessinerMarge">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											
+											
+											<b>dessinerMarge</b>()
+										</div>
+										
+										<div class="description">
+											Cette function dessine la marge
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+										
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item14'
+									>
+										<div class="fixedFont heading" id="-ecrireDansUneCellule">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											
+											
+											<b>ecrireDansUneCellule</b>(x, y, caractere, couleur)
+										</div>
+										
+										<div class="description">
+											Cette fonction prend les coordonnées d'une cellule, un caractère, une couleur et ecrit le carectère
+dans la cellule avec une taille police 30px et de couleur celui passé en paramètre.
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{integer}</span> <b>x</b>
+														
+													</dt>
+													<dd>coordonnée de la cellule en x</dd>
+												
+													<dt>
+														<span class="light fixedFont">{integer}</span> <b>y</b>
+														
+													</dt>
+													<dd>coordonnée de la cellule en y</dd>
+												
+													<dt>
+														<span class="light fixedFont">{string}</span> <b>caractere</b>
+														
+													</dt>
+													<dd>le caractère qui doit être ecrit</dd>
+												
+													<dt>
+														<span class="light fixedFont">{string}</span> <b>couleur</b>
+														
+													</dt>
+													<dd>la couleur de l'ecriture</dd>
+												
+											</dl>
+										
+										
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item15'
+									>
+										<div class="fixedFont heading" id="-ecrireDansUneCelluleAvecTransparance">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											
+											
+											<b>ecrireDansUneCelluleAvecTransparance</b>(x, y, caractere, couleurText, couleurTransparence)
+										</div>
+										
+										<div class="description">
+											
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>x</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>y</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>caractere</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>couleurText</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>couleurTransparence</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item16'
+									>
+										<div class="fixedFont heading" id="-effaceOpaciteMenuOutil">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											
+											
+											<b>effaceOpaciteMenuOutil</b>(x, y)
+										</div>
+										
+										<div class="description">
+											
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{Integer}</span> <b>x</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{Integer}</span> <b>y</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item17'
+									>
+										<div class="fixedFont heading" id="-effacerContour">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											
+											
+											<b>effacerContour</b>(x, y)
+										</div>
+										
+										<div class="description">
+											Cette fonction prend en entrer les coordonnées d'une cellule et efface son coutour de 2px.
+Elle appelle aussi la fonction dessinerMarge() redessiner la marge au cas si elle a été effacer.
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{integer}</span> <b>x</b>
+														
+													</dt>
+													<dd>coordonnée de la cellule en x</dd>
+												
+													<dt>
+														<span class="light fixedFont">{integer}</span> <b>y</b>
+														
+													</dt>
+													<dd>coordonnée de la cellule en y</dd>
+												
+											</dl>
+										
+										
+										
+											<dl class="detailList nomargin">
+											
+												
+												
+												
+												
+												
+												
+												
+												
+												
+												
+												
+													<dt class="heading">See:</dt>
+													
+														<dd>recupererCordonneeCaseCourant</dd>
+													
+														<dd>dessinerMarge</dd>
+													
+												
+											
+											</dl>
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item18'
+									>
+										<div class="fixedFont heading" id="-effacerDivForTooltip">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											
+											
+											<b>effacerDivForTooltip</b>(x, y)
+										</div>
+										
+										<div class="description">
+											cette fonction prend en entré les coordonnée d'une cellule et efface le tooltip
+qui lui correspond dans la grille
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>x</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>y</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item19'
+									>
+										<div class="fixedFont heading" id="-effacerEcritureUneCellule">
+											<span class='lighter'>
+											&lt;private&gt; &lt;inner&gt; 
+											</span>
+											
+											
+											
+											<b>effacerEcritureUneCellule</b>(x, y)
+										</div>
+										
+										<div class="description">
+											Cette fonction prend les coordonnées d'une cellule et efface le caractère ecrit à l'intérieur.
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>x</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>y</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item20'
+									>
+										<div class="fixedFont heading" id="-effacerEcritureUneCelluleException">
+											<span class='lighter'>
+											&lt;private&gt; &lt;inner&gt; 
+											</span>
+											
+											<span class="light">{undefined}</span>
+											
+											<b>effacerEcritureUneCelluleException</b>(x, y, couleur)
+										</div>
+										
+										<div class="description">
+											tex
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>x</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>y</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>couleur</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+											<dl class="detailList nomargin">
+											
+												
+												
+												
+												
+												
+												
+												
+													<dt class="heading">Returns:</dt>
+													
+														<dd><span class="light fixedFont">{undefined}</span> </dd>
+													
+												
+												
+												
+												
+												
+											
+											</dl>
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item21'
+									>
+										<div class="fixedFont heading" id="-effacerErreurTooltipSimple">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											
+											
+											<b>effacerErreurTooltipSimple</b>()
+										</div>
+										
+										<div class="description">
+											
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+										
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item22'
+									>
+										<div class="fixedFont heading" id="-effacerLesDonneeCellule">
+											<span class='lighter'>
+											&lt;private&gt; &lt;inner&gt; 
+											</span>
+											
+											<span class="light">{undefined}</span>
+											
+											<b>effacerLesDonneeCellule</b>(x, y)
+										</div>
+										
+										<div class="description">
+											tex
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>x</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>y</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+											<dl class="detailList nomargin">
+											
+												
+												
+												
+												
+												
+												
+												
+													<dt class="heading">Returns:</dt>
+													
+														<dd><span class="light fixedFont">{undefined}</span> </dd>
+													
+												
+												
+												
+												
+												
+											
+											</dl>
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item23'
+									>
+										<div class="fixedFont heading" id="-getCoordonneButtonOutils">
+											<span class='lighter'>
+											&lt;private&gt; &lt;inner&gt; 
+											</span>
+											
+											<span class="light">{(x|y)}</span>
+											
+											<b>getCoordonneButtonOutils</b>(x, y)
+										</div>
+										
+										<div class="description">
+											Fonction pour obtenir les coordonnées dans le div du bare d'outils
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{interger}</span> <b>x</b>
+														
+													</dt>
+													<dd>coordonnée en x par rapport à l'element canvasOutil</dd>
+												
+													<dt>
+														<span class="light fixedFont">{interger}</span> <b>y</b>
+														
+													</dt>
+													<dd>coordonnée en y par rapport à l'element canvasOutil</dd>
+												
+											</dl>
+										
+										
+										
+											<dl class="detailList nomargin">
+											
+												
+												
+												
+												
+												
+												
+												
+													<dt class="heading">Returns:</dt>
+													
+														<dd><span class="light fixedFont">{(x|y)}</span> </dd>
+													
+												
+												
+												
+												
+												
+											
+											</dl>
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item24'
+									>
+										<div class="fixedFont heading" id="-getSourisPosition">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											<span class="light">{(x|y)}</span>
+											
+											<b>getSourisPosition</b>(event)
+										</div>
+										
+										<div class="description">
+											Cette fonction nous donnes la position de la sourcie par rapport à l'élement canvas.canvasGrille.
+Le point de référence (0,0) est situé en haut à gauche
+L'axe horizontal (x) est défini par la première coordonée
+L'axe vertical (y) est défini par la seconde coordonnée
+Ces valeurs correspondent à la grille entourant les pixels, et non pas aux pixels eux-mêmes
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{event}</span> <b>event</b>
+														
+													</dt>
+													<dd>venement lié au clavier clavier</dd>
+												
+											</dl>
+										
+										
+										
+											<dl class="detailList nomargin">
+											
+												
+												
+												
+												
+												
+												
+												
+													<dt class="heading">Returns:</dt>
+													
+														<dd><span class="light fixedFont">{(x|y)}</span> coordonnée de la souris</dd>
+													
+												
+												
+												
+													<dt class="heading">Requires:</dt>
+													
+														<dd>canvasGrille</dd>
+													
+												
+												
+												
+											
+											</dl>
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item25'
+									>
+										<div class="fixedFont heading" id="-getSourisPositionMenuOutils">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											<span class="light">{(x|y)}</span>
+											
+											<b>getSourisPositionMenuOutils</b>(event)
+										</div>
+										
+										<div class="description">
+											Obtenir les coordonnées par rapport à l'interieur du div des menu
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{event}</span> <b>event</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+											<dl class="detailList nomargin">
+											
+												
+												
+												
+												
+												
+												
+												
+													<dt class="heading">Returns:</dt>
+													
+														<dd><span class="light fixedFont">{(x|y)}</span> </dd>
+													
+												
+												
+												
+												
+												
+											
+											</dl>
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item26'
+									>
+										<div class="fixedFont heading" id="-getStructureResultatAvantComparaison">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											<span class="light">{objet[x_y]:(val|ordre|statu)}</span>
+											
+											<b>getStructureResultatAvantComparaison</b>(typeOperation, operation)
+										</div>
+										
+										<div class="description">
+											text
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>typeOperation</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>operation</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+											<dl class="detailList nomargin">
+											
+												
+												
+												
+												
+												
+												
+												
+													<dt class="heading">Returns:</dt>
+													
+														<dd><span class="light fixedFont">{objet[x_y]:(val|ordre|statu)}</span> </dd>
+													
+												
+												
+												
+												
+												
+											
+											</dl>
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item27'
+									>
+										<div class="fixedFont heading" id="-getValeurUneCellule">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											<span class="light">{string}</span>
+											
+											<b>getValeurUneCellule</b>(x, y)
+										</div>
+										
+										<div class="description">
+											Cette funtion nous retourne la valeur d'une cellule en lui passant en paramètre les coordonnées de celui-ci
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{integer}</span> <b>x</b>
+														
+													</dt>
+													<dd>coordonnée en x par rapport à la grille</dd>
+												
+													<dt>
+														<span class="light fixedFont">{integer}</span> <b>y</b>
+														
+													</dt>
+													<dd>coordonnée en y par rapport à la grille</dd>
+												
+											</dl>
+										
+										
+										
+											<dl class="detailList nomargin">
+											
+												
+												
+												
+												
+												
+												
+												
+													<dt class="heading">Returns:</dt>
+													
+														<dd><span class="light fixedFont">{string}</span> valeur de la cellule</dd>
+													
+												
+												
+												
+												
+												
+													<dt class="heading">See:</dt>
+													
+														<dd>recupererCordonneeCaseCourant</dd>
+													
+												
+											
+											</dl>
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item28'
+									>
+										<div class="fixedFont heading" id="-lancerCorrectionSimple">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											
+											
+											<b>lancerCorrectionSimple</b>()
+										</div>
+										
+										<div class="description">
+											
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+										
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item29'
+									>
+										<div class="fixedFont heading" id="poserOparationAddition">
+											<span class='lighter'>
+											
+											</span>
+											
+											
+											
+											<b>poserOparationAddition</b>(addition, textEnonce)
+										</div>
+										
+										<div class="description">
+											Cette fonction nous permet d'afficher ¬l'opération
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{<a href="../symbols/Addition.html">Addition</a>}</span> <b>addition</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{String}</span> <b>textEnonce</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item30'
+									>
+										<div class="fixedFont heading" id="-recupererCordonneeCaseCourant">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											<span class="light">{(x|y)}</span>
+											
+											<b>recupererCordonneeCaseCourant</b>(x, y)
+										</div>
+										
+										<div class="description">
+											Cette fonction prend en entrer les coordonnées de la souris 
+par rapport au canvasGrille et retourne les coordonnées en X et Y 
+de la cellule courante
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{integer}</span> <b>x</b>
+														
+													</dt>
+													<dd>coordonnée en x de la souris</dd>
+												
+													<dt>
+														<span class="light fixedFont">{integer}</span> <b>y</b>
+														
+													</dt>
+													<dd>coordonnée en y de la souris</dd>
+												
+											</dl>
+										
+										
+										
+											<dl class="detailList nomargin">
+											
+												
+												
+												
+												
+												
+												
+												
+													<dt class="heading">Returns:</dt>
+													
+														<dd><span class="light fixedFont">{(x|y)}</span> coordonnée de la cellule où se trouve la souris</dd>
+													
+												
+												
+												
+												
+												
+													<dt class="heading">See:</dt>
+													
+														<dd>getSourisPosition</dd>
+													
+												
+											
+											</dl>
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item31'
+									>
+										<div class="fixedFont heading" id="-setValeurUneCellule">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											
+											
+											<b>setValeurUneCellule</b>(x, y, val)
+										</div>
+										
+										<div class="description">
+											Cette function enregistre la valeur d'une cellule
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{integer}</span> <b>x</b>
+														
+													</dt>
+													<dd>coordonnée en x par rapport à la grille</dd>
+												
+													<dt>
+														<span class="light fixedFont">{integer}</span> <b>y</b>
+														
+													</dt>
+													<dd>coordonnée en y par rapport à la grille</dd>
+												
+													<dt>
+														<span class="light fixedFont">{integer}</span> <b>val</b>
+														
+													</dt>
+													<dd>nouvelle valeur de la cellule</dd>
+												
+											</dl>
+										
+										
+										
+											<dl class="detailList nomargin">
+											
+												
+												
+												
+												
+												
+												
+												
+												
+												
+												
+												
+													<dt class="heading">See:</dt>
+													
+														<dd>recupererCordonneeCaseCourant</dd>
+													
+												
+											
+											</dl>
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item32'
+									>
+										<div class="fixedFont heading" id="-sortHashTable">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											
+											
+											<b>sortHashTable</b>(hashTable, key, removeKey)
+										</div>
+										
+										<div class="description">
+											text
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>hashTable</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>key</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>removeKey</b>
+														
+													</dt>
+													<dd>* @returns {unresolved}</dd>
+												
+											</dl>
+										
+										
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item33'
+									>
+										<div class="fixedFont heading" id="-stropSuiviCorrectionAddition">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											
+											
+											<b>stropSuiviCorrectionAddition</b>()
+										</div>
+										
+										<div class="description">
+											
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+										
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item34'
+									>
+										<div class="fixedFont heading" id="-suiviCorrectionAddition">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											
+											
+											<b>suiviCorrectionAddition</b>()
+										</div>
+										
+										<div class="description">
+											Cette function verifie le champs remplit pendant la correction et aussi les champs déjà remplit.
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+										
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item35'
+									>
+										<div class="fixedFont heading" id="-supprimerCanvasCellule">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											<span class="light">{undefined}</span>
+											
+											<b>supprimerCanvasCellule</b>(x, y)
+										</div>
+										
+										<div class="description">
+											Cette fonction prend les coordonnées d'une cellule et supprime element canvas.cellule_x_y qui se trouve superposé 
+à la cellule.
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>x</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>y</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+											<dl class="detailList nomargin">
+											
+												
+												
+												
+												
+												
+												
+												
+													<dt class="heading">Returns:</dt>
+													
+														<dd><span class="light fixedFont">{undefined}</span> </dd>
+													
+												
+												
+												
+												
+												
+											
+											</dl>
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item36'
+									>
+										<div class="fixedFont heading" id="-traiterEntreeClavier">
+											<span class='lighter'>
+											&lt;private&gt; &lt;inner&gt; 
+											</span>
+											
+											
+											
+											<b>traiterEntreeClavier</b>(event)
+										</div>
+										
+										<div class="description">
+											text
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{event}</span> <b>event</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item37'
+									>
+										<div class="fixedFont heading" id="-verifierQueLaCelluleEstActive">
+											<span class='lighter'>
+											&lt;inner&gt; 
+											</span>
+											
+											<span class="light">{Boolean}</span>
+											
+											<b>verifierQueLaCelluleEstActive</b>(x, y)
+										</div>
+										
+										<div class="description">
+											
+											
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>x</b>
+														
+													</dt>
+													<dd></dd>
+												
+													<dt>
+														<span class="light fixedFont">{type}</span> <b>y</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+											<dl class="detailList nomargin">
+											
+												
+												
+												
+												
+												
+												
+												
+													<dt class="heading">Returns:</dt>
+													
+														<dd><span class="light fixedFont">{Boolean}</span> </dd>
+													
+												
+												
+												
+												
+												
+											
+											</dl>
+										
+										
+									</li>
+								
+							</ul>
+						</div>
+					</div>
+				</section>
+			
+			
+	<!--
+	#### EVENT DETAILS
+	-->		
+			
+		</article>
+	</div>
+</div>
+
+		<script type="text/javascript">
+			wbos.CssTools.MediaQueryFallBack.LoadCss('../css/screen.css', '../css/handheld.css', 660)
+			codeview.classFilter.Init()
+		</script>
+	</body>
+</html>
+

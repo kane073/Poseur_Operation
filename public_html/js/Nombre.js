@@ -1,19 +1,34 @@
 /** 
- * @description Projet ingénieur de Télécom bretagne - Poseur d'opération
+ * @fileOverview Projet ingénieur de Télécom bretagne - Poseur d'opération
  * @version 1.0
- * Date de la dernière modification : 09/04/2013
  * @author Alassane KANE
  */
+
 /**
- * @description Cette classe servira à manipuler les opérandes des opérations.
- * @param {type} valeur
+ * @class  Cette classe servira à manipuler les opérandes des opérations.
+ * @constructor 
+ * @argument {float} valeur c'est la valeur passer en paramêtre
  * @returns {Nombre}
  */
 function Nombre(valeur) {
-
+    /**
+     * @private
+     * @type float
+     */
     var valeur = valeur;
+    
     if (isInt(valeur)) {
+        /**
+         * @private
+         * @description text
+         * @type Array
+         */
         var partieEntiere = convertionStringEnTableau(String(valeur));
+        /**
+         * @private
+         * @description text
+         * @type Array
+         */
         var partieDecimale = [];
 
     } else {
@@ -22,11 +37,16 @@ function Nombre(valeur) {
 
     }
     ;
-
+    /**
+     * @private
+     * @description text
+     * @type {integer}
+     */
     var longueurValeur = partieEntiere.length + partieDecimale.length;
 
     /**
-     * 
+     * @public
+     * @description text
      * @returns {Boolean}
      */
     this.isEmpty = function isEmpty() {
@@ -37,23 +57,26 @@ function Nombre(valeur) {
         }
     };
     /**
-     * 
+     * @public
+     * @description text
      * @returns {float or int}
      */
     this.getValeur = function getValeur() {
         return valeur;
     };
     /**
-     * 
+     * @public
+     * @description text
      * @returns {Array|tableau}
      */
     this.getPartieEntiere = function getPartieEntiere() {
         return partieEntiere;
     };
     /**
-     * 
-     * @param {type} indice
-     * @returns {Number}
+     * @public
+     * @description text
+     * @param {integer} indice
+     * @returns {Array}
      */
     this.getPartieEntiereByIndice = function getPartieEntiereByIndice(indice) {
         if (partieEntiere[indice]) {
@@ -63,15 +86,17 @@ function Nombre(valeur) {
         }
     };
     /**
-     * 
-     * @returns {Array|tableau}
+     * @public
+     * @description text
+     * @returns {Array}
      */
     this.getPartieDecimale = function getPartieDecimale() {
         return partieDecimale;
     };
     /**
-     * 
-     * @param {type} indice
+     * @public
+     * @description text
+     * @param {integer} indice
      * @returns {Number}
      */
     this.getPartieDecimaleByIndice = function getPartieDecimaleByIndice(indice) {
@@ -82,30 +107,55 @@ function Nombre(valeur) {
         }
 
     };
+    /**
+     * @public
+     * @description text
+     * @param {integer} valeur
+     * @returns {undefined}
+     */
     this.setPartieEntiere = function setPartieEntiere(valeur) {
         partieEntiere.push(valeur);
     }
+    /**
+     * @public
+     * @description text
+     * @param {integer} indice
+     * @param {integer} valeur
+     * @returns {undefined}
+     */
     this.setPartieEntiereByIndice = function setPartieEntiereByIndice(indice, valeur) {
         if (partieEntiere[indice]) {
             partieEntiere[indice] = valeur;
         } else {
-            partieEntiere[indice] = parseInt(valeur)
+            partieEntiere[indice] = parseInt(valeur);
         }
 
-    }
-
+    };
+    /**
+     * @public
+     * @description text
+     * @param {type} valeur
+     * @returns {undefined}
+     */
     this.setPartieDecimale = function setPartieDecimale(valeur) {
         partieDecimale.push(valeur);
 
-    }
+    };
+    /**
+     * @public
+     * @description text
+     * @param {type} indice
+     * @param {type} valeur
+     * @returns {undefined}
+     */
     this.setPartieDecimaleByIndice = function setPartieDecimaleByIndice(indice, valeur) {
         if (partieDecimale[indice]) {
             partieDecimale[indice] = parseInt(valeur);
 
         } else {
-            partieDecimale[indice] = parseInt(valeur)
+            partieDecimale[indice] = parseInt(valeur);
         }
-    }
+    };
     /**
      * 
      * @returns {int}
@@ -113,7 +163,12 @@ function Nombre(valeur) {
     this.getLongueurValeur = function getLongueurValeur() {
         return longueurValeur;
     };
-
+    
+    /**
+     * @public
+     * @description text
+     * @returns {String}
+     */
     this.infos = function infos() {
         return "valeur : " + valeur + "<br>" +
                 "partieEntiere : " + partieEntiere + "<br>" +
@@ -125,7 +180,8 @@ function Nombre(valeur) {
 }
 /**
  * @description Convertie une chaine de caractère en tableur
- * @param {type} valeur
+ * @static
+ * @param {integer} valeur
  * @returns {Array}
  */
 function convertionStringEnTableau(valeur) {
@@ -141,7 +197,8 @@ function convertionStringEnTableau(valeur) {
 ;
 /**
  * @description Vérifie que le nombre est un entier
- * @param {type} nombre
+ * @static
+ * @param {integer,float,string} nombre
  * @returns {Boolean}
  */
 function isInt(nombre) {

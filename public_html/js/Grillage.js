@@ -1,12 +1,9 @@
 /**
- * Projet ingénieur de Télécom bretagne - Poseur d'opération
- * @version 1.0
- * @author <a href="mailto:alassane.kane@telecom-bretagne.eu">Alassane KANE</a>
- * @author <a href="mailto:alassane.kane@telecom-bretagne.eu">Alassane KANE</a>
- * @author <a href="mailto:alassane.kane@telecom-bretagne.eu">Alassane KANE</a>
- * @author <a href="mailto:alassane.kane@telecom-bretagne.eu">Alassane KANE</a>
- * @author <a href="mailto:alassane.kane@telecom-bretagne.eu">Alassane KANE</a>
+ * @fileOverview Projet ingénieur de Télécom bretagne - Poseur d'opération
+ * @author Alassane KANE, Jeremy SFEZ, Marc Sanchez
+ * @version 2.0
  */
+
 /**
  * @class Cette classe affiche la grille et grère aussi toute les actions faite dans la grille. Elle servira à afficher les differentes opérations et à les résoudres aussi. 
  * @constructor 
@@ -16,7 +13,7 @@
 function Grillage(idDiv) {
 
 
-    
+
     /**
      * @description Il va contenir le l'element div obtenue grace à l'idDiv avec la fonction document.getElementById
      * @private
@@ -49,7 +46,7 @@ function Grillage(idDiv) {
     buttonAfficherResultat.setAttribute("style", styleButtonEnonce);
     buttonAfficherResultat.innerHTML = "Correction";
     content.appendChild(buttonAfficherResultat);
-    
+
     /**
      * @event
      * @param {MyEventObject} e 
@@ -72,7 +69,7 @@ function Grillage(idDiv) {
     enonce.setAttribute("style", stylePostie);
     enonce.setAttribute("id", "enonceAffice");
     content.appendChild(enonce);
-    
+
     /**
      * @description Le canvas qui servira pour afficher l'enoncé.
      * @type ElementCanvas
@@ -82,7 +79,7 @@ function Grillage(idDiv) {
     canvasPosti.setAttribute("height", 200);
     canvasPosti.setAttribute("id", "canvasElementPosti");
     enonce.appendChild(canvasPosti);
-    
+
     /**
      * @description Cette function affichera l'énoncé de l'exercice.
      * @param {String} contenuEnonce contient l'énoncé de l'exercice
@@ -187,21 +184,21 @@ function Grillage(idDiv) {
     buttonCorrectionSuivi.setAttribute("style", styleButtonCorrectionSuivi);
     buttonCorrectionSuivi.innerHTML = "Correction suivi";
     content.appendChild(buttonCorrectionSuivi);
-    
+
     /**
      * @private
      * @description Va contenir l'objet timer qui permettra d'arreter l'evenement la suivi de correction.
      * @type event 
      */
     var mySuiviCorrection;
-    
+
     /**
      * @private
      * @description Elle permet de savoir si la suivi de correction est en cours ou pas.
      * @type Boolean
      */
     var suiviEnCours = false;
-    
+
     /**
      * @description C'est l'evenement qui se lance quand on click sur le button buttonCorrectionSuivi, elle va faire appelle à la function suiviCorrectionAddition
      * @event
@@ -268,7 +265,7 @@ function Grillage(idDiv) {
     canvasOutil.onmousedown = function(event) {
         var positionSourcie = getSourisPositionMenuOutils(event);
         var positionBontton = getCoordonneButtonOutils(positionSourcie.x, positionSourcie.y);
-        console.log(positionBontton);
+
         if (coordonneGrilleCourant) {
             if (operationEnCours) {
                 switch (positionBontton.type) {
@@ -316,10 +313,11 @@ function Grillage(idDiv) {
 
     };
     /**
-     * @description Function pour obtenir les coordonnées dans le div du bare d'outils
-     * @param {type} x
-     * @param {type} y
-     * @returns {Grillage.getCoordonneButtonOutils.Objct(x,y)}
+     * @private
+     * @description Fonction pour obtenir les coordonnées dans le div du bare d'outils
+     * @param {interger} x coordonnée en x par rapport à l'element canvasOutil 
+     * @param {interger} y coordonnée en y par rapport à l'element canvasOutil
+     * @returns {(x,y)}
      */
     function getCoordonneButtonOutils(x, y) {
         contextOutils.globalAlpha = 0.5;
@@ -393,6 +391,12 @@ function Grillage(idDiv) {
             }
         }
     }
+
+    /**
+     * @description 
+     * @param {Integer} x
+     * @param {Integer} y
+     */
     function effaceOpaciteMenuOutil(x, y) {
         contextOutils.globalAlpha = 1;
         contextOutils.fillRect(x, y, 37, 35);
@@ -400,8 +404,8 @@ function Grillage(idDiv) {
 
     /**
      * @description Obtenir les coordonnées par rapport à l'interieur du div des menu
-     * @param {type} event
-     * @returns {Grillage.getSourisPositionMenuOutils.Anonym$16}
+     * @param {event} event
+     * @returns {(x,y)} 
      */
     function getSourisPositionMenuOutils(event) {
         var elementCanvas = canvasOutil;
@@ -413,18 +417,21 @@ function Grillage(idDiv) {
         }
         return {x: event.clientX + ox, y: event.clientY + oy};
     }
-    /*****************************************************************************
+
+    /**
+     * @private
      * @description Création du div "grille" qui contiendra la grille
-     * @type @exp;document@call;createElement
+     * @type ElementDiv
      */
     var grille = document.createElement("div");
     var styleGrille = "position: relative;background-color: #CCBEBE;border: 2px solid #CCBEBE;width: 798px;height: 512px;bottom: -50px;margin-left: auto;margin-right: auto;"
     grille.setAttribute("id", "grille");
     grille.setAttribute("style", styleGrille);
 
-    /*****************************************************************************
-     * @description Création d'un élément canvas, dans la quel sera déssiné la grille.
-     * @type @exp;document@call;createElement
+    /**
+     * @private
+     * @description Création d'un élément canvas, dans le quel sera déssiné la grille.
+     * @type ElementCanvas
      */
     var canvasGrille = document.createElement("canvas");
     var widthCanvas = 800;
@@ -436,54 +443,66 @@ function Grillage(idDiv) {
     canvasGrille.setAttribute("style", styleCanvasGrille);
     grille.appendChild(canvasGrille);
 
-    /*****************************************************************************
-     * @description Appelle de la méthode getContext qui récupéré pour savoir dans 
-     * quel contexte de dessin (2D ou 3D) le script va pouvoir agir, et de quelles 
-     * fonctions il pourra disposer. Le contexte sera l'élément 
+    /**
+     * @private
+     * @description Appelle de la méthode getContext, il sera l'élément 
      * central de gestion de Canvas.
-     * @type @exp;canvasGrille@call;getContext
+     * @type Context2d
      */
     var contextCanvasGrille = canvasGrille.getContext('2d');
+
     /**
-     * 
-     * @type Number est la longueur et largueur d'une cellule de la grille
+     * @description C'est la longueur et largueur d'une cellule de la grille
+     * @constant
+     * @public
+     * @type Number 
      */
     var tailleCase = 30;
+
     /**
-     * 
-     * @type Array Contient les coordonnées de chaque cellule de la grille
+     * @description Contient les coordonnées de chaque cellule de la grille
+     * @public
+     * @type Array 
      */
     var tableauDeGille = [];
 
     /**
-     * 
-     * @type type Coordonnée de la dernière cellule selectionné dans la grille
+     * @description Contient toujours les coordonnée de la dernière cellule selectionné dans la grille.
+     * @private
+     * @default {(0,0)}
+     * @type {(x,y)} 
      */
     var dernierCelluleSelectionne = {x: 0, y: 0};
 
     /**
-     * 
-     * @type cellule contient un élément canvas sélectionné
+     * @description Contient toujours les coordonnées de la cellule canvas sélectionné
+     * @private
+     * @type {(x,y)} 
      */
     var canvasCelluleSelectionne;
 
     /**
-     * 
+     * @description Contient les coordonnées des diffentes cellules où il y a eu des affichages de message d'érreur
+     * @private
      * @type Array
      */
     var listeErreurSimple = [];
 
     /**
-     * 
-     * @type Array Ce tableau contient les valeurs de chaque cellule à tout moment
+     * @description Ce tableau contient les valeurs de chaque cellule à tout moment
+     * @type Array 
      */
     var listeDonneeDeChaqueCellule = {};
 
+    /**
+     * @description Contient l'information du type de correction qui en cours
+     * @private
+     * @type String
+     */
     var typeDeCorrection;
 
-    /*******************************************************************************
-     * Ici nous dessinons la grille et on stocke dans tableauDeGille les coordonnées 
-     * de chaque cellule
+    /**
+     * Ici nous dessinons la grille et on stocke dans tableauDeGille les coordonnées de chaque cellule
      */
     contextCanvasGrille.fillStyle = "#fff";
     for (var i = 0; i < parseInt(widthCanvas / tailleCase); i++) {
@@ -495,50 +514,56 @@ function Grillage(idDiv) {
     }
 
     /**
-     *@description Cette function dessine la marge
+     * @description Cette function dessine la marge
      */
     function dessinerMarge() {
         contextCanvasGrille.fillStyle = "red";
         contextCanvasGrille.fillRect(126, 0, 2, 512);
     }
-    /*On dessine la marge*/
+
+    /**
+     * @description On dessine la marge
+     * @constructs 
+     */
     dessinerMarge();
-    /*******************************************************************************
+
+    /**
      * On insert la div.grille dans le div.content 
      */
     content.appendChild(grille);
 
     /**
-     * @description Cette funtion nous retourne la valeur d'une cellule en lui passant en paramètre son coordonnée
-     * @param {type} x
-     * @param {type} y
-     * @returns {int}
+     * @description Cette funtion nous retourne la valeur d'une cellule en lui passant en paramètre les coordonnées de celui-ci
+     * @param {integer} x coordonnée en x par rapport à la grille 
+     * @param {integer} y coordonnée en y par rapport à la grille 
+     * @see recupererCordonneeCaseCourant
+     * @returns {string} valeur de la cellule
      */
     function getValeurUneCellule(x, y) {
         return listeDonneeDeChaqueCellule[String(x) + "_" + String(y)];
     }
 
-    /***
-     * @description Cette function enregistre la valeur d'une 
-     * @param {type} x
-     * @param {type} y
-     * @param {type} val
+    /**
+     * @description Cette function enregistre la valeur d'une cellule
+     * @param {integer} x coordonnée en x par rapport à la grille 
+     * @param {integer} y coordonnée en y par rapport à la grille 
+     * @see recupererCordonneeCaseCourant
+     * @param {integer} val nouvelle valeur de la cellule
      */
     function setValeurUneCellule(x, y, val) {
         listeDonneeDeChaqueCellule[String(x) + "_" + String(y)] = String(val);
     }
 
-
-    /*******************************************************************************
-     * @description Cette fonction nous donnes la position de la sourcie par rapport 
-     * à l'élement canvas.canvasGrille.
+    /**
+     * @description Cette fonction nous donnes la position de la sourcie par rapport à l'élement canvas.canvasGrille.
      * Le point de référence (0,0) est situé en haut à gauche
      * L'axe horizontal (x) est défini par la première coordonée
      * L'axe vertical (y) est défini par la seconde coordonnée
      * Ces valeurs correspondent à la grille entourant les pixels, et non pas aux pixels eux-mêmes
      * 
-     * @param {type} event
-     * @returns {Grillage.getSourisPosition.Object(possitionX,possitionY)} coordonnée de la sourcis
+     * @param {event} event venement lié au clavier clavier
+     * @requires canvasGrille
+     * @returns {(x,y)} coordonnée de la souris
      */
     function getSourisPosition(event) {
         var elementCanvas = canvasGrille;
@@ -551,13 +576,14 @@ function Grillage(idDiv) {
         return {x: event.clientX + ox, y: event.clientY + oy};
     }
 
-    /*******************************************************************************
-     * @description Cette fonction prend en entrer les coordonnées de la sourcis 
-     * par rapport au canvas.canvasGrille et retourne les coordonnées en X et Y 
+    /**
+     * @description Cette fonction prend en entrer les coordonnées de la souris 
+     * par rapport au canvasGrille et retourne les coordonnées en X et Y 
      * de la cellule courante
-     * @param {type} x
-     * @param {type} y
-     * @returns {Grillage.recupererCordonneeCaseCourant.Object(possitionX,possitionY)}
+     * @param {integer} x coordonnée en x de la souris
+     * @param {integer} y coordonnée en y de la souris
+     * @see getSourisPosition
+     * @returns {(x,y)} coordonnée de la cellule où se trouve la souris
      */
     function recupererCordonneeCaseCourant(x, y) {
         var coordX = 0;
@@ -575,13 +601,14 @@ function Grillage(idDiv) {
         return {x: coordX, y: coordY};
     }
 
-    /*******************************************************************************
+    /**
      * @description Cette fonction prend en entrer les coordonnées d'une cellule 
      * et dessine un contour d'épaisseur 2px selon la couleur aussi passé en paramètre
-     * @param {type} x
-     * @param {type} y
+     * @param {integer} x coordonnée de la cellule en x
+     * @param {integer} y coordonnée de la cellule en y
+     * @see recupererCordonneeCaseCourant
      * @param {type} couleur couleur du contour
-     * @returns {undefined}
+     * @requires contextCanvasGrille
      */
     function dessineContour(x, y, couleur) {
         //Nous tronçons coté par poté
@@ -623,10 +650,12 @@ function Grillage(idDiv) {
     }
 
     /**
-     * @description Cette fonction prend en entrer les coordonnées d'une celle et efface son coutour de 2px.
-     * 
-     * @param {type} x
-     * @param {type} y
+     * @description Cette fonction prend en entrer les coordonnées d'une cellule et efface son coutour de 2px.
+     * Elle appelle aussi la fonction dessinerMarge() redessiner la marge au cas si elle a été effacer.
+     * @param {integer} x coordonnée de la cellule en x
+     * @param {integer} y coordonnée de la cellule en y
+     * @see recupererCordonneeCaseCourant
+     * @see dessinerMarge
      */
     function effacerContour(x, y) {
         contextCanvasGrille.clearRect(x - 2, y - 2, tailleCase + 2, 2);
@@ -640,10 +669,11 @@ function Grillage(idDiv) {
     /**
      * @description Cette fonction prend les coordonnées d'une cellule, un caractère, une couleur et ecrit le carectère
      * dans la cellule avec une taille police 30px et de couleur celui passé en paramètre.
-     * @param {type} x
-     * @param {type} y
-     * @param {type} caractere
-     * @param {type} couleur
+     * @param {integer} x coordonnée de la cellule en x
+     * @param {integer} y coordonnée de la cellule en y
+     * @param {string} caractere le caractère qui doit être ecrit
+     * @param {string} couleur la couleur de l'ecriture
+     * @
      */
     function ecrireDansUneCellule(x, y, caractere, couleur) {
         effacerLesDonneeCellule(x, y);
@@ -675,6 +705,7 @@ function Grillage(idDiv) {
         setValeurUneCellule(x, y, caractere);
     }
     /**
+     * @private
      * @description Cette fonction prend les coordonnées d'une cellule et efface le caractère ecrit à l'intérieur.
      * @param {type} x
      * @param {type} y
@@ -684,11 +715,26 @@ function Grillage(idDiv) {
         contextCanvasGrille.fillRect(x, y, 30, 30);
         setValeurUneCellule(x, y, "");
     }
+    /**
+     * @private
+     * @description tex
+     * @param {type} x
+     * @param {type} y
+     * @param {type} couleur
+     * @returns {undefined}
+     */
     function effacerEcritureUneCelluleException(x, y, couleur) {
         contextCanvasGrille.fillStyle = couleur;
         contextCanvasGrille.fillRect(x, y, 30, 30);
         setValeurUneCellule(x, y, "");
     }
+    /**
+     * @private
+     * @description tex
+     * @param {type} x
+     * @param {type} y
+     * @returns {undefined}
+     */
     function effacerLesDonneeCellule(x, y) {
 
         contextCanvasGrille.clearRect(x, y, 30, 30);
@@ -696,6 +742,14 @@ function Grillage(idDiv) {
         contextCanvasGrille.fillRect(x, y, 30, 30);
         setValeurUneCellule(x, y, "");
     }
+    /**
+     * @private
+     * @description tex
+     * @param {type} x
+     * @param {type} y
+     * @param {type} couleur
+     * @returns {undefined}
+     */
     function dessinerBaseOperation(x, y, couleur) {
 
         contextCanvasGrille.lineWidth = 4;
@@ -706,8 +760,16 @@ function Grillage(idDiv) {
         contextCanvasGrille.stroke();
     }
 
-
-    function chargerImageContourError(x, y, r, color) {        
+    /**
+     * @private
+     * @description tex
+     * @param {type} x
+     * @param {type} y
+     * @param {type} r
+     * @param {type} color
+     * @returns {undefined}
+     */
+    function chargerImageContourError(x, y, r, color) {
         contextCanvasGrille.beginPath();
         contextCanvasGrille.arc(x + 15, y + 15, 14, r, Math.PI * 2, true);
         contextCanvasGrille.lineWidth = 2;
@@ -715,10 +777,26 @@ function Grillage(idDiv) {
         contextCanvasGrille.stroke();
 
     }
-
-    var r = 1;
+    
+    /**
+     * @private
+     * @description tex
+     * @type type
+     */
     var tableauRadiumIncrementation = {};
+    /**
+     * @private
+     * @description tex
+     * @type type
+     */
     var tableauDesImagesAnnimer = {};
+    /**
+     * @private
+     * @description text
+     * @constant
+     * @type Number
+     */
+    var r = 1;
     function annimerIgame(x, y) {
         if (!tableauRadiumIncrementation[x + "_" + y]) {
             tableauRadiumIncrementation[x + "_" + y] = {r: r};
@@ -732,6 +810,14 @@ function Grillage(idDiv) {
         }
 
     }
+    
+    /**
+     * @private
+     * @description text
+     * @param {type} x
+     * @param {type} y
+     * @returns {unresolved}
+     */
     function commencerAnnimation(x, y) {
         return setInterval(function() {
             annimerIgame(x, y)
@@ -878,19 +964,26 @@ function Grillage(idDiv) {
         }
     }
 
+    /**
+     * @description contient toujours les coordonnées de la cellule ou se trouvre le curseur
+     * @type {(x,y)}
+     */
     var coordonneGrilleCourant;
 
+    /**
+     * @private
+     * @description text
+     * @param {event} event
+     */
     function traiterEntreeClavier(event) {
         //On appelle la fonction clavier qui nous retourne un Object(intKeyCode,intAltKey,intCtrlKey,val,type)
         var donnekey = clavier(event);
-        /**
-         * Selon la categorie on realise des actions
+        /*
+         Selon la categorie on realise des actions
          */
         if (operationEnCours) {
             switch (donnekey.type) {
-                /**
-                 * 
-                 */
+
                 case "chiffre":
                     if (verifierQueLaCelluleEstActive(coordonneGrilleCourant.x, coordonneGrilleCourant.y)) {
 
@@ -916,9 +1009,8 @@ function Grillage(idDiv) {
                         listeErreurSimple.push({x: coordonneGrilleCourant.x, y: coordonneGrilleCourant.y});
                     }
                     break;
-                    /**
-                     * Dans cette categorie nous avons le touche Echap, Entrer et Delete
-                     * 
+                    /*
+                     Dans cette categorie nous avons le touche Echap, Entrer et Delete 
                      */
                 case "operateur":
                     switch (typeOperation) {
@@ -941,8 +1033,8 @@ function Grillage(idDiv) {
                     break;
                 case "action":
                     switch (donnekey.val) {
-                        /**
-                         * Delete efface l'ecriture d'une cellule selectionné
+                        /*
+                         Delete efface l'ecriture d'une cellule selectionné
                          */
                         case "del":
                             if (verifierQueLaCelluleEstActive(coordonneGrilleCourant.x, coordonneGrilleCourant.y)) {
@@ -969,9 +1061,9 @@ function Grillage(idDiv) {
                             break;
                     }
                     break;
-                    /**
-                     * Cette actegorie nous permet de deplacer le selectionneur de cellule grace aux touche directionnel
-                     * du clavier.
+                    /*
+                     Cette actegorie nous permet de deplacer le selectionneur de cellule grace aux touche directionnel
+                     du clavier.
                      */
                 case "direction":
                     switch (donnekey.val) {
@@ -1029,10 +1121,10 @@ function Grillage(idDiv) {
                             break;
                     }
                     break;
-                    /**
-                     * Cette catégorie est la liste de touche intergie, à l'anclachement un message s'affiche dans la grille
-                     * sous forme d'un tooltip qui signale à l'utilisateur d'utiliser les bonnes touche.
-                     * Le contour de la cellule devient rouge
+                    /*
+                     Cette catégorie est la liste de touche intergie, à l'anclachement un message s'affiche dans la grille
+                     sous forme d'un tooltip qui signale à l'utilisateur d'utiliser les bonnes touche.
+                     Le contour de la cellule devient rouge
                      */
                 case "interdit":
                     var message = '<img style="position: absolute;margin-left: -16px;margin-top: -8px;" src=\"./img/icone_erreur.png\"/>\n\
@@ -1048,9 +1140,7 @@ function Grillage(idDiv) {
         }
         else {
             switch (donnekey.type) {
-                /**
-                 * 
-                 */
+
                 case "chiffre":
 
 
@@ -1071,15 +1161,14 @@ function Grillage(idDiv) {
                     effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
                     listeErreurSimple.push({x: coordonneGrilleCourant.x, y: coordonneGrilleCourant.y});
                     break;
-                    /**
-                     * Dans cette categorie nous avons le touche Echap, Entrer et Delete
-                     * 
-                     */
+
+                    //Dans cette categorie nous avons le touche Echap, Entrer et Delete
+
                 case "action":
                     switch (donnekey.val) {
-                        /**
-                         * Delete efface l'ecriture d'une cellule selectionné
-                         */
+
+                        //Delete efface l'ecriture d'une cellule selectionné
+
                         case "del":
                             effacerEcritureUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
                             effacerDivForTooltip(coordonneGrilleCourant.x, coordonneGrilleCourant.y);
@@ -1092,10 +1181,9 @@ function Grillage(idDiv) {
                             break;
                     }
                     break;
-                    /**
-                     * Cette actegorie nous permet de deplacer le selectionneur de cellule grace aux touche directionnel
-                     * du clavier.
-                     */
+
+                    //Cette actegorie nous permet de deplacer le selectionneur de cellule grace aux touche directionnel du clavier.
+
                 case "direction":
                     switch (donnekey.val) {
                         case "droit":
@@ -1152,10 +1240,10 @@ function Grillage(idDiv) {
                             break;
                     }
                     break;
-                    /**
-                     * Cette catégorie est la liste de touche intergie, à l'anclachement un message s'affiche dans la grille
-                     * sous forme d'un tooltip qui signale à l'utilisateur d'utiliser les bonnes touche.
-                     * Le contour de la cellule devient rouge
+                    /*
+                     Cette catégorie est la liste de touche intergie, à l'anclachement un message s'affiche dans la grille
+                     sous forme d'un tooltip qui signale à l'utilisateur d'utiliser les bonnes touche.
+                     Le contour de la cellule devient rouge
                      */
                 case "interdit":
                     var message = '<img style="position: absolute;margin-left: -16px;margin-top: -8px;" src=\"./img/icone_erreur.png\"/>\n\
@@ -1171,24 +1259,23 @@ function Grillage(idDiv) {
         }
     }
     /**
-     * Cette methode correspond à l'évenement faite quand on click dans la grille
+     * @description Correspond à l'évenement declancher quand on click dans la grille
+     * @event 
      * @param {type} event
      */
     canvasGrille.onmousedown = function(event) {
 
-        /**
-         * On appelle la @function getSourisPosition qui nous donne position de la sourie
-         */
+        // On appelle la @function getSourisPosition qui nous donne position de la sourie
+
         var positionGrilleCanvas = getSourisPosition(event);
-        /**
-         * On appelle la @function recupererCordonneeCaseCourant pour recuperer les coordonnées de 
-         * cellule la cellule selectionnée
-         */
+
+        // On appelle la fonction recupererCordonneeCaseCourant pour recuperer les coordonnées de la cellule selectionnée
+
         coordonneGrilleCourant = recupererCordonneeCaseCourant(positionGrilleCanvas.x, positionGrilleCanvas.y);
 
-        /**
-         * On verifie qu'on n'a pas clické que la même cellule
-         */
+
+        //On verifie qu'on n'a pas clické que la même cellule
+
         if (dernierCelluleSelectionne.x !== coordonneGrilleCourant.x || dernierCelluleSelectionne.y !== coordonneGrilleCourant.y) {
             //On éfface le coutour de la cellule precedente
             effacerContour(dernierCelluleSelectionne.x, dernierCelluleSelectionne.y);
@@ -1235,12 +1322,13 @@ function Grillage(idDiv) {
 
 
     /**
-     * Variable global dans la qualle on stock les resultats attendu
-     * @type @exp;tmp@pro;tableau|@exp;tmp@pro;tableau
+     * @description Variable global dans la qualle on stock les resultats attendu
+     * @type Array
      */
     var tableauDesValeursAttendu;
-    /****************************************************************************************
-     * Cette function verifie le champs remplit pendant la correction et aussi les champs déjà remplit.
+
+    /**
+     *  @description Cette function verifie le champs remplit pendant la correction et aussi les champs déjà remplit.
      */
     function suiviCorrectionAddition() {
         if (tableauDesValeursAttendu) {
@@ -1276,7 +1364,7 @@ function Grillage(idDiv) {
                             tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].statu = false;
                         }
                     }
-                    
+
                 } else {
                     tableauDesValeursAttendu[i].statu = false;
 
@@ -1287,7 +1375,7 @@ function Grillage(idDiv) {
                                 tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].stop = stopDessinerContour2;
                                 tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].statu = true;
                             }
-                        }else{
+                        } else {
                             var stopDessinerContour3 = commencerAnnimation(tableauDesValeursAttendu[i].x, tableauDesValeursAttendu[i].y);
                             tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y] = {stop: stopDessinerContour3, statu: true};
                         }
@@ -1430,7 +1518,7 @@ function Grillage(idDiv) {
             }
         }
     }
-    /****************************************************************************************
+    /**
      * @description  Cette fonction prend en entrer un canvas et dessine la flèche du tooltip
      * @param {type} canvasToolTip
      * @param {type} posx
@@ -1446,24 +1534,20 @@ function Grillage(idDiv) {
         ctx.lineTo(14, 1);
         ctx.fill();
     }
-    /****************************************************************************************
+    /**
      * @description  Cette fonction dessine le tootltip
-     * 
      * @param {type} posleft
      * @param {type} postop
      * @param {type} bordercolor$1
      * @param {type} bgcolor
      * @param {type} borderwidth
      * @param {type} textcolor
-     * @param {type} message      * @param {type} tipbot
+     * @param {type} message      
+     * @param {type} tipbot
      * @param {type} bordercolor
      */
     function dessinerDivForTooltip(posleft, postop, bordercolor, bgcolor, borderwidth, textcolor, message, tipbot, bordercolor) {
-        /**
-         * 
-         * @type @exp;document@call;createElement
-         */
-
+        
         var divToolTip = document.createElement("div");
         if (String(message).length > 150) {
             posleftTmp = posleft - 20;
@@ -1477,10 +1561,8 @@ function Grillage(idDiv) {
         divToolTip.setAttribute("class", "tooltip");
         divToolTip.setAttribute("id", "tooltip_" + posleft + "_" + postop);
 
-        /**
-         * création d'un object canvas pour dessinée la flèche du tooltip
-         * @type @exp;document@call;createElement
-         */
+        
+        //création d'un object canvas pour dessinée la flèche du tooltip
         var canvasToolTip = document.createElement("canvas");
         var styleCanvasToolTip = 'position: absolute;bottom:' + tipbot + 'px;left: 10%;';
         var widthCanvasToolTip = 28;
@@ -1490,17 +1572,17 @@ function Grillage(idDiv) {
         canvasToolTip.setAttribute("id", "tooltip_tip" + posleft + "_" + posleft);
         canvasToolTip.setAttribute("style", styleCanvasToolTip);
         divToolTip.innerHTML = message;
-        /**
-         * On appelle la @function dessineCanvasTooltip pour dessinée la flèche du tootltip
-         */
+        
+         //On appelle la @function dessineCanvasTooltip pour dessinée la flèche du tootltip
+         
         dessineCanvasTooltip(canvasToolTip, bordercolor);
-        /**
-         * On l'insert dans la grille
-         */
+        
+         // On l'insert dans la grille
+         
         divToolTip.appendChild(canvasToolTip);
         grille.appendChild(divToolTip);
     }
-    /****************************************************************************************
+    /**
      * @description Cette fonction affiche le tootltip
      * @param {type} coordonneGrilleCourant
      * @param {type} message
@@ -1515,10 +1597,13 @@ function Grillage(idDiv) {
         dessinerDivForTooltip(posleft, postop, bordercolor, bgcolor, borderwidth, textcolor, message, tipbot, bordercolor);
 
     }
-    /*********************************************************************************************
+    /**
      * @description cette fonction prend en entré les coordonnée d'une cellule et efface le tooltip
      * qui lui correspond dans la grille
-     * @param {type} x      * @param {type} y      */     function effacerDivForTooltip(x, y) {
+     * @param {type} x      
+     * @param {type} y      
+     * */
+    function effacerDivForTooltip(x, y) {
         var id_tooltip = "tooltip_" + x + "_" + y;
         var tooltip = grille.querySelector("#" + id_tooltip);
         if (tooltip) {
@@ -1526,27 +1611,54 @@ function Grillage(idDiv) {
         }
     }
 
-    /*********************************************************************************************
-     * Ci-dessous les attributs, functions d'affiche et de suivi pour la résolution des opération
-     ********************************************************************************************/
-    /*********************************************************************************************
+    /**
      * 
-     * @type Boolean operationEnCours
-     * @type Object:{Addition, Soustraction, Multiplication, dition} operation 
-     * @type Array tableauDesCelluleActiveNonActive
-     * @type Number postXContante      * @type Number postYContante      * @type Object(x,y) positionInitialPourPoserUneOperation 
+     * @type Boolean 
      */
     var operationEnCours = false;
+    /**
+     * 
+     * @type {Addition, Soustraction, Multiplication, division} 
+     */
     var operation;
+    /**
+     * 
+     * @type String 
+     */
     var typeOperation;
+    /**
+     * 
+     * @type Array
+     */
     var tableauDesCelluleActiveNonActive = [];
+    /**
+     * 
+     * @type Array
+     */
     var tableauDesCelluleReserver = [];
+    /**
+     * 
+     * @type Array
+     */
     var tableauDesCelluleAutorise = [];
+    /**
+     * @constant
+     * @type Number
+     */
     var postXContante = 224;
+    /**
+     * @constant
+     * @type Number
+     */
     var postYContante = 96;
+    /**
+     * 
+     * @type {(postXContante,postYContante)}
+     */
     var positionInitialPourPoserUneOperation = {x: postXContante, y: postYContante};
 
-    /***********************************************************************************************
+    /**
+     * @public
      * @description Cette fonction nous permet d'afficher ¬l'opération
      * @param {Addition} addition
      * @param {String} textEnonce 
@@ -1581,7 +1693,7 @@ function Grillage(idDiv) {
         nombreCelluleAReserverHorizontalement = nombreCelluleAReserverHorizontalement + 4;
 
         var nombreDeCelluleAReserver = nombreCelluleAReserverVerticalement * nombreCelluleAReserverHorizontalement;
-        numLigne = 1;
+        var numLigne = 1;
         valMaxByLigne = 0;
         for (i = 0; i < nombreCelluleAReserverVerticalement; i++) {
             for (j = 0; j < nombreCelluleAReserverHorizontalement; j++) {
@@ -1614,12 +1726,8 @@ function Grillage(idDiv) {
         var couleurTransparenceOperandeEntiere = 'rgba(110, 71, 151, 0.1)';
         var couleurTransparenceRetenue = 'rgba(163, 209, 157, 0.3)';
         var couleurTransparenceResultat = 'rgba(163, 209, 157, 0.3)';
-        /**
-         * Opérande
-         */
-        /**
-         * Partie Decimal
-         */
+
+
         numLigne = 2;
         for (i = 0; i < operande.length; i++) {
             if (operande[i].getPartieDecimale().length === maxDecimale) {
@@ -1648,9 +1756,8 @@ function Grillage(idDiv) {
                 }
             }
             numLigne++;
-        }         /**
-         * Partie entière
-         */
+        }
+//          Partie entière
         numLigne = 2;
         for (i = 0; i < operande.length; i++) {
             entiere = operande[i].getPartieEntiere();
@@ -1711,7 +1818,7 @@ function Grillage(idDiv) {
     };
 
     /**
-     * 
+     * @description text
      * @param {type} typeOperation
      * @param {type} operation
      * @returns {objet[x_y]:(val,ordre,statu)}
@@ -1774,7 +1881,7 @@ function Grillage(idDiv) {
     }
 
     /**
-     * 
+     * @description text
      * @param {type} hashTable
      * @param {type} key
      * @param {type} removeKey      * @returns {unresolved}
