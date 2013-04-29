@@ -190,18 +190,22 @@ function Grillage(idDiv) {
     
     /**
      * @private
+     * @description Va contenir l'objet timer qui permettra d'arreter l'evenement la suivi de correction.
      * @type event 
      */
     var mySuiviCorrection;
     
     /**
      * @private
+     * @description Elle permet de savoir si la suivi de correction est en cours ou pas.
      * @type Boolean
      */
     var suiviEnCours = false;
     
     /**
+     * @description C'est l'evenement qui se lance quand on click sur le button buttonCorrectionSuivi, elle va faire appelle à la function suiviCorrectionAddition
      * @event
+     * @requires suiviEnCours, typeOperation
      */
     buttonCorrectionSuivi.addEventListener('click', function(e) {
         if (!suiviEnCours) {
@@ -232,8 +236,9 @@ function Grillage(idDiv) {
 
 
     /**
-     * @description Le div qui contient la bare d'outils cotament les chiffres et les opérateurs
-     * @type @exp;document@call;createElement
+     * @description Le div qui contient la bare d'outils contenant les chiffres et les opérateurs
+     * @private
+     * @type ElementDiv
      */
     var divoutil = document.createElement("div");
     var styleMenu = 'border:inset 5px #5cbeff;-moz-border-radius: 5px;-webkit-border-radius: 5px;\n\
@@ -241,7 +246,10 @@ function Grillage(idDiv) {
                     position: absolute;width: 300px;height: 70px;cursor: pointer;';
     divoutil.setAttribute("style", styleMenu);
     divoutil.setAttribute("id", "barreOutil");
-
+    /**
+     * 
+     * @type @exp;document@call;createElement
+     */
     var canvasOutil = document.createElement("canvas");
     canvasOutil.setAttribute("width", "300");
     canvasOutil.setAttribute("height", "70");
