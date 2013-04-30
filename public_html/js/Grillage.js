@@ -776,7 +776,7 @@ function Grillage(idDiv) {
         contextCanvasGrille.stroke();
 
     }
-    
+
     /**
      * @private
      * @description tex
@@ -809,7 +809,7 @@ function Grillage(idDiv) {
         }
 
     }
-    
+
     /**
      * @private
      * @description text
@@ -819,10 +819,27 @@ function Grillage(idDiv) {
      */
     function commencerAnnimation(x, y) {
         return setInterval(function() {
-            annimerIgame(x, y)
+            annimerIgame(x, y);
         }, 100);
     }
 
+    var tableauContourErreurColonne = {};
+    postYContante=96;
+    function contourErreurColonne(x, longueurColonne, couleur) {
+        if (!tableauContourErreurColonne["colonne_" + x]) {
+            tableauContourErreurColonne["colonne_" + x] = {canvas:document.createElement("canvas"), context:"", x:x};
+            heigth = postYContante+32;
+            var canvasColonneStyle = "position: absolute;z-index: 2;margin-left: " + x + "px;margin-top: " + heigth + "px;";
+            var rw = tailleCase;
+            var rh = parseInt(longueurColonne)*(tailleCase+2);
+            tableauContourErreurColonne["colonne_" + x].canvas.setAttribute("width", rw);
+            tableauContourErreurColonne["colonne_" + x].canvas.setAttribute("height", rh);
+            tableauContourErreurColonne["colonne_" + x].canvas.setAttribute("id", "colonneErreur" + x );
+            tableauContourErreurColonne["colonne_" + x].canvas.setAttribute("style", canvasColonneStyle);
+            grille.appendChild(tableauContourErreurColonne["colonne_" + x].canvas);
+        }
+    }
+    contourErreurColonne(512, 3, "green");
     /**
      * @description Cette fonction prend les coordonnées d'une cellule et crèe un element canvas donc l'id est la syntaxte suivante:
      * cellule_x_y avec x et y les coordonnées respectives de la cellule.
@@ -1269,7 +1286,7 @@ function Grillage(idDiv) {
         var positionGrilleCanvas = getSourisPosition(event);
 
         // On appelle la fonction recupererCordonneeCaseCourant pour recuperer les coordonnées de la cellule selectionnée
-		
+
         coordonneGrilleCourant = recupererCordonneeCaseCourant(positionGrilleCanvas.x, positionGrilleCanvas.y);
 
 
@@ -1546,7 +1563,7 @@ function Grillage(idDiv) {
      * @param {type} bordercolor
      */
     function dessinerDivForTooltip(posleft, postop, bordercolor, bgcolor, borderwidth, textcolor, message, tipbot, bordercolor) {
-        
+
         var divToolTip = document.createElement("div");
         if (String(message).length > 150) {
             posleftTmp = posleft - 20;
@@ -1560,7 +1577,7 @@ function Grillage(idDiv) {
         divToolTip.setAttribute("class", "tooltip");
         divToolTip.setAttribute("id", "tooltip_" + posleft + "_" + postop);
 
-        
+
         //création d'un object canvas pour dessinée la flèche du tooltip
         var canvasToolTip = document.createElement("canvas");
         var styleCanvasToolTip = 'position: absolute;bottom:' + tipbot + 'px;left: 10%;';
@@ -1571,68 +1588,68 @@ function Grillage(idDiv) {
         canvasToolTip.setAttribute("id", "tooltip_tip" + posleft + "_" + posleft);
         canvasToolTip.setAttribute("style", styleCanvasToolTip);
         divToolTip.innerHTML = message;
-        
-         //On appelle la @function dessineCanvasTooltip pour dessinée la flèche du tootltip
-         
+
+        //On appelle la @function dessineCanvasTooltip pour dessinée la flèche du tootltip
+
         dessineCanvasTooltip(canvasToolTip, bordercolor);
-        
-         // On l'insert dans la grille
-         
+
+        // On l'insert dans la grille
+
         divToolTip.appendChild(canvasToolTip);
         grille.appendChild(divToolTip);
     }
-	
-	dessinerCadreCorrection({opt1:false,opt2:false,opt3:false});
-	effacerCadreCorrection();
-	
-	function effacerCadreCorrection(){
-		spanCorrection = document.getElementById("cadreCorrection");
-		if(spanCorrection != null){
-			grille.removeChild(spanCorrection);
-		}
-	}
-	
-	function dessinerCadreCorrection(objet){
-		nombreMessage = 0;		
-		var spanCorrection = document.createElement("span");
 
-		if(objet.opt1==false && objet.opt2==false && objet.opt3==false){
-			effacerCadreCorrection();
-			return
-		}
-		// Gestion des options
+    dessinerCadreCorrection({opt1: false, opt2: false, opt3: false});
+    effacerCadreCorrection();
+
+    function effacerCadreCorrection() {
+        spanCorrection = document.getElementById("cadreCorrection");
+        if (spanCorrection != null) {
+            grille.removeChild(spanCorrection);
+        }
+    }
+
+    function dessinerCadreCorrection(objet) {
+        nombreMessage = 0;
+        var spanCorrection = document.createElement("span");
+
+        if (objet.opt1 == false && objet.opt2 == false && objet.opt3 == false) {
+            effacerCadreCorrection();
+            return
+        }
+        // Gestion des options
         styleTexte = 'margin:11px'
-		if(objet.opt1){
-			texte1 = document.createElement("p");
-	        texte1.setAttribute("style", styleTexte);
-			texte1.innerHTML = 'Attention, tu as fait une erreur de calcul.';
-			spanCorrection.appendChild(texte1);
-			nombreMessage += 1;
-		}
-		if(objet.opt2){
-			texte1 = document.createElement("p");
-	        texte1.setAttribute("style", styleTexte);
-			texte1.innerHTML = 'Attention, tu as fait une erreur de retenue.';
-			spanCorrection.appendChild(texte1);
-			nombreMessage += 1;
-		}
-		if(objet.opt3){
-			texte1 = document.createElement("p");
-	        texte1.setAttribute("style", styleTexte);
-			texte1.innerHTML = 'Attention, tu as oublié de remplir une case.';
-			spanCorrection.appendChild(texte1);
-			nombreMessage += 1;
-		}
-		hauteurSpan = nombreMessage * 20 + 10
-        styleSpanCorrection = 'position:absolute;z-index:3; left:362px;top:10px;height:'+hauteurSpan+'px;'
+        if (objet.opt1) {
+            texte1 = document.createElement("p");
+            texte1.setAttribute("style", styleTexte);
+            texte1.innerHTML = 'Attention, tu as fait une erreur de calcul.';
+            spanCorrection.appendChild(texte1);
+            nombreMessage += 1;
+        }
+        if (objet.opt2) {
+            texte1 = document.createElement("p");
+            texte1.setAttribute("style", styleTexte);
+            texte1.innerHTML = 'Attention, tu as fait une erreur de retenue.';
+            spanCorrection.appendChild(texte1);
+            nombreMessage += 1;
+        }
+        if (objet.opt3) {
+            texte1 = document.createElement("p");
+            texte1.setAttribute("style", styleTexte);
+            texte1.innerHTML = 'Attention, tu as oublié de remplir une case.';
+            spanCorrection.appendChild(texte1);
+            nombreMessage += 1;
+        }
+        hauteurSpan = nombreMessage * 20 + 10
+        styleSpanCorrection = 'position:absolute;z-index:3; left:362px;top:10px;height:' + hauteurSpan + 'px;'
         spanCorrection.setAttribute("style", styleSpanCorrection);
         spanCorrection.setAttribute("class", "cadreCorrection");
         spanCorrection.setAttribute("id", "cadreCorrection");
-		
-		// Affichage
-		grille.appendChild(spanCorrection);
-	}
-	
+
+        // Affichage
+        grille.appendChild(spanCorrection);
+    }
+
     /**
      * @description Cette fonction affiche le tootltip
      * @param {type} coordonneGrilleCourant
