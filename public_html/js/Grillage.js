@@ -919,7 +919,7 @@ function Grillage(idDiv) {
      */
     function creerCanvasCellule(x, y) {
         var canvasCellule = document.createElement("canvas");
-        var canvasCelluleGrille = "position: absolute;z-index: 2;margin-left: " + x + "px;margin-top: " + y + "px;background: #FFBDBD;opacity: 0.7;";
+        var canvasCelluleGrille = "position: absolute;z-index: 2;margin-left: " + x + "px;margin-top: " + y + "px;background: rgba(100,149,237,0.5);opacity: 0.7;";
         canvasCellule.setAttribute("width", tailleCase);
         canvasCellule.setAttribute("height", tailleCase);
         canvasCellule.setAttribute("id", "cellule_" + x + "_" + y);
@@ -1106,7 +1106,10 @@ function Grillage(idDiv) {
 
                                     break;
                                 case ",":
-                                    ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#000");
+                                    if (verifierQueLaCelluleEstActive(coordonneGrilleCourant.x, coordonneGrilleCourant.y)) {
+                                        ecrireDansUneCellule(coordonneGrilleCourant.x, coordonneGrilleCourant.y, donnekey.val, "#000");
+                                    }
+                                    break;  
 
                             }
                             break;
@@ -1648,20 +1651,49 @@ function Grillage(idDiv) {
      * @param {type} bordercolor
      */
     function dessinerDivForTooltip(posleft, postop, bordercolor, bgcolor, borderwidth, textcolor, message, tipbot, bordercolor) {
-
+        if(posleft === 608){
+            var vraiPositionLeft = posleft + 10;
+            var vraiPositionTop = postop - 28;
+        }else if(posleft === 640){
+            var vraiPositionLeft = posleft + 10;
+            var vraiPositionTop = postop - 40;
+        }else if(posleft === 512){
+            var vraiPositionLeft = posleft;
+            var vraiPositionTop = postop - 13;
+        }else if(posleft === 544){
+            var vraiPositionLeft = posleft + 10;
+            var vraiPositionTop = postop - 13;
+        }else if(posleft === 576){
+            var vraiPositionLeft = posleft + 10;
+            var vraiPositionTop = postop - 28;
+        }else if(posleft === 672){
+            var vraiPositionLeft = posleft + 10;
+            var vraiPositionTop = postop - 70;
+        }else if(posleft === 704){
+            var vraiPositionLeft = posleft + 15;
+            var vraiPositionTop = postop - 98;
+        }else if(posleft === 736){
+            var vraiPositionLeft = posleft + 20;
+            var vraiPositionTop = postop - 126;
+        }else if(posleft === 768){
+            var vraiPositionLeft = posleft + 20;
+            var vraiPositionTop = postop - 125;
+        }else{
+            var vraiPositionLeft = posleft;
+            var vraiPositionTop = postop;
+        }
         var divToolTip = document.createElement("div");
         if (String(message).length > 150) {
-            posleftTmp = posleft - 20;
-            postopTmp = postop - 60;
+            posleftTmp = vraiPositionLeft - 20;
+            postopTmp = vraiPositionTop - 60;
         } else {
-            posleftTmp = posleft - 10;
-            postopTmp = postop - 50;
+            posleftTmp = vraiPositionLeft - 10;
+            postopTmp = vraiPositionTop - 50;
         }
-        var stypeDivToolTip = 'position:absolute;z-index:3; left:' + (posleftTmp) + 'px;top:' + (postopTmp) + 'px;border-color:' + bordercolor + ';background-color:' + bgcolor + ';color:' + textcolor + ';border-width:' + borderwidth + 'px';
+        var stypeDivToolTip = 'position:absolute;z-index:5; left:' + (posleftTmp) + 'px;top:' + (postopTmp) + 'px;border-color:' + bordercolor + ';background-color:' + bgcolor + ';color:' + textcolor + ';border-width:' + borderwidth + 'px';
         divToolTip.setAttribute("style", stypeDivToolTip);
         divToolTip.setAttribute("class", "tooltip");
         divToolTip.setAttribute("id", "tooltip_" + posleft + "_" + postop);
-
 
         //création d'un object canvas pour dessinée la flèche du tooltip
         var canvasToolTip = document.createElement("canvas");
@@ -1752,8 +1784,12 @@ function Grillage(idDiv) {
     function afficheMessageTooltip(coordonneGrilleCourant, message, bgcolor, textcolor) {
         var bordercolor = '#666666';
         var borderwidth = '4';
+        console.log("x : "+coordonneGrilleCourant.x);
+        console.log("y : "+coordonneGrilleCourant.y);
         var posleft = coordonneGrilleCourant.x;
         var postop = coordonneGrilleCourant.y;
+        var bordercolor = '#666666';
+        
         var tipbot = -18 + (borderwidth / 4);
         dessinerDivForTooltip(posleft, postop, bordercolor, bgcolor, borderwidth, textcolor, message, tipbot, bordercolor);
 
