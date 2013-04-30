@@ -35,8 +35,8 @@ function Grillage(idDiv) {
     content.setAttribute("style", styleContent);
 
 
-    
-        /**
+
+    /**
      * @description Création du button "Correction" qui servira à corriger les réponses de l'élève. 
      * @type ElementButton
      */
@@ -61,8 +61,8 @@ function Grillage(idDiv) {
             alert("Veuillez arrêter la correction suivi.");
         }
     }, false);
-    
-    
+
+
     /**
      * @description Le div qui va contenir l'element canvas pour afficher le Posti.
      * @type ElementDiv
@@ -187,9 +187,9 @@ function Grillage(idDiv) {
     buttonCorrectionSuivi.setAttribute("style", styleButtonCorrectionSuivi);
     buttonCorrectionSuivi.innerHTML = "Correction suivi";
     content.appendChild(buttonCorrectionSuivi);
-    
-    
-        /**
+
+
+    /**
      * @description Création du button "Afficher Solution" qui afficher la solution. 
      * @type ElementButton
      */
@@ -209,8 +209,8 @@ function Grillage(idDiv) {
     buttonAfficherResultat.addEventListener('click', function(e) {
         afficherResultatOperation(typeOperation);
     }, false);
-    
-    
+
+
 
     /**
      * @private
@@ -881,7 +881,7 @@ function Grillage(idDiv) {
             var canvasColonneStyle = "position: absolute;z-index: 2;margin-left: " + x + "px;margin-top: " + heigth + "px;";
             tableauContourErreurColonne["colonne_" + x].canvas.setAttribute("width", rw);
             tableauContourErreurColonne["colonne_" + x].canvas.setAttribute("height", rh);
-            tableauContourErreurColonne["colonne_" + x].canvas.setAttribute("id", "colonneErreur" + x);
+            tableauContourErreurColonne["colonne_" + x].canvas.setAttribute("id", "colonneErreur_" + x);
             tableauContourErreurColonne["colonne_" + x].canvas.setAttribute("style", canvasColonneStyle);
             tableauContourErreurColonne["colonne_" + x].context = tableauContourErreurColonne["colonne_" + x].canvas.getContext("2d");
             grille.appendChild(tableauContourErreurColonne["colonne_" + x].canvas);
@@ -1410,8 +1410,10 @@ function Grillage(idDiv) {
      * @description text
      * @type {(boolean,boolean,boolean)}
      */
-    var tableauDesErreurs = {opt1: false, opt2: false, opt3: false};
+    var tableauDesTypeErreurs = {};
 
+
+    var tableauDesContourErreurEnX = {};
     /**
      * @description Variable global dans la qualle on stock les resultats attendu
      * @type Array
@@ -1421,7 +1423,9 @@ function Grillage(idDiv) {
     /**
      *  @description Cette function verifie le champs remplit pendant la correction et aussi les champs déjà remplit.
      */
+    var tailleTableauDesImagesAnnimer = 0;
     function suiviCorrectionAddition() {
+        var typeError = {opt1: false, opt2: false, opt3: false};
 
         if (tableauDesValeursAttendu) {
 
@@ -1457,13 +1461,18 @@ function Grillage(idDiv) {
                             tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].statu = false;
                         }
                     }
-                    if (tableauDesValeursAttendu[i].line == "b") {
-                        tableauDesErreurs.opt1 = false;
+                    if (tableauDesTypeErreurs[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y]) {
+                        if (tableauDesValeursAttendu[i].line == "b") {
+                            tableauDesTypeErreurs[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].opt1 = false;
+                        }
+                        if (tableauDesValeursAttendu[i].line == "h") {
+                            tableauDesTypeErreurs[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].opt2 = false;
+                        }
+                        tableauDesTypeErreurs[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].opt3 = false;
+                    } else {
+                        tableauDesTypeErreurs[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y] = {opt1: false, opt2: false, opt3: false};
                     }
-                    if (tableauDesValeursAttendu[i].line == "h") {
-                        tableauDesErreurs.opt2 = false;
-                    }
-                    tableauDesErreurs.opt2 = false;
+
                 } else {
                     tableauDesValeursAttendu[i].statu = false;
 
@@ -1478,17 +1487,41 @@ function Grillage(idDiv) {
                             var stopDessinerContour3 = commencerAnnimation(tableauDesValeursAttendu[i].x, tableauDesValeursAttendu[i].y);
                             tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y] = {stop: stopDessinerContour3, statu: true};
                         }
-                        
-
+                        if (tableauDesTypeErreurs[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y]) {
+                            if (tableauDesValeursAttendu[i].line == "b") {
+                                tableauDesTypeErreurs[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].opt1 = true;
+                            }
+                            if (tableauDesValeursAttendu[i].line == "h") {
+                                tableauDesTypeErreurs[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].opt2 = true;
+                            }
+                            tableauDesTypeErreurs[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].opt3 = false;
+                        } else {
+                            tableauDesTypeErreurs[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y] = {opt1: false, opt2: false, opt3: false};
+                            if (tableauDesValeursAttendu[i].line == "b") {
+                                tableauDesTypeErreurs[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].opt1 = true;
+                            }
+                            if (tableauDesValeursAttendu[i].line == "h") {
+                                tableauDesTypeErreurs[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].opt2 = true;
+                            }
+                        }
                     } else {
-
+                        
+                        if (tailleTableauDesImagesAnnimer > 1) {
+                            if (tableauDesTypeErreurs[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y]) {
+                                tableauDesTypeErreurs[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].opt3 = true;
+                            } else {
+                                if (i <= indicemax) {
+                                    tableauDesTypeErreurs[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y] = {opt1: false, opt2: false, opt3: false};
+                                }
+                            }
+                        }
                     }
-
                 }
                 if (courant) {
                     indicemax = i;
                 }
                 correct = tableauDesValeursAttendu[i].statu;
+
             }
 
             if (indicemax) {
@@ -1499,11 +1532,51 @@ function Grillage(idDiv) {
                         if (!tableauDesImagesAnnimer[tableauDesValeursAttendu[v].x + "_" + tableauDesValeursAttendu[v].y]) {
                             var stopDessinerContour = commencerAnnimation(tableauDesValeursAttendu[v].x, tableauDesValeursAttendu[v].y);
                             tableauDesImagesAnnimer[tableauDesValeursAttendu[v].x + "_" + tableauDesValeursAttendu[v].y] = {stop: stopDessinerContour, statu: true};
+
+                            if (tableauDesTypeErreurs[tableauDesValeursAttendu[v].x + "_" + tableauDesValeursAttendu[v].y]) {
+                                tableauDesTypeErreurs[tableauDesValeursAttendu[v].x + "_" + tableauDesValeursAttendu[v].y].opt3 = true;
+                            } else {
+                                tableauDesTypeErreurs[tableauDesValeursAttendu[v].x + "_" + tableauDesValeursAttendu[v].y] = {opt1: false, opt2: false, opt3: true};
+                            }
                         }
 
                     }
+
                 }
             }
+
+            for (key in tableauDesTypeErreurs) {
+                if (tableauDesTypeErreurs[key].opt1) {
+                    typeError.opt1 = true;
+                    tab = String(key).split("_");
+                    tableauDesContourErreurEnX[tab[0]] = tab[0];
+                    break;
+                }
+            }
+            for (key in tableauDesTypeErreurs) {
+                if (tableauDesTypeErreurs[key].opt2) {
+                    typeError.opt2 = true;
+                    tab = String(key).split("_");
+                    tableauDesContourErreurEnX[tab[0]] = tab[0];
+                    break;
+                }
+            }
+            for (key in tableauDesTypeErreurs) {
+                if (tableauDesTypeErreurs[key].opt3) {
+                    typeError.opt3 = true;
+                    tab = String(key).split("_");
+                    tableauDesContourErreurEnX[tab[0]] = tab[0];
+                    break;
+                }
+            }
+            var spanCorrection = grille.querySelector("#cadreCorrection");
+            if (spanCorrection) {
+                effacerCadreCorrection();
+                dessinerCadreCorrection(typeError);
+            } else {
+                dessinerCadreCorrection(typeError);
+            }
+
             for (j = 1; j < tableauDesValeursAttendu.length; j++) {
                 if (tableauDesValeursAttendu[j].statu === false) {
                     correct = false;
@@ -1517,6 +1590,10 @@ function Grillage(idDiv) {
                 alert("Correction terminée!");
             }
 
+            tailleTableauDesImagesAnnimer = 0;
+            for (key in tableauDesImagesAnnimer) {
+                tailleTableauDesImagesAnnimer++;
+            }
         } else {
             //Appelle de la getStructureResultatAvantComparaison pour verifier les champs saisit par l'utilisateur
             var tmp = getStructureResultatAvantComparaison(typeOperation, operation);
@@ -1530,6 +1607,8 @@ function Grillage(idDiv) {
             buttonCorrectionSuivi.appendChild(imagecargement);
             suiviEnCours = true;
         }
+
+
 
     }
     function stropSuiviCorrectionAddition()
@@ -2066,6 +2145,7 @@ function Grillage(idDiv) {
                             ordre3 = ordre3 + 2;
                         } else {
                             ordre3 = ordre3 + 2;
+
                         }
 
                         j++;
