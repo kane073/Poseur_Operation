@@ -34,24 +34,26 @@ function Grillage(idDiv) {
                         border-bottom-left-radius:5px;border-bottom-right-radius:5px;";
     content.setAttribute("style", styleContent);
 
-    /**
+
+    
+        /**
      * @description Création du button "Correction" qui servira à corriger les réponses de l'élève. 
      * @type ElementButton
      */
-    var buttonAfficherResultat = document.createElement("button");
+    var buttonCorrectionSimple = document.createElement("button");
     var styleButtonEnonce = "";
-    buttonAfficherResultat.setAttribute("id", "buttonEnonce");
-    buttonAfficherResultat.setAttribute("class", "buttonPoseurOperation");
-    buttonAfficherResultat.setAttribute("style", styleButtonEnonce);
-    buttonAfficherResultat.innerHTML = "Correction";
-    content.appendChild(buttonAfficherResultat);
+    buttonCorrectionSimple.setAttribute("id", "buttonEnonce");
+    buttonCorrectionSimple.setAttribute("class", "buttonPoseurOperation");
+    buttonCorrectionSimple.setAttribute("style", styleButtonEnonce);
+    buttonCorrectionSimple.innerHTML = "Correction";
+    content.appendChild(buttonCorrectionSimple);
 
     /**
      * @event
      * @param {MyEventObject} e 
      * @requires la variable suiviEnCours
      */
-    buttonAfficherResultat.addEventListener('click', function(e) {
+    buttonCorrectionSimple.addEventListener('click', function(e) {
         //Condition pour ne pas lancer une correction pendant une suivie de correction
         if (!suiviEnCours) {
             lancerCorrectionSimple();
@@ -59,6 +61,8 @@ function Grillage(idDiv) {
             alert("Veuillez arrêter la correction suivi.");
         }
     }, false);
+    
+    
     /**
      * @description Le div qui va contenir l'element canvas pour afficher le Posti.
      * @type ElementDiv
@@ -183,6 +187,30 @@ function Grillage(idDiv) {
     buttonCorrectionSuivi.setAttribute("style", styleButtonCorrectionSuivi);
     buttonCorrectionSuivi.innerHTML = "Correction suivi";
     content.appendChild(buttonCorrectionSuivi);
+    
+    
+        /**
+     * @description Création du button "Afficher Solution" qui afficher la solution. 
+     * @type ElementButton
+     */
+    var buttonAfficherResultat = document.createElement("button");
+    var styleButtonEnonce = "position:absolute;top:50px;left:13px";
+    buttonAfficherResultat.setAttribute("id", "buttonEnonce");
+    buttonAfficherResultat.setAttribute("class", "buttonPoseurOperation");
+    buttonAfficherResultat.setAttribute("style", styleButtonEnonce);
+    buttonAfficherResultat.innerHTML = "Afficher Solution";
+    content.appendChild(buttonAfficherResultat);
+
+    /**
+     * @event
+     * @param {MyEventObject} e 
+     * @requires la variable suiviEnCours
+     */
+    buttonAfficherResultat.addEventListener('click', function(e) {
+        afficherResultatOperation(typeOperation);
+    }, false);
+    
+    
 
     /**
      * @private
