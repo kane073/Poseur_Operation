@@ -1379,7 +1379,7 @@ function Grillage(idDiv) {
      * @description text
      * @type {(boolean,boolean,boolean)}
      */
-    var tableauDesErreurs = {opt1:false, opt2:false, opt3: false};
+    var tableauDesErreurs = {opt1: false, opt2: false, opt3: false};
 
     /**
      * @description Variable global dans la qualle on stock les resultats attendu
@@ -1426,13 +1426,13 @@ function Grillage(idDiv) {
                             tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].statu = false;
                         }
                     }
-                    if(tableauDesValeursAttendu[i].line=="b"){
+                    if (tableauDesValeursAttendu[i].line == "b") {
                         tableauDesErreurs.opt1 = false;
                     }
-                    if(tableauDesValeursAttendu[i].line=="h"){
-                        tableauDesErreurs.opt2 = true;
+                    if (tableauDesValeursAttendu[i].line == "h") {
+                        tableauDesErreurs.opt2 = false;
                     }
-                    console.log(tableauDesErreurs);
+                    tableauDesErreurs.opt2 = false;
                 } else {
                     tableauDesValeursAttendu[i].statu = false;
 
@@ -1447,6 +1447,7 @@ function Grillage(idDiv) {
                             var stopDessinerContour3 = commencerAnnimation(tableauDesValeursAttendu[i].x, tableauDesValeursAttendu[i].y);
                             tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y] = {stop: stopDessinerContour3, statu: true};
                         }
+                        
 
                     } else {
 
