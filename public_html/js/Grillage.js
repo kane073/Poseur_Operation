@@ -218,13 +218,17 @@ function Grillage(idDiv) {
                     suiviEnCours = false;
                     stropSuiviCorrectionAddition(mySuiviCorrection);
                     buttonCorrectionSuivi.innerHTML = "Correction suivi";
-//                    for(i=0;i<tableauDesValeursAttendu.length;i++){
-//                        if(tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x+"_"+tableauDesValeursAttendu[i].y]){
-//                            clearInterval(tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].stop);
-//                            chargerImageContourError(tableauDesValeursAttendu[i].x, tableauDesValeursAttendu[i].y, 0, "white");
-//                            tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].statu = false;
-//                        }
-//                    }
+                    if (tableauDesImagesAnnimer) {
+                        for (key in tableauDesImagesAnnimer) {
+
+                            clearInterval(tableauDesImagesAnnimer[key].stop);
+                            coordonne = String(key).split("_");
+                            chargerImageContourError(parseInt(coordonne[0]), parseInt(coordonne[1]), 0, "white");
+                            tableauDesImagesAnnimer[key].statu = false;
+
+                        }
+                    }
+
                 }
                 break;
         }
@@ -771,7 +775,11 @@ function Grillage(idDiv) {
     function chargerImageContourError(x, y, r, color) {
         contextCanvasGrille.beginPath();
         contextCanvasGrille.arc(x + 15, y + 15, 14, r, Math.PI * 2, true);
-        contextCanvasGrille.lineWidth = 2;
+        if (color === "white") {
+            contextCanvasGrille.lineWidth = 2.5;
+        } else {
+            contextCanvasGrille.lineWidth = 2;
+        }
         contextCanvasGrille.strokeStyle = color;
         contextCanvasGrille.stroke();
 
@@ -822,9 +830,20 @@ function Grillage(idDiv) {
             annimerIgame(x, y);
         }, 100);
     }
-
+    /**
+     * 
+     * @type type
+     */
     var tableauContourErreurColonne = {};
+
     postYContante = 96;
+    /**
+     * 
+     * @param {type} x
+     * @param {type} longueurColonne
+     * @param {type} couleur
+     * @returns {undefined}
+     */
     function contourErreurColonne(x, longueurColonne, couleur) {
         var rw = tailleCase;
         var rh = parseInt(longueurColonne) * (tailleCase + 2);
@@ -839,15 +858,27 @@ function Grillage(idDiv) {
             tableauContourErreurColonne["colonne_" + x].context = tableauContourErreurColonne["colonne_" + x].canvas.getContext("2d");
             grille.appendChild(tableauContourErreurColonne["colonne_" + x].canvas);
         }
-        
-        tableauContourErreurColonne["colonne_" + x].context.scale(1, rh/rw);
+
+        tableauContourErreurColonne["colonne_" + x].context.scale(1, rh / rw);
         tableauContourErreurColonne["colonne_" + x].context.beginPath();
-        tableauContourErreurColonne["colonne_" + x].context.arc(rw/2, 14, 14, 0, 2 * Math.PI,true);
+        tableauContourErreurColonne["colonne_" + x].context.arc(rw / 2, 14, 14, 0, 2 * Math.PI, true);
         tableauContourErreurColonne["colonne_" + x].context.lineWidth = "1";
         tableauContourErreurColonne["colonne_" + x].context.strokeStyle = couleur;
         tableauContourErreurColonne["colonne_" + x].context.stroke();
     }
-    contourErreurColonne(512, 3, "green");
+
+
+    /**
+     * 
+     * @param {type} x
+     */
+    function effacerContourErreurColonne(x) {
+        if (tableauContourErreurColonne["colonne_" + x]) {
+            grille.removeChild(tableauContourErreurColonne["colonne_" + x].canvas);
+            delete(tableauContourErreurColonne["colonne_" + x]);
+        }
+    }
+
     /**
      * @description Cette fonction prend les coordonnées d'une cellule et crèe un element canvas donc l'id est la syntaxte suivante:
      * cellule_x_y avec x et y les coordonnées respectives de la cellule.
@@ -1343,7 +1374,12 @@ function Grillage(idDiv) {
 
     };
 
-
+    /**
+     * @private
+     * @description text
+     * @type {(boolean,boolean,boolean)}
+     */
+    var tableauDesErreurs = {opt1:false, opt2:false, opt3: false};
 
     /**
      * @description Variable global dans la qualle on stock les resultats attendu
@@ -1355,11 +1391,13 @@ function Grillage(idDiv) {
      *  @description Cette function verifie le champs remplit pendant la correction et aussi les champs déjà remplit.
      */
     function suiviCorrectionAddition() {
+
         if (tableauDesValeursAttendu) {
 
             if (suiviEnCours === false) {
                 var tmp = getStructureResultatAvantComparaison(typeOperation, operation);
                 tableauDesValeursAttendu = tmp.tableau;
+
                 buttonCorrectionSuivi.innerHTML = "Suivi de la correction en cours...";
                 var imagecargement = document.createElement("img");
                 imagecargement.setAttribute("src", "./img/loadinfo.gif");
@@ -1388,7 +1426,13 @@ function Grillage(idDiv) {
                             tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y].statu = false;
                         }
                     }
-
+                    if(tableauDesValeursAttendu[i].line=="b"){
+                        tableauDesErreurs.opt1 = false;
+                    }
+                    if(tableauDesValeursAttendu[i].line=="h"){
+                        tableauDesErreurs.opt2 = true;
+                    }
+                    console.log(tableauDesErreurs);
                 } else {
                     tableauDesValeursAttendu[i].statu = false;
 
@@ -1403,6 +1447,9 @@ function Grillage(idDiv) {
                             var stopDessinerContour3 = commencerAnnimation(tableauDesValeursAttendu[i].x, tableauDesValeursAttendu[i].y);
                             tableauDesImagesAnnimer[tableauDesValeursAttendu[i].x + "_" + tableauDesValeursAttendu[i].y] = {stop: stopDessinerContour3, statu: true};
                         }
+
+                    } else {
+
                     }
 
                 }
@@ -1442,6 +1489,7 @@ function Grillage(idDiv) {
             //Appelle de la getStructureResultatAvantComparaison pour verifier les champs saisit par l'utilisateur
             var tmp = getStructureResultatAvantComparaison(typeOperation, operation);
             tableauDesValeursAttendu = tmp.tableau;
+
             //Changement du style bu button et chargement de l'image gif
             buttonCorrectionSuivi.innerHTML = "Suivi de la correction en cours...";
             var imagecargement = document.createElement("img");
@@ -1607,26 +1655,34 @@ function Grillage(idDiv) {
         grille.appendChild(divToolTip);
     }
 
-    dessinerCadreCorrection({opt1: false, opt2: false, opt3: false});
+    dessinerCadreCorrection({opt1: true, opt2: true, opt3: false});
     effacerCadreCorrection();
-
+    /**
+     * @private
+     * @description text
+     * @returns 
+     */
     function effacerCadreCorrection() {
-        spanCorrection = document.getElementById("cadreCorrection");
+        var spanCorrection = grille.querySelector("#cadreCorrection");
         if (spanCorrection != null) {
             grille.removeChild(spanCorrection);
         }
     }
-
+    /**
+     * @private
+     * @description text
+     * @param {type} objet
+     */
     function dessinerCadreCorrection(objet) {
-        nombreMessage = 0;
+        var nombreMessage = 0;
         var spanCorrection = document.createElement("span");
 
         if (objet.opt1 == false && objet.opt2 == false && objet.opt3 == false) {
             effacerCadreCorrection();
-            return
+            return;
         }
         // Gestion des options
-        styleTexte = 'margin:11px'
+        var styleTexte = 'margin:11px';
         if (objet.opt1) {
             texte1 = document.createElement("p");
             texte1.setAttribute("style", styleTexte);
@@ -1644,12 +1700,12 @@ function Grillage(idDiv) {
         if (objet.opt3) {
             texte1 = document.createElement("p");
             texte1.setAttribute("style", styleTexte);
-            texte1.innerHTML = 'Attention, tu as oublié de remplir une case.';
+            texte1.innerHTML = 'Attention, tu as oublié de remplir au moins une case.';
             spanCorrection.appendChild(texte1);
             nombreMessage += 1;
         }
-        hauteurSpan = nombreMessage * 20 + 10
-        styleSpanCorrection = 'position:absolute;z-index:3; left:362px;top:10px;height:' + hauteurSpan + 'px;'
+        var hauteurSpan = nombreMessage * 20 + 10
+        var styleSpanCorrection = 'position:absolute;z-index:3; left:362px;top:10px;height:' + hauteurSpan + 'px;'
         spanCorrection.setAttribute("style", styleSpanCorrection);
         spanCorrection.setAttribute("class", "cadreCorrection");
         spanCorrection.setAttribute("id", "cadreCorrection");
@@ -1923,17 +1979,17 @@ function Grillage(idDiv) {
                     var ordre = 1;
                     for (i = 0; i < tabDecimale.length; i++) {
                         tableauAvecResultatDansOrdre[tableauPartieResultat[tableauPartieResultat.length - 1 - i].x + "_" + tableauPartieResultat[tableauPartieResultat.length - 1 - i].y] = {val: tabDecimale[tabDecimale.length - 1 - i], ordre: ordre, statu: false};
-                        tableauAvecResultatDansOrdreTrier.push({x: tableauPartieResultat[tableauPartieResultat.length - 1 - i].x, y: tableauPartieResultat[tableauPartieResultat.length - 1 - i].y, val: tabDecimale[tabDecimale.length - 1 - i], ordre: ordre, order: ordre, statu: false});
+                        tableauAvecResultatDansOrdreTrier.push({x: tableauPartieResultat[tableauPartieResultat.length - 1 - i].x, y: tableauPartieResultat[tableauPartieResultat.length - 1 - i].y, val: tabDecimale[tabDecimale.length - 1 - i], ordre: ordre, order: ordre, statu: false, line: "b"});
                         ordre = ordre + 2;
                         if (i === tabDecimale.length - 1) {
                             tableauAvecResultatDansOrdre[tableauPartieResultat[tableauPartieResultat.length - 2 - i ].x + "_" + tableauPartieResultat[tableauPartieResultat.length - 2 - i].y] = {val: ",", ordre: tabDecimale.length * 2, statu: false};
-                            tableauAvecResultatDansOrdreTrier.push({x: tableauPartieResultat[tableauPartieResultat.length - 2 - i].x, y: tableauPartieResultat[tableauPartieResultat.length - 2 - i].y, val: ",", ordre: tabDecimale.length * 2, order: tabDecimale.length * 2, statu: false});
+                            tableauAvecResultatDansOrdreTrier.push({x: tableauPartieResultat[tableauPartieResultat.length - 2 - i].x, y: tableauPartieResultat[tableauPartieResultat.length - 2 - i].y, val: ",", ordre: tabDecimale.length * 2, order: tabDecimale.length * 2, statu: false, line: "b"});
                         }
                     }
                     var ordre2 = tabDecimale.length * 2 + 1;
                     for (i = 0; i < tabEntiere.length; i++) {
                         tableauAvecResultatDansOrdre[tableauPartieResultat[tableauPartieResultat.length - 2 - i - tabDecimale.length].x + "_" + tableauPartieResultat[tableauPartieResultat.length - 2 - i - tabDecimale.length].y] = {val: tabEntiere[tabEntiere.length - 1 - i], ordre: ordre2, statu: false};
-                        tableauAvecResultatDansOrdreTrier.push({x: tableauPartieResultat[tableauPartieResultat.length - 2 - i - tabDecimale.length].x, y: tableauPartieResultat[tableauPartieResultat.length - 2 - i - tabDecimale.length].y, val: tabEntiere[tabEntiere.length - 1 - i], ordre: ordre2, order: ordre2, statu: false});
+                        tableauAvecResultatDansOrdreTrier.push({x: tableauPartieResultat[tableauPartieResultat.length - 2 - i - tabDecimale.length].x, y: tableauPartieResultat[tableauPartieResultat.length - 2 - i - tabDecimale.length].y, val: tabEntiere[tabEntiere.length - 1 - i], ordre: ordre2, order: ordre2, statu: false, line: "b"});
                         ordre2 = ordre2 + 2;
                     }
                     var ordre3 = 0;
@@ -1941,7 +1997,7 @@ function Grillage(idDiv) {
                     for (i = retenue.length - 1; i >= 0; i--) {
                         if (retenue[i] !== " ") {
                             tableauAvecResultatDansOrdre[tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].x + "_" + tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].y] = {val: retenue[i], ordre: ordre3, statu: false};
-                            tableauAvecResultatDansOrdreTrier.push({x: tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].x, y: tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].y, val: retenue[i], ordre: ordre3, order: ordre3, statu: false});
+                            tableauAvecResultatDansOrdreTrier.push({x: tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].x, y: tableauPartieRetenue[tableauPartieRetenue.length - 1 - j].y, val: retenue[i], ordre: ordre3, order: ordre3, statu: false, line: "h"});
                             ordre3 = ordre3 + 2;
                         } else {
                             ordre3 = ordre3 + 2;
