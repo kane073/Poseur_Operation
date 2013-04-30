@@ -824,20 +824,28 @@ function Grillage(idDiv) {
     }
 
     var tableauContourErreurColonne = {};
-    postYContante=96;
+    postYContante = 96;
     function contourErreurColonne(x, longueurColonne, couleur) {
+        var rw = tailleCase;
+        var rh = parseInt(longueurColonne) * (tailleCase + 2);
         if (!tableauContourErreurColonne["colonne_" + x]) {
-            tableauContourErreurColonne["colonne_" + x] = {canvas:document.createElement("canvas"), context:"", x:x};
-            heigth = postYContante+32;
+            tableauContourErreurColonne["colonne_" + x] = {canvas: document.createElement("canvas"), context: "", x: x};
+            heigth = postYContante + 32;
             var canvasColonneStyle = "position: absolute;z-index: 2;margin-left: " + x + "px;margin-top: " + heigth + "px;";
-            var rw = tailleCase;
-            var rh = parseInt(longueurColonne)*(tailleCase+2);
             tableauContourErreurColonne["colonne_" + x].canvas.setAttribute("width", rw);
             tableauContourErreurColonne["colonne_" + x].canvas.setAttribute("height", rh);
-            tableauContourErreurColonne["colonne_" + x].canvas.setAttribute("id", "colonneErreur" + x );
+            tableauContourErreurColonne["colonne_" + x].canvas.setAttribute("id", "colonneErreur" + x);
             tableauContourErreurColonne["colonne_" + x].canvas.setAttribute("style", canvasColonneStyle);
+            tableauContourErreurColonne["colonne_" + x].context = tableauContourErreurColonne["colonne_" + x].canvas.getContext("2d");
             grille.appendChild(tableauContourErreurColonne["colonne_" + x].canvas);
         }
+        
+        tableauContourErreurColonne["colonne_" + x].context.scale(1, rh/rw);
+        tableauContourErreurColonne["colonne_" + x].context.beginPath();
+        tableauContourErreurColonne["colonne_" + x].context.arc(rw/2, 14, 14, 0, 2 * Math.PI,true);
+        tableauContourErreurColonne["colonne_" + x].context.lineWidth = "1";
+        tableauContourErreurColonne["colonne_" + x].context.strokeStyle = couleur;
+        tableauContourErreurColonne["colonne_" + x].context.stroke();
     }
     contourErreurColonne(512, 3, "green");
     /**
