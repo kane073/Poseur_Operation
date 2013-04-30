@@ -13,7 +13,6 @@
 function Grillage(idDiv) {
 
 
-
     /**
      * @description Il va contenir le l'element div obtenue grace à l'idDiv avec la fonction document.getElementById
      * @private
@@ -1270,7 +1269,7 @@ function Grillage(idDiv) {
         var positionGrilleCanvas = getSourisPosition(event);
 
         // On appelle la fonction recupererCordonneeCaseCourant pour recuperer les coordonnées de la cellule selectionnée
-
+		
         coordonneGrilleCourant = recupererCordonneeCaseCourant(positionGrilleCanvas.x, positionGrilleCanvas.y);
 
 
@@ -1582,6 +1581,58 @@ function Grillage(idDiv) {
         divToolTip.appendChild(canvasToolTip);
         grille.appendChild(divToolTip);
     }
+	
+	dessinerCadreCorrection({opt1:false,opt2:false,opt3:false});
+	effacerCadreCorrection();
+	
+	function effacerCadreCorrection(){
+		spanCorrection = document.getElementById("cadreCorrection");
+		if(spanCorrection != null){
+			grille.removeChild(spanCorrection);
+		}
+	}
+	
+	function dessinerCadreCorrection(objet){
+		nombreMessage = 0;		
+		var spanCorrection = document.createElement("span");
+
+		if(objet.opt1==false && objet.opt2==false && objet.opt3==false){
+			effacerCadreCorrection();
+			return
+		}
+		// Gestion des options
+        styleTexte = 'margin:11px'
+		if(objet.opt1){
+			texte1 = document.createElement("p");
+	        texte1.setAttribute("style", styleTexte);
+			texte1.innerHTML = 'Attention, tu as fait une erreur de calcul.';
+			spanCorrection.appendChild(texte1);
+			nombreMessage += 1;
+		}
+		if(objet.opt2){
+			texte1 = document.createElement("p");
+	        texte1.setAttribute("style", styleTexte);
+			texte1.innerHTML = 'Attention, tu as fait une erreur de retenue.';
+			spanCorrection.appendChild(texte1);
+			nombreMessage += 1;
+		}
+		if(objet.opt3){
+			texte1 = document.createElement("p");
+	        texte1.setAttribute("style", styleTexte);
+			texte1.innerHTML = 'Attention, tu as oublié de remplir une case.';
+			spanCorrection.appendChild(texte1);
+			nombreMessage += 1;
+		}
+		hauteurSpan = nombreMessage * 20 + 10
+        styleSpanCorrection = 'position:absolute;z-index:3; left:362px;top:10px;height:'+hauteurSpan+'px;'
+        spanCorrection.setAttribute("style", styleSpanCorrection);
+        spanCorrection.setAttribute("class", "cadreCorrection");
+        spanCorrection.setAttribute("id", "cadreCorrection");
+		
+		// Affichage
+		grille.appendChild(spanCorrection);
+	}
+	
     /**
      * @description Cette fonction affiche le tootltip
      * @param {type} coordonneGrilleCourant

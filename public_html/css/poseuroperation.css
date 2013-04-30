@@ -6,6 +6,24 @@
         Purpose of the stylesheet follows.
 */
 
+span.cadreCorrection {
+      position: absolute;
+      width: 390px;
+      line-height: 9px;
+      padding: 0px;
+	  padding-left: 30px;
+	  font-family:"Lucida Casual", "Comic Sans MS";  
+      font-size: 15px;
+      text-align: left;
+      color: black;
+      background: rgba(255, 0, 0, 0.7);
+      border: 2px solid #999999;
+      border-radius: 8px;
+      text-shadow: rgba(0, 0, 0, 0.0976563) 1px 1px 1px;
+      box-shadow: rgba(0, 0, 0, 0.0976563) 1px 1px 2px 0px;
+}
+
+
 .tooltip{
     position:absolute;
     font-family:Arial, Helvetica, sans-serif;
