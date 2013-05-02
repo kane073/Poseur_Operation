@@ -1,1228 +1,1067 @@
-
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
-		<meta charset="utf-8" />
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
-		<title>Nombre | JsDoc Reference</title>
+		
+		<title>JsDoc Reference - Nombre</title>
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-		<meta name="mobileoptimized" content="0" />
-	
-		<link rel="stylesheet" href="../css/all.css" media="all" />
-		<link rel="stylesheet" href="../css/handheld.css" media="only screen and (max-width: 660px)" />
-		<link rel="stylesheet" href="../css/handheld.css" media="handheld" />
-		<link rel="stylesheet" href="../css/screen.css" media="screen and (min-width: 661px)" />
+		<style type="text/css">
+			/* default.css */
+body
+{
+	font: 12px "Lucida Grande", Tahoma, Arial, Helvetica, sans-serif;
+	width: 800px;
+}
 
-		<script src="../javascript/all.js"></script>
-		<!--[if lt IE 9]>
-			<script src="../javascript/html5.js"></script>
-		<![endif]-->
+.header
+{
+	clear: both;
+	background-color: #ccc;
+	padding: 8px;
+}
+
+h1
+{
+	font-size: 150%;
+	font-weight: bold;
+	padding: 0;
+	margin: 1em 0 0 .3em;
+}
+
+hr
+{
+	border: none 0;
+	border-top: 1px solid #7F8FB1;
+	height: 1px;
+}
+
+pre.code
+{
+	display: block;
+	padding: 8px;
+	border: 1px dashed #ccc;
+}
+
+#index
+{
+	margin-top: 24px;
+	float: left;
+	width: 160px;
+	position: absolute;
+	left: 8px;
+	background-color: #F3F3F3;
+	padding: 8px;
+}
+
+#content
+{
+	margin-left: 190px;
+	width: 600px;
+}
+
+.classList
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0 0 0 8px;
+	font-family: arial, sans-serif;
+	font-size: 1em;
+	overflow: auto;
+}
+
+.classList li
+{
+	padding: 0;
+	margin: 0 0 8px 0;
+}
+
+.summaryTable { width: 100%; }
+
+h1.classTitle
+{
+	font-size:170%;
+	line-height:130%;
+}
+
+h2 { font-size: 110%; }
+caption, div.sectionTitle
+{
+	background-color: #7F8FB1;
+	color: #fff;
+	font-size:130%;
+	text-align: left;
+	padding: 2px 6px 2px 6px;
+	border: 1px #7F8FB1 solid;
+}
+
+div.sectionTitle { margin-bottom: 8px; }
+.summaryTable thead { display: none; }
+
+.summaryTable td
+{
+	vertical-align: top;
+	padding: 4px;
+	border-bottom: 1px #7F8FB1 solid;
+	border-right: 1px #7F8FB1 solid;
+}
+
+/*col#summaryAttributes {}*/
+.summaryTable td.attributes
+{
+	border-left: 1px #7F8FB1 solid;
+	width: 140px;
+	text-align: right;
+}
+
+td.attributes, .fixedFont
+{
+	line-height: 15px;
+	color: #002EBE;
+	font-family: "Courier New",Courier,monospace;
+	font-size: 13px;
+}
+
+.summaryTable td.nameDescription
+{
+	text-align: left;
+	font-size: 13px;
+	line-height: 15px;
+}
+
+.summaryTable td.nameDescription, .description
+{
+	line-height: 15px;
+	padding: 4px;
+	padding-left: 4px;
+}
+
+.summaryTable { margin-bottom: 8px; }
+
+ul.inheritsList
+{
+	list-style: square;
+	margin-left: 20px;
+	padding-left: 0;
+}
+
+.detailList {
+	margin-left: 20px; 
+	line-height: 15px;
+}
+.detailList dt { margin-left: 20px; }
+
+.detailList .heading
+{
+	font-weight: bold;
+	padding-bottom: 6px;
+	margin-left: 0;
+}
+
+.light, td.attributes, .light a:link, .light a:visited
+{
+	color: #777;
+	font-style: italic;
+}
+
+.fineprint
+{
+	text-align: right;
+	font-size: 10px;
+}
+		</style>
 	</head>
 
 	<body>
-
-<div class="index">
-	<div class="menu">
-		<div class="indexLinks">
-			<a href="../index.html">Classes</a>
-			<a href="../files.html">Files</a>
-		</div>
-	
-		<h2 class="heading1">Classes</h2>
-		
-		<input type="text" name="classFilter" class="classFilter" id="ClassFilter" placeholder="Filter"></input>
-		
-		<nav>
-			<ul class="classList" id="ClassList">
-				
-					<li><a href="../symbols/_global_.html">_global_</a></li>
-				
-					<li><a href="../symbols/Addition.html">Addition</a></li>
-				
-					<li><a href="../symbols/Grillage.html">Grillage</a></li>
-				
-					<li><a href="../symbols/Nombre.html">Nombre</a></li>
-				
-			</ul>
-		</nav>
-	</div>
-	<div class="fineprint" style="clear:both">
-		<footer>
-			
-			Documentation generator: <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0<br />
-			Template: <a href="http://www.thebrightlines.com/2010/05/06/new-template-for-jsdoctoolkit-codeview/" target="_blank">Codeview</a> 1.2<br />
-			Generated on:
-			<time datetime='2013-3-30' pubdate>2013-3-30 0:48</time>
-		</footer>
-	</div>
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
 </div>
+		<!-- end static/header.html -->
 
-<div class="index indexStatic"></div>
-
-<div class="content">
-	<div class="innerContent">
-		<article>
-			<header>
-				<h1 class="classTitle">
-					
-					Class <span>Nombre</span>
-				</h1>
+<!-- ============================== classes index ============================ -->
+		<div id="index">
+			<!-- begin publish.classesIndex -->
+			<div align="center"><a href="../index.html">Class Index</a>
+| <a href="../files.html">File Index</a></div>
+<hr />
+<h2>Classes</h2>
+<ul class="classList">
+	
+	<li><i><a href="../symbols/_global_.html">_global_</a></i></li>
+	
+	<li><a href="../symbols/Addition.html">Addition</a></li>
+	
+	<li><a href="../symbols/Grillage.html">Grillage</a></li>
+	
+	<li><a href="../symbols/Nombre.html">Nombre</a></li>
+	
+</ul>
+<hr />
+			<!-- end publish.classesIndex -->
+		</div>
+		
+		<div id="content">
+<!-- ============================== class title ============================ -->
+			<h1 class="classTitle">
 				
-				<div class="intro">
-					<p class="description summary">
-						Cette classe servira à manipuler les opérandes des opérations.
-					</p>
-						
+				Class Nombre
+			</h1>
+
+<!-- ============================== class summary ========================== -->			
+			<p class="description">
+				
+				
+			
+				Cette classe servira à manipuler les opérandes des opérations.
+				
+				
+					<br /><i>Defined in: </i> <a href="../symbols/src/poseurOperation__Nombre.js.html">Nombre.js</a>.
+				
+			</p>
+
+<!-- ============================== constructor summary ==================== -->			
+			
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class Nombre.">
+				<caption>Class Summary</caption>
+				<thead>
+					<tr>
+						<th scope="col">Constructor Attributes</th>
+						<th scope="col">Constructor Name and Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="attributes">&nbsp;</td>
+						<td class="nameDescription" >
+							<div class="fixedFont">
+								<b><a href="../symbols/Nombre.html#constructor">Nombre</a></b>()
+							</div>
+							<div class="description"></div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+
+<!-- ============================== properties summary ===================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class Nombre.">
+					<caption>Field Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
 					
-						<ul class="summary">
-							
-							
-							
-								<li>Defined in: <a href="../symbols/src/poseurOperation_Nombre.js.html">Nombre.js</a></li>
-							
-							
-						</ul>
+						<tr>
+							<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/Nombre.html#-longueurValeur">longueurValeur</a></b>
+								</div>
+								<div class="description">text</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/Nombre.html#-partieDecimale">partieDecimale</a></b>
+								</div>
+								<div class="description">text</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/Nombre.html#-partieEntiere">partieEntiere</a></b>
+								</div>
+								<div class="description">text</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/Nombre.html#-valeur">valeur</a></b>
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+
+<!-- ============================== methods summary ======================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class Nombre.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Nombre.html#getLongueurValeur">getLongueurValeur</a></b>()
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Nombre.html#getPartieDecimale">getPartieDecimale</a></b>()
+								</div>
+								<div class="description">text</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Nombre.html#getPartieDecimaleByIndice">getPartieDecimaleByIndice</a></b>(indice)
+								</div>
+								<div class="description">text</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Nombre.html#getPartieEntiere">getPartieEntiere</a></b>()
+								</div>
+								<div class="description">text</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Nombre.html#getPartieEntiereByIndice">getPartieEntiereByIndice</a></b>(indice)
+								</div>
+								<div class="description">text</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Nombre.html#getValeur">getValeur</a></b>()
+								</div>
+								<div class="description">text</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Nombre.html#infos">infos</a></b>()
+								</div>
+								<div class="description">text</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Nombre.html#isEmpty">isEmpty</a></b>()
+								</div>
+								<div class="description">text</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Nombre.html#setPartieDecimale">setPartieDecimale</a></b>(valeur)
+								</div>
+								<div class="description">text</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Nombre.html#setPartieDecimaleByIndice">setPartieDecimaleByIndice</a></b>(indice, valeur)
+								</div>
+								<div class="description">text</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Nombre.html#setPartieEntiere">setPartieEntiere</a></b>(valeur)
+								</div>
+								<div class="description">text</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Nombre.html#setPartieEntiereByIndice">setPartieEntiereByIndice</a></b>(indice, valeur)
+								</div>
+								<div class="description">text</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+<!-- ============================== events summary ======================== -->
+			
+
+<!-- ============================== constructor details ==================== -->		
+			
+			<div class="details"><a name="constructor"> </a>
+				<div class="sectionTitle">
+					Class Detail
+				</div>
+				
+				<div class="fixedFont">
+						<b>Nombre</b>()
+				</div>
+				
+				<div class="description">
+					
 					
 				</div>
-			</header>
-			
-			
-				<section>
-					<div class="props">
-						<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class Nombre.">
-							<caption class="sectionTitle">Class Summary</caption>
-							<thead>
-								<tr>
-									<th scope="col">Constructor Attributes</th>
-									<th scope="col">Constructor Name and Description</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td class="attributes">&nbsp;</td>
-									<td class="nameDescription" >
-										<div class="fixedFont">
-											<b><a href="../symbols/Nombre.html#constructor">Nombre</a></b>()
-										</div>
-										<div class="description"></div>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</section>
-			
-			
-			
 				
-				<section>
+				
+				
+				
 					
-						<nav>
-							<div class="props">
-								<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class Nombre.">
-									<caption class="sectionTitle">Field Summary</caption>
-									
-									<thead>
-										<tr>
-											<th scope="col">Field Attributes</th>
-											<th scope="col">Field Name and Description</th>
-										</tr>
-									</thead>
-									
-									<tbody>
-										
-											<tr>
-												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
-												<td class="nameDescription">
-													<div class="fixedFont">
-													<b><a href="../symbols/Nombre.html#-longueurValeur">longueurValeur</a></b>
-													</div>
-													<div class="description">text</div>
-												</td>
-											</tr>
-										
-											<tr>
-												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
-												<td class="nameDescription">
-													<div class="fixedFont">
-													<b><a href="../symbols/Nombre.html#-partieDecimale">partieDecimale</a></b>
-													</div>
-													<div class="description">text</div>
-												</td>
-											</tr>
-										
-											<tr>
-												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
-												<td class="nameDescription">
-													<div class="fixedFont">
-													<b><a href="../symbols/Nombre.html#-partieEntiere">partieEntiere</a></b>
-													</div>
-													<div class="description">text</div>
-												</td>
-											</tr>
-										
-											<tr>
-												<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
-												<td class="nameDescription">
-													<div class="fixedFont">
-													<b><a href="../symbols/Nombre.html#-valeur">valeur</a></b>
-													</div>
-													<div class="description"></div>
-												</td>
-											</tr>
-										
-									</tbody>
-								</table>
-							</div>
-						</nav>
-					
-					
-					
-				</section>
-			
-	<!--
-	#### METHODS SUMMARY
-	-->
-			
-				<section>
-					
-					
-					<div class="props">
-						<h2 class="sectionTitle">Method Summary</h2>
+						<dl class="detailList">
+						<dt class="heading">Parameters:</dt>
 						
+							<dt>
+								<span class="light fixedFont">{float}</span>  <b></b>
+								
+							</dt>
+								<dd>valeur c'est la valeur passer en paramêtre</dd>
 						
-							<nav>
-								<table class="summaryTable" id="MethodsList" cellspacing="0" summary="A summary of the methods documented in the class Nombre.">
-									<thead>
-										<tr>
-											<th scope="col">Method Attributes</th>
-											<th scope="col">Method Name and Description</th>
-										</tr>
-									</thead>
-									
-									<tbody>
-										
-										
-											<tr
-												 class='item0'
-											>
-												<td class="attributes">&nbsp;</td>
-												<td class="nameDescription">
-													<div class="fixedFont"><b><a href="../symbols/Nombre.html#getLongueurValeur">getLongueurValeur</a></b>()
-													</div>
-													<div class="description"></div>
-												</td>
-											</tr>
-										
-											<tr
-												 class='item1'
-											>
-												<td class="attributes">&nbsp;</td>
-												<td class="nameDescription">
-													<div class="fixedFont"><b><a href="../symbols/Nombre.html#getPartieDecimale">getPartieDecimale</a></b>()
-													</div>
-													<div class="description">text</div>
-												</td>
-											</tr>
-										
-											<tr
-												 class='item2'
-											>
-												<td class="attributes">&nbsp;</td>
-												<td class="nameDescription">
-													<div class="fixedFont"><b><a href="../symbols/Nombre.html#getPartieDecimaleByIndice">getPartieDecimaleByIndice</a></b>(indice)
-													</div>
-													<div class="description">text</div>
-												</td>
-											</tr>
-										
-											<tr
-												 class='item3'
-											>
-												<td class="attributes">&nbsp;</td>
-												<td class="nameDescription">
-													<div class="fixedFont"><b><a href="../symbols/Nombre.html#getPartieEntiere">getPartieEntiere</a></b>()
-													</div>
-													<div class="description">text</div>
-												</td>
-											</tr>
-										
-											<tr
-												 class='item4'
-											>
-												<td class="attributes">&nbsp;</td>
-												<td class="nameDescription">
-													<div class="fixedFont"><b><a href="../symbols/Nombre.html#getPartieEntiereByIndice">getPartieEntiereByIndice</a></b>(indice)
-													</div>
-													<div class="description">text</div>
-												</td>
-											</tr>
-										
-											<tr
-												 class='item5'
-											>
-												<td class="attributes">&nbsp;</td>
-												<td class="nameDescription">
-													<div class="fixedFont"><b><a href="../symbols/Nombre.html#getValeur">getValeur</a></b>()
-													</div>
-													<div class="description">text</div>
-												</td>
-											</tr>
-										
-											<tr
-												 class='item6'
-											>
-												<td class="attributes">&nbsp;</td>
-												<td class="nameDescription">
-													<div class="fixedFont"><b><a href="../symbols/Nombre.html#infos">infos</a></b>()
-													</div>
-													<div class="description">text</div>
-												</td>
-											</tr>
-										
-											<tr
-												 class='item7'
-											>
-												<td class="attributes">&nbsp;</td>
-												<td class="nameDescription">
-													<div class="fixedFont"><b><a href="../symbols/Nombre.html#isEmpty">isEmpty</a></b>()
-													</div>
-													<div class="description">text</div>
-												</td>
-											</tr>
-										
-											<tr
-												 class='item8'
-											>
-												<td class="attributes">&nbsp;</td>
-												<td class="nameDescription">
-													<div class="fixedFont"><b><a href="../symbols/Nombre.html#setPartieDecimale">setPartieDecimale</a></b>(valeur)
-													</div>
-													<div class="description">text</div>
-												</td>
-											</tr>
-										
-											<tr
-												 class='item9'
-											>
-												<td class="attributes">&nbsp;</td>
-												<td class="nameDescription">
-													<div class="fixedFont"><b><a href="../symbols/Nombre.html#setPartieDecimaleByIndice">setPartieDecimaleByIndice</a></b>(indice, valeur)
-													</div>
-													<div class="description">text</div>
-												</td>
-											</tr>
-										
-											<tr
-												 class='item10'
-											>
-												<td class="attributes">&nbsp;</td>
-												<td class="nameDescription">
-													<div class="fixedFont"><b><a href="../symbols/Nombre.html#setPartieEntiere">setPartieEntiere</a></b>(valeur)
-													</div>
-													<div class="description">text</div>
-												</td>
-											</tr>
-										
-											<tr
-												 class='item11'
-											>
-												<td class="attributes">&nbsp;</td>
-												<td class="nameDescription">
-													<div class="fixedFont"><b><a href="../symbols/Nombre.html#setPartieEntiereByIndice">setPartieEntiereByIndice</a></b>(indice, valeur)
-													</div>
-													<div class="description">text</div>
-												</td>
-											</tr>
-										
-									</tbody>
-								</table>
-							</nav>
-						
+						</dl>
 					
+					
+					
+					
+					
+						<dl class="detailList">
+						<dt class="heading">Returns:</dt>
 						
-					</div>
-				</section>
-			
-			
-	<!--
-	#### EVENTS SUMMARY
-	-->
-			
-	<!--
-	#### CONSTRUCTOR DETAILS
-	-->
-			
-				<section>
-					<div class="details props">
-						<div class="innerProps">
-							<h2 class="sectionTitle" id="constructor">
-								Class Detail
-							</h2>
-							
-							<div class="fixedFont">
-								<b>Nombre</b>()
-							</div>
-							
-							<div class="description">
-								
-								
-							</div>
-							
-							
+								<dd><span class="light fixedFont">{<a href="../symbols/Nombre.html">Nombre</a>}</span> </dd>
 						
-							
-								<dl class="detailList params">
-									<dt class="heading">Parameters:</dt>
-									
-										<dt>
-											<span class="light fixedFont">{float}</span>  <b></b>
-											
-										</dt>
-										<dd>valeur c'est la valeur passer en paramêtre</dd>
-									
-								</dl>
-							
-							
-							
-								<dl class="detailList nomargin">
-									
-									
-									
-									
-									
-									
-									
-										<dt class="heading">Returns:</dt>
-										
-												<dd><span class="light fixedFont">{<a href="../symbols/Nombre.html">Nombre</a>}</span> </dd>
-										
-									
-									
-									
-									
-									
-								</dl>
-							
-						</div>
-					</div>
-				</section>
-			
-	<!--
-	#### FIELD DETAILS
-	-->
-			
-				<section>
-					<div class="details props">
-						<div class="innerProps">
-							<h2 class="sectionTitle">
-								Field Detail
-							</h2>
-							
-							
-								<div class="fixedFont heading" id="-longueurValeur">
-									<span class='lighter'>
-									&lt;private&gt; &lt;inner&gt; 
-									</span>
-									
-									
-									
-									<b>longueurValeur</b>							
-								</div>
-								
-								<div class="description">
-									text
-									
-									
-									
-								</div>
-								
-								
-									
-								
-								<div class="hr"></div>
-							
-								<div class="fixedFont heading" id="-partieDecimale">
-									<span class='lighter'>
-									&lt;private&gt; &lt;inner&gt; 
-									</span>
-									
-									<span class="light">{Array}</span>
-									
-									<b>partieDecimale</b>							
-								</div>
-								
-								<div class="description">
-									text
-									
-									
-									
-								</div>
-								
-								
-									
-								
-								<div class="hr"></div>
-							
-								<div class="fixedFont heading" id="-partieEntiere">
-									<span class='lighter'>
-									&lt;private&gt; &lt;inner&gt; 
-									</span>
-									
-									<span class="light">{Array}</span>
-									
-									<b>partieEntiere</b>							
-								</div>
-								
-								<div class="description">
-									text
-									
-									
-									
-								</div>
-								
-								
-									
-								
-								<div class="hr"></div>
-							
-								<div class="fixedFont heading" id="-valeur">
-									<span class='lighter'>
-									&lt;private&gt; &lt;inner&gt; 
-									</span>
-									
-									<span class="light">{float}</span>
-									
-									<b>valeur</b>							
-								</div>
-								
-								<div class="description">
-									
-									
-									
-									
-								</div>
-								
-								
-									
-								
-								
-							
-						</div>
-					</div>
-				</section>
-			
-	<!--
-	#### METHOD DETAILS
-	-->		
-			
-				<section>
-					<div class="details props">
-						<div class="innerProps">
-							<h2 class="sectionTitle">
-								Method Detail
-							</h2>
-							
-							<ul class="methodDetail" id="MethodDetail">
-								
-								
-									<li 
-										 class='item0'
-									>
-										<div class="fixedFont heading" id="getLongueurValeur">
-											<span class='lighter'>
-											
-											</span>
-											
-											<span class="light">{int}</span>
-											
-											<b>getLongueurValeur</b>()
-										</div>
-										
-										<div class="description">
-											
-											
-											
-											
-											
-										</div>
-										
-										
-										
-										
-										
-										
-											<dl class="detailList nomargin">
-											
-												
-												
-												
-												
-												
-												
-												
-													<dt class="heading">Returns:</dt>
-													
-														<dd><span class="light fixedFont">{int}</span> </dd>
-													
-												
-												
-												
-												
-												
-											
-											</dl>
-										
-										<div class="hr"></div>
-									</li>
-								
-									<li 
-										 class='item1'
-									>
-										<div class="fixedFont heading" id="getPartieDecimale">
-											<span class='lighter'>
-											
-											</span>
-											
-											<span class="light">{Array}</span>
-											
-											<b>getPartieDecimale</b>()
-										</div>
-										
-										<div class="description">
-											text
-											
-											
-											
-											
-										</div>
-										
-										
-										
-										
-										
-										
-											<dl class="detailList nomargin">
-											
-												
-												
-												
-												
-												
-												
-												
-													<dt class="heading">Returns:</dt>
-													
-														<dd><span class="light fixedFont">{Array}</span> </dd>
-													
-												
-												
-												
-												
-												
-											
-											</dl>
-										
-										<div class="hr"></div>
-									</li>
-								
-									<li 
-										 class='item2'
-									>
-										<div class="fixedFont heading" id="getPartieDecimaleByIndice">
-											<span class='lighter'>
-											
-											</span>
-											
-											<span class="light">{Number}</span>
-											
-											<b>getPartieDecimaleByIndice</b>(indice)
-										</div>
-										
-										<div class="description">
-											text
-											
-											
-											
-											
-										</div>
-										
-										
-										
-										
-											<dl class="detailList params">
-												<dt class="heading">Parameters:</dt>
-												
-													<dt>
-														<span class="light fixedFont">{integer}</span> <b>indice</b>
-														
-													</dt>
-													<dd></dd>
-												
-											</dl>
-										
-										
-										
-											<dl class="detailList nomargin">
-											
-												
-												
-												
-												
-												
-												
-												
-													<dt class="heading">Returns:</dt>
-													
-														<dd><span class="light fixedFont">{Number}</span> </dd>
-													
-												
-												
-												
-												
-												
-											
-											</dl>
-										
-										<div class="hr"></div>
-									</li>
-								
-									<li 
-										 class='item3'
-									>
-										<div class="fixedFont heading" id="getPartieEntiere">
-											<span class='lighter'>
-											
-											</span>
-											
-											<span class="light">{Array|tableau}</span>
-											
-											<b>getPartieEntiere</b>()
-										</div>
-										
-										<div class="description">
-											text
-											
-											
-											
-											
-										</div>
-										
-										
-										
-										
-										
-										
-											<dl class="detailList nomargin">
-											
-												
-												
-												
-												
-												
-												
-												
-													<dt class="heading">Returns:</dt>
-													
-														<dd><span class="light fixedFont">{Array|tableau}</span> </dd>
-													
-												
-												
-												
-												
-												
-											
-											</dl>
-										
-										<div class="hr"></div>
-									</li>
-								
-									<li 
-										 class='item4'
-									>
-										<div class="fixedFont heading" id="getPartieEntiereByIndice">
-											<span class='lighter'>
-											
-											</span>
-											
-											<span class="light">{Array}</span>
-											
-											<b>getPartieEntiereByIndice</b>(indice)
-										</div>
-										
-										<div class="description">
-											text
-											
-											
-											
-											
-										</div>
-										
-										
-										
-										
-											<dl class="detailList params">
-												<dt class="heading">Parameters:</dt>
-												
-													<dt>
-														<span class="light fixedFont">{integer}</span> <b>indice</b>
-														
-													</dt>
-													<dd></dd>
-												
-											</dl>
-										
-										
-										
-											<dl class="detailList nomargin">
-											
-												
-												
-												
-												
-												
-												
-												
-													<dt class="heading">Returns:</dt>
-													
-														<dd><span class="light fixedFont">{Array}</span> </dd>
-													
-												
-												
-												
-												
-												
-											
-											</dl>
-										
-										<div class="hr"></div>
-									</li>
-								
-									<li 
-										 class='item5'
-									>
-										<div class="fixedFont heading" id="getValeur">
-											<span class='lighter'>
-											
-											</span>
-											
-											<span class="light">{float or int}</span>
-											
-											<b>getValeur</b>()
-										</div>
-										
-										<div class="description">
-											text
-											
-											
-											
-											
-										</div>
-										
-										
-										
-										
-										
-										
-											<dl class="detailList nomargin">
-											
-												
-												
-												
-												
-												
-												
-												
-													<dt class="heading">Returns:</dt>
-													
-														<dd><span class="light fixedFont">{float or int}</span> </dd>
-													
-												
-												
-												
-												
-												
-											
-											</dl>
-										
-										<div class="hr"></div>
-									</li>
-								
-									<li 
-										 class='item6'
-									>
-										<div class="fixedFont heading" id="infos">
-											<span class='lighter'>
-											
-											</span>
-											
-											<span class="light">{String}</span>
-											
-											<b>infos</b>()
-										</div>
-										
-										<div class="description">
-											text
-											
-											
-											
-											
-										</div>
-										
-										
-										
-										
-										
-										
-											<dl class="detailList nomargin">
-											
-												
-												
-												
-												
-												
-												
-												
-													<dt class="heading">Returns:</dt>
-													
-														<dd><span class="light fixedFont">{String}</span> </dd>
-													
-												
-												
-												
-												
-												
-											
-											</dl>
-										
-										<div class="hr"></div>
-									</li>
-								
-									<li 
-										 class='item7'
-									>
-										<div class="fixedFont heading" id="isEmpty">
-											<span class='lighter'>
-											
-											</span>
-											
-											<span class="light">{Boolean}</span>
-											
-											<b>isEmpty</b>()
-										</div>
-										
-										<div class="description">
-											text
-											
-											
-											
-											
-										</div>
-										
-										
-										
-										
-										
-										
-											<dl class="detailList nomargin">
-											
-												
-												
-												
-												
-												
-												
-												
-													<dt class="heading">Returns:</dt>
-													
-														<dd><span class="light fixedFont">{Boolean}</span> </dd>
-													
-												
-												
-												
-												
-												
-											
-											</dl>
-										
-										<div class="hr"></div>
-									</li>
-								
-									<li 
-										 class='item8'
-									>
-										<div class="fixedFont heading" id="setPartieDecimale">
-											<span class='lighter'>
-											
-											</span>
-											
-											<span class="light">{undefined}</span>
-											
-											<b>setPartieDecimale</b>(valeur)
-										</div>
-										
-										<div class="description">
-											text
-											
-											
-											
-											
-										</div>
-										
-										
-										
-										
-											<dl class="detailList params">
-												<dt class="heading">Parameters:</dt>
-												
-													<dt>
-														<span class="light fixedFont">{type}</span> <b>valeur</b>
-														
-													</dt>
-													<dd></dd>
-												
-											</dl>
-										
-										
-										
-											<dl class="detailList nomargin">
-											
-												
-												
-												
-												
-												
-												
-												
-													<dt class="heading">Returns:</dt>
-													
-														<dd><span class="light fixedFont">{undefined}</span> </dd>
-													
-												
-												
-												
-												
-												
-											
-											</dl>
-										
-										<div class="hr"></div>
-									</li>
-								
-									<li 
-										 class='item9'
-									>
-										<div class="fixedFont heading" id="setPartieDecimaleByIndice">
-											<span class='lighter'>
-											
-											</span>
-											
-											<span class="light">{undefined}</span>
-											
-											<b>setPartieDecimaleByIndice</b>(indice, valeur)
-										</div>
-										
-										<div class="description">
-											text
-											
-											
-											
-											
-										</div>
-										
-										
-										
-										
-											<dl class="detailList params">
-												<dt class="heading">Parameters:</dt>
-												
-													<dt>
-														<span class="light fixedFont">{type}</span> <b>indice</b>
-														
-													</dt>
-													<dd></dd>
-												
-													<dt>
-														<span class="light fixedFont">{type}</span> <b>valeur</b>
-														
-													</dt>
-													<dd></dd>
-												
-											</dl>
-										
-										
-										
-											<dl class="detailList nomargin">
-											
-												
-												
-												
-												
-												
-												
-												
-													<dt class="heading">Returns:</dt>
-													
-														<dd><span class="light fixedFont">{undefined}</span> </dd>
-													
-												
-												
-												
-												
-												
-											
-											</dl>
-										
-										<div class="hr"></div>
-									</li>
-								
-									<li 
-										 class='item10'
-									>
-										<div class="fixedFont heading" id="setPartieEntiere">
-											<span class='lighter'>
-											
-											</span>
-											
-											<span class="light">{undefined}</span>
-											
-											<b>setPartieEntiere</b>(valeur)
-										</div>
-										
-										<div class="description">
-											text
-											
-											
-											
-											
-										</div>
-										
-										
-										
-										
-											<dl class="detailList params">
-												<dt class="heading">Parameters:</dt>
-												
-													<dt>
-														<span class="light fixedFont">{integer}</span> <b>valeur</b>
-														
-													</dt>
-													<dd></dd>
-												
-											</dl>
-										
-										
-										
-											<dl class="detailList nomargin">
-											
-												
-												
-												
-												
-												
-												
-												
-													<dt class="heading">Returns:</dt>
-													
-														<dd><span class="light fixedFont">{undefined}</span> </dd>
-													
-												
-												
-												
-												
-												
-											
-											</dl>
-										
-										<div class="hr"></div>
-									</li>
-								
-									<li 
-										 class='item11'
-									>
-										<div class="fixedFont heading" id="setPartieEntiereByIndice">
-											<span class='lighter'>
-											
-											</span>
-											
-											<span class="light">{undefined}</span>
-											
-											<b>setPartieEntiereByIndice</b>(indice, valeur)
-										</div>
-										
-										<div class="description">
-											text
-											
-											
-											
-											
-										</div>
-										
-										
-										
-										
-											<dl class="detailList params">
-												<dt class="heading">Parameters:</dt>
-												
-													<dt>
-														<span class="light fixedFont">{integer}</span> <b>indice</b>
-														
-													</dt>
-													<dd></dd>
-												
-													<dt>
-														<span class="light fixedFont">{integer}</span> <b>valeur</b>
-														
-													</dt>
-													<dd></dd>
-												
-											</dl>
-										
-										
-										
-											<dl class="detailList nomargin">
-											
-												
-												
-												
-												
-												
-												
-												
-													<dt class="heading">Returns:</dt>
-													
-														<dd><span class="light fixedFont">{undefined}</span> </dd>
-													
-												
-												
-												
-												
-												
-											
-											</dl>
-										
-										
-									</li>
-								
-							</ul>
-						</div>
-					</div>
-				</section>
-			
-			
-	<!--
-	#### EVENT DETAILS
-	-->		
-			
-		</article>
-	</div>
-</div>
+						</dl>
+					
+					
+					
 
-		<script type="text/javascript">
-			wbos.CssTools.MediaQueryFallBack.LoadCss('../css/screen.css', '../css/handheld.css', 660)
-			codeview.classFilter.Init()
-		</script>
+			</div>
+			
+
+<!-- ============================== field details ========================== -->		
+			
+				<div class="sectionTitle">
+					Field Detail
+				</div>
+				
+					<a name="-longueurValeur"> </a>
+					<div class="fixedFont">&lt;private&gt; &lt;inner&gt; 
+					
+					
+					<b>longueurValeur</b>
+					
+					</div>
+					<div class="description">
+						text
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="-partieDecimale"> </a>
+					<div class="fixedFont">&lt;private&gt; &lt;inner&gt; 
+					
+					<span class="light">{Array}</span>
+					<b>partieDecimale</b>
+					
+					</div>
+					<div class="description">
+						text
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="-partieEntiere"> </a>
+					<div class="fixedFont">&lt;private&gt; &lt;inner&gt; 
+					
+					<span class="light">{Array}</span>
+					<b>partieEntiere</b>
+					
+					</div>
+					<div class="description">
+						text
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="-valeur"> </a>
+					<div class="fixedFont">&lt;private&gt; &lt;inner&gt; 
+					
+					<span class="light">{float}</span>
+					<b>valeur</b>
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					
+				
+			
+
+<!-- ============================== method details ========================= -->		
+			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name="getLongueurValeur"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{int}</span>
+					<b>getLongueurValeur</b>()
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{int}</span> </dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="getPartieDecimale"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Array}</span>
+					<b>getPartieDecimale</b>()
+					
+					</div>
+					<div class="description">
+						text
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Array}</span> </dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="getPartieDecimaleByIndice"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Number}</span>
+					<b>getPartieDecimaleByIndice</b>(indice)
+					
+					</div>
+					<div class="description">
+						text
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{integer}</span> <b>indice</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Number}</span> </dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="getPartieEntiere"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Array|tableau}</span>
+					<b>getPartieEntiere</b>()
+					
+					</div>
+					<div class="description">
+						text
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Array|tableau}</span> </dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="getPartieEntiereByIndice"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Array}</span>
+					<b>getPartieEntiereByIndice</b>(indice)
+					
+					</div>
+					<div class="description">
+						text
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{integer}</span> <b>indice</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Array}</span> </dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="getValeur"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{float or int}</span>
+					<b>getValeur</b>()
+					
+					</div>
+					<div class="description">
+						text
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{float or int}</span> </dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="infos"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{String}</span>
+					<b>infos</b>()
+					
+					</div>
+					<div class="description">
+						text
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{String}</span> </dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="isEmpty"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Boolean}</span>
+					<b>isEmpty</b>()
+					
+					</div>
+					<div class="description">
+						text
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Boolean}</span> </dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="setPartieDecimale"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{undefined}</span>
+					<b>setPartieDecimale</b>(valeur)
+					
+					</div>
+					<div class="description">
+						text
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{type}</span> <b>valeur</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{undefined}</span> </dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="setPartieDecimaleByIndice"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{undefined}</span>
+					<b>setPartieDecimaleByIndice</b>(indice, valeur)
+					
+					</div>
+					<div class="description">
+						text
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{type}</span> <b>indice</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{type}</span> <b>valeur</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{undefined}</span> </dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="setPartieEntiere"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{undefined}</span>
+					<b>setPartieEntiere</b>(valeur)
+					
+					</div>
+					<div class="description">
+						text
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{integer}</span> <b>valeur</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{undefined}</span> </dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="setPartieEntiereByIndice"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{undefined}</span>
+					<b>setPartieEntiereByIndice</b>(indice, valeur)
+					
+					</div>
+					<div class="description">
+						text
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{integer}</span> <b>indice</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{integer}</span> <b>valeur</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{undefined}</span> </dd>
+							
+							</dl>
+						
+						
+						
+
+					
+				
+			
+			
+<!-- ============================== event details ========================= -->		
+			
+			
+			<hr />
+		</div>
+
+		
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu May 02 2013 07:38:11 GMT+0200 (CEST)
+		</div>
 	</body>
 </html>
-
