@@ -3,7 +3,6 @@
  * @version 1.0
  * @author Alassane KANE
  */
-
 /**
  * @class  Cette classe servira à manipuler les opérandes des opérations.
  * @constructor 
@@ -16,7 +15,7 @@ function Nombre(valeur) {
      * @type float
      */
     var valeur = valeur;
-    
+
     if (isInt(valeur)) {
         /**
          * @private
@@ -163,7 +162,7 @@ function Nombre(valeur) {
     this.getLongueurValeur = function getLongueurValeur() {
         return longueurValeur;
     };
-    
+
     /**
      * @public
      * @description text

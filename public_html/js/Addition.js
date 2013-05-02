@@ -3,7 +3,6 @@
  * @version 1.0
  * @author Alassane KANE, Tenfei Zhai, Corto Carde
  */
-
 /**
  * @class  Cette classe servira à créer des opérations de type addition
  * @constructor 
@@ -104,7 +103,7 @@ function Addition() {
      * @requires listArgument, operande
      * @returns {integer}
      */
-    function longueurMaxPartieDecimale() {  
+    function longueurMaxPartieDecimale() {
         var longueurMax = 0;
         if (listArgument.length > 0) {
             for (i = 0; i < operande.length; i++) {
@@ -116,7 +115,7 @@ function Addition() {
         return longueurMax;
     }
     if (verifieLongueurDeChaqueArgument() && verifieNumbreArgument()) {
-        
+
         this.isEmpty = function isEmpty() {
 
         };
@@ -196,7 +195,7 @@ function Addition() {
             } else {
                 diff;
             }
-            
+
             var retenueDepart = 0;
             if (retenues[0]) {
                 retenueDepart = retenues[0];
@@ -217,7 +216,7 @@ function Addition() {
                     tmpSomme.unshift(tmp);
                 }
             }
-            
+
             for (i = tmpSomme.length - diff - 1; i >= 0; i--) {
                 taille = String(tmpSomme[i]).length;
                 if (taille > 1) {
@@ -258,10 +257,10 @@ function Addition() {
                     }
                 }
             }
-            
-            var valCreateResultat="";
-            for(i=0;i<tmpSomme.length;i++){
-                valCreateResultat+=String(tmpSomme[i]);
+
+            var valCreateResultat = "";
+            for (i = 0; i < tmpSomme.length; i++) {
+                valCreateResultat += String(tmpSomme[i]);
             }
             resultat = new Nombre(parseFloat(valCreateResultat));
 
