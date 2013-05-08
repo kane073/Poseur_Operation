@@ -5,8 +5,8 @@
             "couleurMarge": "red",
             "couleurAvantVirgule": "",
             "couleurApresVirgule": "",
-            "couleurRetenue": "",
-            "couleurResultat": ""
+            "couleurRetenue": "#000",
+            "couleurResultat": "#000"
         },
         "cellule": {
             "tailleCellule": 40,
