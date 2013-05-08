@@ -1,0 +1,10 @@
+{
+    "name": "config",
+    "param": {
+        "couleur": {
+            },
+        "cellule": {
+                "tailleCellule": 32
+            }
+    }
+}
