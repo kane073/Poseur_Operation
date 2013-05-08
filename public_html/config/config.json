@@ -2,11 +2,14 @@
     "name": "config",
     "param": {
         "couleur": {
-            "couleurMarge":"red"
+            "couleurMarge": "red"
         },
         "cellule": {
             "tailleCellule": 40,
             "tailleContour": 4
+        },
+        "correction": {
+            "retenueObligatoire":true
         }
     }
 }

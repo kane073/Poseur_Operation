@@ -66,7 +66,7 @@ function LireConfig(data) {
             console.log(addition.getResultat().getPartieEntiere(), addition.getResultat().getPartieDecimale());
             var textEnonce = "Résoudre l'addition en spécifiant les retenues";
 
-//            grille.poserOparationAddition(addition,textEnonce);
+            grille.poserOparationAddition(addition,textEnonce);
         }
     }
 }
