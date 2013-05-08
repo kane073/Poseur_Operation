@@ -57,10 +57,9 @@ function getFileConfig(callback) {
  */
 function LireConfig(data) {
     if (data) {
-        configuration = data;
-
+        configuration = JSON.parse(data);
         if (configuration) {
-            var grille = new Grillage("operation");
+            var grille = new Grillage("operation",configuration);
             var addition = new Addition(2678.54, 42.898, 987.82);
             addition.resoudreAddition();
             console.log(addition.getRetenues());

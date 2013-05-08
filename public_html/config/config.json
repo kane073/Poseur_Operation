@@ -2,9 +2,11 @@
     "name": "config",
     "param": {
         "couleur": {
-            },
+            "couleurMarge":"red"
+        },
         "cellule": {
-                "tailleCellule": 32
-            }
+            "tailleCellule": 40,
+            "tailleContour": 4
+        }
     }
 }
