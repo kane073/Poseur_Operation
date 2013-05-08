@@ -2,14 +2,18 @@
     "name": "config",
     "param": {
         "couleur": {
-            "couleurMarge": "red"
+            "couleurMarge": "red",
+            "couleurAvantVirgule": "",
+            "couleurApresVirgule": "",
+            "couleurRetenue": "",
+            "couleurResultat": ""
         },
         "cellule": {
             "tailleCellule": 40,
             "tailleContour": 4
         },
         "correction": {
-            "retenueObligatoire":true
+            "retenueObligatoire": false
         }
     }
 }
