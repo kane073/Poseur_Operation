@@ -5,10 +5,177 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html>
     <head>
-        <title></title>
+        <title> Configuration | poseur d'opération</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="libs/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="libs/jquery/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="libs/bootstrap/js/bootstrap.min.js"></script>
+
     </head>
     <body>
-        <div>TODO write content</div>
+
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <div class="row">
+                        <div class="span9">
+                            <h2>Configuration du poseur d'opération</h2> 
+                            <a class="btn btn-primary pull-right" href="index.html">Poseur d'opération</a>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="span12">
+                            <h3>Categories: </h3>
+                            <ul class="nav nav-tabs nav-stacked">
+                                <li><a href="#1">Couleur </a></li>
+                                <li><a href="#2">Cellule </a></li>
+                                <li><a href="#3">Correction </a></li>
+                            </ul>
+
+                            <hr id="1">
+                            <br>
+                            <h2>Couleur <small>Choix des différentes couleurs pour la grille </small></h2>
+                            <div class="row">
+                                <div class="span8">
+                                    <div class="row">
+                                        <div class="span8">
+                                            <h4 style="margin-left:5px;">
+                                                <strong><a href="#">Choix des couleurs</a></strong>
+                                                <p class="pull-right">Palette de couleur</p>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="span2">
+                                            <a href="#" class="thumbnail" style="margin-left:5px;"><img src="http://placehold.it/260x180"  alt=""></a>
+                                        </div>
+                                        <div class="span6">
+                                            <div class="tabbable tabs-left">
+
+                                                <ul class="nav nav-tabs" style="padding-top:15px;margin-left:-20px;">
+                                                    <li class="active"><a href="#A" data-toggle="tab">Marge</a></li>
+                                                    <li><a href="#B" data-toggle="tab">Partie Entière</a></li>
+                                                    <li><a href="#C" data-toggle="tab">Partie Décimale</a></li>
+                                                    <li><a href="#D" data-toggle="tab">Rétenue</a></li>
+                                                    <li><a href="#E" data-toggle="tab">Résultat</a></li>
+
+                                                </ul>
+
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="A">
+                                                        <p><span class="label label-success" ><i class="icon-camera" style="margin-right:3px;"></i>Code RGBA:</span> <span class="label label-info" >Code HTML:</span> <span class="label" >Code RVB</span></p>
+                                                        <img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="">
+                                                    </div>
+                                                    <div class="tab-pane" id="B">
+                                                        <p><span class="label label-success" ><i class="icon-camera" style="margin-right:3px;"></i>Code RGBA:</span> <span class="label label-info" >Code HTML:</span> <span class="label" >Code RVB</span></p>
+                                                        <img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="">
+                                                    </div>
+                                                    <div class="tab-pane" id="C">
+                                                        <p><span class="label label-success" ><i class="icon-camera" style="margin-right:3px;"></i>Code RGBA:</span> <span class="label label-info" >Code HTML:</span> <span class="label" >Code RVB</span></p>
+                                                        <img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="">
+                                                    </div>
+                                                    <div class="tab-pane" id="D">
+                                                        <p><span class="label label-success" ><i class="icon-camera" style="margin-right:3px;"></i>Code RGBA:</span> <span class="label label-info" >Code HTML:</span> <span class="label" >Code RVB</span></p>
+                                                        <img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="">
+                                                    </div>
+                                                    <div class="tab-pane" id="E">
+                                                        <p><span class="label label-success" ><i class="icon-camera" style="margin-right:3px;"></i>Code RGBA:</span> <span class="label label-info" >Code HTML:</span> <span class="label" >Code RVB</span></p>
+                                                        <img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="">
+                                                    </div>
+                                                </div>
+                                            </div> <!-- /tabbable -->
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="span8" style="margin-bottom:0px;">
+                                            <p style="margin-left:5px;">
+                                                by <a href="#">Palette de couleur pour miope</a> | Sept 16th, 2012 <button class="btn btn-primary pull-right" style="margin-right:5px;">Enregistré</button>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <hr id="2">
+                            <br>
+                            <h2>Cellule <small>Dimensionnement des cellules de la grille</small></h2>
+                            <div class="row">
+                                <div class="span8">
+                                    <form class="form-horizontal well">
+                                        <fieldset>
+                                            <h4>Choix de la taille d'une cellule !</h4>
+                                            <div class="control-group">
+                                                <label class="control-label" >Taille en pixel</label>
+                                                <div class="controls">
+                                                    <label class="radio">
+                                                        <input type="radio" name="tailleCellule" value="30" id="" checked/>
+                                                        30 </label>
+                                                    <label for="web" class="radio">
+                                                        <input type="radio" name="tailleCellule" value="40" id="" />
+                                                        40 </label>
+                                                    <label for="hasard" class="radio">
+                                                        <input type="radio" name="tailleCellule" value="45" id="" />
+                                                        45</label>
+                                                </div>
+                                            </div>
+                                            <h4>Choix de la taille entre deux cellules !</h4>
+                                            <div class="control-group">
+                                                <label class="control-label" >Taille en pixel</label>
+                                                <div class="controls">
+                                                    <label  class="radio">
+                                                        <input type="radio" name="tailleContour" value="2" id="" checked/>
+                                                        2 </label>
+                                                    <label for="web" class="radio">
+                                                        <input type="radio" name="tailleContour" value="4" id="" />
+                                                        4 </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-actions">
+                                                <button type="submit" class="btn btn-primary pull-right">Enrégistré</button>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                            <br>
+                            <hr id="3">
+                            <br>
+                            <h2>Correction <small>Choix des constantes et règles de correction</small></h2>
+                            <div class="row">
+                                <div class="span8">
+                                    <form class="form-horizontal well">
+                                        <fieldset>
+                                            <h4>Choix des règles de correction  !</h4>
+                                            <div class="control-group">
+                                                <label class="control-label" >Rétenue obligatoire</label>
+                                                <div class="controls">
+                                                    <label class="checkbox">
+                                                        <input type="checkbox" name="retenueobligatoire" id="optionsCheckbox" value="true">
+                                                        True
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-actions">
+                                                <button type="submit" class="btn btn-primary pull-right">Enregistré</button>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>			
+                </div>
+            </div>
+            <hr>
+
+            <footer>
+                <p>Projet ingénieur de <a href="http://www.telecom-bretagne.com" target="_blank">Télécom Bretagne</a> | <a href="#" target="_blank">Sésamath</a> |   <a href="https://github.com/kane073/Poseur_Operation" target="_blank" class="btn">Git Hub</a></p>	</footer>
+
+        </div>
+
     </body>
 </html>
