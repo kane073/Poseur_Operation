@@ -38,43 +38,20 @@ var configuration;
  * @param {type} callback
  * @returns {undefined}
  */
-function getFileConfig(callback) {
+function getFileConfig() {
     var xhr = getXMLHttpRequest();
+    var config;
     xhr.overrideMimeType("application/json");
-    xhr.open("GET", "./config/config.json", true);
+    xhr.open("GET", "./config/config.json", false);
 
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-            callback(xhr.responseText);
+            config = xhr.responseText;
         }
     };
     xhr.send(null);
+    return JSON.parse(config)
 }
-/**
- * 
- * @param {type} data
- * @returns {undefined}
- */
-function LireConfig(data) {
-    if (data) {
-        configuration = JSON.parse(data);
-        if (configuration) {
-            var grille = new Grillage("operation",configuration);
-            var addition = new Addition(940, 14, 199);
-            addition.resoudreAddition();
-            console.log(addition.getRetenues());
-            console.log(addition.getResultat().getPartieEntiere(), addition.getResultat().getPartieDecimale());
-            var textEnonce = "Résoudre l'addition en spécifiant les retenues";
-
-            grille.poserOparationAddition(addition,textEnonce);
-        }
-    }
-}
-
-/**
- * 
- */
-getFileConfig(LireConfig);
 
 
 
