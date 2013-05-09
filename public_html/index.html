@@ -1,0 +1,39 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Poseur d'operation</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="css/poseuroperation.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="libs/IE/excanvas.js"></script>
+        <script type="text/javascript" src="js/Grillage.js"></script>
+        <script type="text/javascript" src="js/Nombre.js"></script>
+        <script type="text/javascript" src="js/Addition.js"></script>
+
+    </head>
+    <body>
+
+        <div id="operation">
+
+        </div>
+        <a href="config.html">Configuration</a>
+        <script type="text/javascript" src="js/global.js"></script>
+        <script type="text/javascript">
+            configuration = getFileConfig();
+            
+            if (configuration) {
+                var grille = new Grillage("operation", configuration);
+                var addition = new Addition(940, 14, 199);
+                addition.resoudreAddition();
+                console.log(addition.getRetenues());
+                console.log(addition.getResultat().getPartieEntiere(), addition.getResultat().getPartieDecimale());
+                var textEnonce = "Résoudre l'addition en spécifiant les retenues";
+
+                grille.poserOparationAddition(addition, textEnonce);
+            }
+        </script>
+    </body>
+</html>
