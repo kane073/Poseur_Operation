@@ -125,14 +125,15 @@ function Addition() {
          * @requires operande
          */
         this.resoudreAddition = function resoudreAddition() {
-            var MaxPartieEntiere = longueurMaxPartieEntiere();
-            var MaxPartieDecimale = longueurMaxPartieDecimale();
+            var maxPartieEntiere = longueurMaxPartieEntiere();
+            var maxPartieDecimale = longueurMaxPartieDecimale();
             var matriceOprerande = [];
-
+            
             for (i = 0; i < operande.length; i++) {
+                console.log(operande[i].getPartieDecimale());
                 var tmpPartieDecimal = [];
-                if (operande[i].getPartieDecimale().length < MaxPartieDecimale) {
-                    for (j = 0; j < MaxPartieDecimale; j++) {
+                if (operande[i].getPartieDecimale().length < maxPartieDecimale) {
+                    for (j = 0; j < maxPartieDecimale; j++) {
                         if (j < operande[i].getPartieDecimale().length) {
                             tmpPartieDecimal.push(parseInt(operande[i].getPartieDecimale()[j]));
                         } else {
@@ -144,8 +145,8 @@ function Addition() {
                     tmpPartieDecimal = operande[i].getPartieDecimale();
                 }
                 var tmpPartieEntiere = [];
-                if (operande[i].getPartieEntiere().length < MaxPartieEntiere) {
-                    for (j = 0; j < MaxPartieEntiere; j++) {
+                if (operande[i].getPartieEntiere().length < maxPartieEntiere) {
+                    for (j = 0; j < maxPartieEntiere; j++) {
                         if (j < operande[i].getPartieEntiere().length) {
                             tmpPartieEntiere.push(parseInt(operande[i].getPartieEntiere()[j]));
                         } else {
@@ -157,16 +158,18 @@ function Addition() {
                 }
                 matriceOprerande.push({entiere: tmpPartieEntiere, decimal: tmpPartieDecimal});
             }
-
+            console.log(matriceOprerande);
+            
             var tmpSomme = [];
             var tmp = 0;
-            for (j = MaxPartieDecimale - 1; j >= 0; j--) {
+            for (j = maxPartieDecimale - 1; j >= 0; j--) {
                 tmp = 0;
                 for (i = 0; i < matriceOprerande.length; i++) {
                     tmp = tmp + matriceOprerande[i].decimal[j];
                 }
                 tmpSomme.unshift(tmp);
             }
+
             var taille;
             var p;
             var f;
@@ -187,9 +190,15 @@ function Addition() {
                         retenues.unshift(parseInt(f));
                     }
                 } else {
+                    if (i == 0) {
+                        retenues.unshift(" ");
+                        tmpSomme.unshift(".");
+                    }
                     retenues.unshift(0);
                 }
             }
+           
+
             if (tmpSomme.length > 0) {
                 diff = tmpSomme.length - 1;
             } else {
@@ -201,24 +210,33 @@ function Addition() {
                 retenueDepart = retenues[0];
             }
 
-            for (j = MaxPartieEntiere - 1; j >= 0; j--) {
+            for (j = maxPartieEntiere - 1; j >= 0; j--) {
                 tmp = 0;
                 for (i = 0; i < matriceOprerande.length; i++) {
                     tmp = tmp + matriceOprerande[i].entiere[j];
                 }
-                if (j === MaxPartieEntiere - 1) {
-                    if (tmpSomme[0]) {
-                        tmpSomme[0] = tmp + retenueDepart;
+                if (j === maxPartieEntiere - 1) {
+                    if (tmpSomme[0] != ".") {
+                        if (tmpSomme[0]) {
+                            tmpSomme[0] = tmp + retenueDepart;
+                        } else {
+                            tmpSomme.unshift(tmp + retenueDepart);
+                        }
                     } else {
                         tmpSomme.unshift(tmp + retenueDepart);
                     }
                 } else {
-                    tmpSomme.unshift(tmp);
+                    if (tmpSomme[0] != ".") {
+                        tmpSomme.unshift(tmp + retenueDepart);
+                    } else {
+                        tmpSomme.unshift(tmp);
+                    }
                 }
             }
-
+             
             for (i = tmpSomme.length - diff - 1; i >= 0; i--) {
                 taille = String(tmpSomme[i]).length;
+
                 if (taille > 1) {
                     p = String(tmpSomme[i])[taille - 1];
                     f = String(tmpSomme[i]).substring(0, taille - 1);
@@ -251,8 +269,10 @@ function Addition() {
                             retenues.unshift(parseInt(f));
                         }
                     }
-                } else {
-                    if (i !== 0) {
+                } 
+                else {
+                    if (i == 0) {
+                        console.log("retenues :" + retenues)
                         retenues.unshift(0);
                     }
                 }
@@ -262,7 +282,14 @@ function Addition() {
             for (i = 0; i < tmpSomme.length; i++) {
                 valCreateResultat += String(tmpSomme[i]);
             }
+            
+                       
             resultat = new Nombre(parseFloat(valCreateResultat));
+            if(valCreateResultat[valCreateResultat.length-2]=="."){
+                if(valCreateResultat[valCreateResultat.length-1]=="0"){
+                    resultat.setPartieDecimale(0);
+                }
+            }
 
         };
 

@@ -29,11 +29,11 @@ function Nombre(valeur) {
          * @type Array
          */
         var partieDecimale = [];
-
+        console.log(String(valeur).split(".")[0]);
     } else {
         var partieEntiere = convertionStringEnTableau(String(valeur).split(".")[0]);
         var partieDecimale = convertionStringEnTableau(String(valeur).split(".")[1]);
-
+        
     }
     ;
     /**
@@ -184,7 +184,7 @@ function Nombre(valeur) {
  * @returns {Array}
  */
 function convertionStringEnTableau(valeur) {
-
+    
     var tableau = [];
     var i;
     for (i = 0; i < valeur.length; i++) {

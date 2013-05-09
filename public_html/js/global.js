@@ -60,7 +60,7 @@ function LireConfig(data) {
         configuration = JSON.parse(data);
         if (configuration) {
             var grille = new Grillage("operation",configuration);
-            var addition = new Addition(2678.54, 42.898, 987.82);
+            var addition = new Addition(940, 14, 199);
             addition.resoudreAddition();
             console.log(addition.getRetenues());
             console.log(addition.getResultat().getPartieEntiere(), addition.getResultat().getPartieDecimale());
