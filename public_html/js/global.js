@@ -30,11 +30,6 @@ function getXMLHttpRequest() {
 }
 /**
  * 
- * @type data
- */
-var configuration;
-/**
- * 
  * @param {type} callback
  * @returns {undefined}
  */
