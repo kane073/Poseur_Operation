@@ -13,8 +13,8 @@
             "couleurFondDesChampsDestineAuReponse":"rgba(163, 209, 157, 0.3)"
         },
         "cellule": {
-            "tailleCellule": 40,
-            "tailleContour": 4
+            "tailleCellule": 30,
+            "tailleContour": 2
         },
         "correction": {
             "retenueObligatoire": true
