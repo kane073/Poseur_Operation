@@ -29,7 +29,7 @@ function Nombre(valeur) {
          * @type Array
          */
         var partieDecimale = [];
-        console.log(String(valeur).split(".")[0]);
+       
     } else {
         var partieEntiere = convertionStringEnTableau(String(valeur).split(".")[0]);
         var partieDecimale = convertionStringEnTableau(String(valeur).split(".")[1]);

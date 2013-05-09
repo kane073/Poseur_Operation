@@ -130,7 +130,7 @@ function Addition() {
             var matriceOprerande = [];
             
             for (i = 0; i < operande.length; i++) {
-                console.log(operande[i].getPartieDecimale());
+               
                 var tmpPartieDecimal = [];
                 if (operande[i].getPartieDecimale().length < maxPartieDecimale) {
                     for (j = 0; j < maxPartieDecimale; j++) {
@@ -158,7 +158,7 @@ function Addition() {
                 }
                 matriceOprerande.push({entiere: tmpPartieEntiere, decimal: tmpPartieDecimal});
             }
-            console.log(matriceOprerande);
+            
             
             var tmpSomme = [];
             var tmp = 0;
@@ -272,7 +272,7 @@ function Addition() {
                 } 
                 else {
                     if (i == 0) {
-                        console.log("retenues :" + retenues)
+                        
                         retenues.unshift(0);
                     }
                 }
