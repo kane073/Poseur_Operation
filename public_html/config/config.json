@@ -17,7 +17,7 @@
             "tailleContour": 2
         },
         "correction": {
-            "retenueObligatoire": true
+            "retenueObligatoire": false
         }
     }
 }
