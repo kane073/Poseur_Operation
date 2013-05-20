@@ -19,13 +19,13 @@ function Nombre(valeur) {
     if (isInt(valeur)) {
         /**
          * @private
-         * @description text
+         * @description Contient la partie entière du nombre
          * @type Array
          */
         var partieEntiere = convertionStringEnTableau(String(valeur));
         /**
          * @private
-         * @description text
+         * @description Contient la partie décimal du nombre
          * @type Array
          */
         var partieDecimale = [];
@@ -38,14 +38,14 @@ function Nombre(valeur) {
     ;
     /**
      * @private
-     * @description text
+     * @description La longueur du nombre (sans la virgule)
      * @type {integer}
      */
     var longueurValeur = partieEntiere.length + partieDecimale.length;
 
     /**
      * @public
-     * @description text
+     * @description Vérifie si le nombre est vide
      * @returns {Boolean}
      */
     this.isEmpty = function isEmpty() {
@@ -57,7 +57,7 @@ function Nombre(valeur) {
     };
     /**
      * @public
-     * @description text
+     * @description Renvoie la valeur du nombre
      * @returns {float or int}
      */
     this.getValeur = function getValeur() {
@@ -65,7 +65,7 @@ function Nombre(valeur) {
     };
     /**
      * @public
-     * @description text
+     * @description Renvoie la partie entière
      * @returns {Array|tableau}
      */
     this.getPartieEntiere = function getPartieEntiere() {
@@ -73,7 +73,7 @@ function Nombre(valeur) {
     };
     /**
      * @public
-     * @description text
+     * @description Renvoie le chiffre de la partie entière à l'indice donné
      * @param {integer} indice
      * @returns {Array}
      */
@@ -86,7 +86,7 @@ function Nombre(valeur) {
     };
     /**
      * @public
-     * @description text
+     * @description Renvoie a partie décimale
      * @returns {Array}
      */
     this.getPartieDecimale = function getPartieDecimale() {
@@ -94,7 +94,7 @@ function Nombre(valeur) {
     };
     /**
      * @public
-     * @description text
+     * @description Renvoie le chiffre de la partie décimale à l'indice donné
      * @param {integer} indice
      * @returns {Number}
      */
@@ -108,7 +108,7 @@ function Nombre(valeur) {
     };
     /**
      * @public
-     * @description text
+     * @description Modifie la valeur de la partie entière
      * @param {integer} valeur
      * @returns {undefined}
      */
@@ -117,7 +117,7 @@ function Nombre(valeur) {
     }
     /**
      * @public
-     * @description text
+     * @description Modifie le chiffre de la partie entière à l'indice donné
      * @param {integer} indice
      * @param {integer} valeur
      * @returns {undefined}
@@ -132,7 +132,7 @@ function Nombre(valeur) {
     };
     /**
      * @public
-     * @description text
+     * @description Modifie la valeur de la partie décimale
      * @param {type} valeur
      * @returns {undefined}
      */
@@ -142,7 +142,7 @@ function Nombre(valeur) {
     };
     /**
      * @public
-     * @description text
+     * @description Midifie le chiffre de la partie décimale à l'indice donné
      * @param {type} indice
      * @param {type} valeur
      * @returns {undefined}
@@ -156,7 +156,7 @@ function Nombre(valeur) {
         }
     };
     /**
-     * 
+     * @description Renvoie la taille du nombre
      * @returns {int}
      */
     this.getLongueurValeur = function getLongueurValeur() {
@@ -165,7 +165,7 @@ function Nombre(valeur) {
 
     /**
      * @public
-     * @description text
+     * @description Renvoie une description du nombre
      * @returns {String}
      */
     this.infos = function infos() {
@@ -178,7 +178,7 @@ function Nombre(valeur) {
 
 }
 /**
- * @description Convertie une chaine de caractère en tableur
+ * @description Convertit une chaine de caractère en tableau
  * @static
  * @param {integer} valeur
  * @returns {Array}
