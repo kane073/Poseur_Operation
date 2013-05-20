@@ -11,29 +11,32 @@
  */
 function Addition() {
     /**
-     * 
+     * @description Contient les arguments passés en paramètre lors de la création de l'addition
      * @type arguments
      */
     var listArgument = arguments;
     /**
-     * @private
+     * @private 
+     * @description Contient les opérandes
      * @type Array
      */
     var operande = [];
     /**
      * @private
+     * @description Contient les retenues
      * @type Array
      */
     var retenues = [0];
     /**
      * @private
+     * @description Contient le résultat de l'addition
      * @type Nombre
      */
     var resultat = new Nombre(0);
 
     /**
      * @private
-     * @description Crèe des types Nombres et les mets dans l'atribut operande
+     * @description Crée des types Nombres et les mets dans l'attribut operande
      */
     function remplissageOperande() {
         if (listArgument.length > 0) {
@@ -64,7 +67,7 @@ function Addition() {
     ;
     /**
      * @private
-     * @description Verifie que chaque argument est compris entre 1 et 18 chiffre
+     * @description Vérifie que chaque argument est compris entre 1 et 18 chiffre
      * @returns {Boolean}
      */
     function verifieLongueurDeChaqueArgument() {
@@ -88,7 +91,7 @@ function Addition() {
         };
         /**
          * @public
-         * @description text 
+         * @description Calcule le résultat et remplit le tableau des retenues 
          * @requires operande
          */
         this.resoudreAddition = function resoudreAddition() {
@@ -235,7 +238,7 @@ function Addition() {
 
         /**
          * @public
-         * @description text
+         * @description Renvoie le résultat de l'addition
          * @returns {Nombre}
          */
         this.getResultat = function getResultat() {
@@ -243,7 +246,7 @@ function Addition() {
         };
         /**
          * @public
-         * @description text
+         * @description Renvoie le tableau des retenues
          * @returns {Array}
          */
         this.getRetenues = function getRetenues() {
@@ -251,7 +254,7 @@ function Addition() {
         };
         /**
          * @public
-         * @description text
+         * @description Renvoie le tableau des opérandes
          * @returns {Array}
          */
         this.getOperande = function getOperande() {
@@ -260,7 +263,7 @@ function Addition() {
 		
         /**
          * @public
-         * @description text
+         * @description Calcule la taille de la partie entière la plus longue parmis les opérandes
          * @returns {Array}
          */
         this.longueurMaxPartieEntiere = function longueurMaxPartieEntiere() {
@@ -277,7 +280,7 @@ function Addition() {
 		
         /**
          * @public
-         * @description text
+         * @description Calcule la taille de la partie décimale la plus longue parmis les opérandes
          * @returns {Array}
          */
         this.longueurMaxPartieDecimale = function longueurMaxPartieDecimale() {
