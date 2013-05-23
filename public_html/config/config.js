@@ -327,7 +327,7 @@ function enregistrementConfiguration(zone) {
         url: './config/config.php', // L'url vers laquelle la requete sera envoyee
         data: "configuration=" + JSON.stringify(formaConfig),
         success: function(data) {
-			console.log("appel de php");
+			data = JSON.parse(data);
             if (data.reponse == "success") {
                 var message = '<div class="alert alert-success">' +
                         '<button type="button" class="close" data-dismiss="alert">×</button>' +
