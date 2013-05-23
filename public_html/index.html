@@ -27,7 +27,7 @@ and open the template in the editor.
             
             if (configuration) {
                 var grille = new Grillage("operation", configuration);
-                var addition = new Addition(127.141, 19.01);
+                var addition = new Addition(1.1, 123.1, 1.23);
                 addition.resoudreAddition();
                 console.log(addition.getRetenues());
                 console.log(addition.getResultat().getPartieEntiere(), addition.getResultat().getPartieDecimale());
@@ -35,9 +35,9 @@ and open the template in the editor.
 				
 				//Type de correction : Correction Simpe = 0; Correction Suivie = 1; 
 
-				grille.poserOparationAddition(addition, 0, textEnonce);
+				// grille.poserOparationAddition(addition, 0, textEnonce);
 				// grille.poserOparationAddition(addition, 1, textEnonce);
-				// grille.lancerAdditionAPoser(addition, 0, "defaut");
+				grille.lancerAdditionAPoser(addition, 0, "defaut");
 				// grille.lancerAdditionAPoser(addition, 1, "defaut");
 				
 
