@@ -25,6 +25,7 @@ function getXMLHttpRequest() {
         alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
         return null;
     }
+
     return xhr;
 }
 /**
@@ -33,14 +34,18 @@ function getXMLHttpRequest() {
  * @returns {undefined}
  */
 function getFileConfig() {
-	
-	var config;
-	if(typeof JSON !='undefined'){
-		config = JSON.parse(donnees_json);
-	}else{
-		config = eval('('+donnees_json+')');
-	}	
-    return config;
+    var xhr = getXMLHttpRequest();
+    var config;
+    xhr.overrideMimeType("application/json");
+    xhr.open("GET", "./config/config.json", false);
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+            config = xhr.responseText;
+        }
+    };
+    xhr.send(null);
+    return JSON.parse(config)
 }
 
 

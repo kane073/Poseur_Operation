@@ -12,26 +12,24 @@ and open the template in the editor.
         <script type="text/javascript" src="js/Grillage.js"></script>
         <script type="text/javascript" src="js/Nombre.js"></script>
         <script type="text/javascript" src="js/Addition.js"></script>
-		<script type='text/javascript' src='config/config2.js'></script>
 
     </head>
     <body>
 
         <div id="operation">
-
+            
         </div>
         <script type="text/javascript" src="js/global.js"></script>
         <script type="text/javascript">
-			
             configuration = getFileConfig();
             
             if (configuration) {
                 var grille = new Grillage("operation", configuration);
-                var addition = new Addition(53.353,6.34);
+                var addition = new Addition(127.141, 19.01);
                 addition.resoudreAddition();
-                // console.log(addition.getRetenues());
-                // console.log(addition.getResultat().getPartieEntiere(), addition.getResultat().getPartieDecimale());
-                var textEnonce = "Poser puis résoudre    24 + 52";
+                console.log(addition.getRetenues());
+                console.log(addition.getResultat().getPartieEntiere(), addition.getResultat().getPartieDecimale());
+                var textEnonce = "Résoudre l\'addition en spécifiant les retenues";
 
                 grille.poserOparationAddition(addition, textEnonce);
 				// grille.lancerAdditionAPoser(addition, "defaut");

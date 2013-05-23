@@ -218,16 +218,11 @@ var formaConfig = {
 function chargementContenuePage() {
     $.ajax({
         type: 'GET', // Le type de ma requete
-        url: './config/config2.js', // L'url vers laquelle la requete sera envoyee
+        url: './config/config.json', // L'url vers laquelle la requete sera envoyee
         async: false,
-        datatype: "script",
+        datatype: "json",
         success: function(data) {
-			data = data.replace("var donnees_json = '","");
-			data = data.replace(/\\/g,"");
-			data = data.replace("';","");
-			data = JSON.parse(data);
             formaConfig = data;
-			
             for (key in data.param.couleur) {
                 if (data.param.couleur[key][0] == "r") {
                     rbga = data.param.couleur[key];
@@ -245,6 +240,7 @@ function chargementContenuePage() {
             } else {
                 $("#retenueObligatoire").removeAttr("checked");
             }
+
 
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -321,13 +317,12 @@ function enregistrementConfiguration(zone) {
         }
         formaConfig.param.correction.retenueObligatoire = retenueObligatoire;
     }
-	
     $.ajax({
         type: 'POST', // Le type de ma requete
         url: './config/config.php', // L'url vers laquelle la requete sera envoyee
         data: "configuration=" + JSON.stringify(formaConfig),
+        dataType: "json",
         success: function(data) {
-			console.log("appel de php");
             if (data.reponse == "success") {
                 var message = '<div class="alert alert-success">' +
                         '<button type="button" class="close" data-dismiss="alert">×</button>' +
@@ -346,7 +341,6 @@ function enregistrementConfiguration(zone) {
             };
         },
         error: function(jqXHR, textStatus, errorThrown) {
-			console.log('faute php');
             // Une erreur s'est produite lors de la requete
             var message = '<div class="alert alert-error">' +
                         '<button type="button" class="close" data-dismiss="alert">×</button>' +

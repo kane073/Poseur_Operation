@@ -11,32 +11,32 @@
  */
 function Addition() {
     /**
-     * @description Contient les arguments passés en paramètre lors de la création de l'addition
+     * 
      * @type arguments
      */
     var listArgument = arguments;
     /**
-     * @private 
-     * @description Contient les opérandes
+     * @private
      * @type Array
      */
     var operande = [];
     /**
      * @private
-     * @description Contient les retenues
      * @type Array
      */
     var retenues = [0];
     /**
      * @private
-     * @description Contient le résultat de l'addition
      * @type Nombre
      */
     var resultat = new Nombre(0);
+	
+	var lgMaxPartieEntiere = 0;
+	var lgMaxPartieDecimale = 0;
 
     /**
      * @private
-     * @description Crée des types Nombres et les mets dans l'attribut operande
+     * @description Crèe des types Nombres et les mets dans l'atribut operande
      */
     function remplissageOperande() {
         if (listArgument.length > 0) {
@@ -67,7 +67,7 @@ function Addition() {
     ;
     /**
      * @private
-     * @description Vérifie que chaque argument est compris entre 1 et 18 chiffre
+     * @description Verifie que chaque argument est compris entre 1 et 18 chiffre
      * @returns {Boolean}
      */
     function verifieLongueurDeChaqueArgument() {
@@ -83,7 +83,42 @@ function Addition() {
         return reponse;
     }
     ;
-
+    /**
+     * @private
+     * @description 
+     * @requires listArgument, operande
+     * @returns {integer}
+     */
+    function longueurMaxPartieEntiere() {
+        var longueurMax = 0;
+        if (listArgument.length > 0) {
+            for (i = 0; i < operande.length; i++) {
+                if (operande[i].getPartieEntiere().length > longueurMax) {
+                    longueurMax = operande[i].getPartieEntiere().length;
+                }
+            }
+        }
+		lgMaxPartieEntiere = longueurMax;
+        return longueurMax;
+    }
+    /**
+     * @private
+     * @description 
+     * @requires listArgument, operande
+     * @returns {integer}
+     */
+    function longueurMaxPartieDecimale() {
+        var longueurMax = 0;
+        if (listArgument.length > 0) {
+            for (i = 0; i < operande.length; i++) {
+                if (operande[i].getPartieDecimale().length >= longueurMax) {
+                    longueurMax = operande[i].getPartieDecimale().length;
+                }
+            }
+        }
+		lgMaxPartieDecimale = longueurMax;
+        return longueurMax;
+    }
     if (verifieLongueurDeChaqueArgument() && verifieNumbreArgument()) {
 
         this.isEmpty = function isEmpty() {
@@ -91,18 +126,20 @@ function Addition() {
         };
         /**
          * @public
-         * @description Calcule le résultat et remplit le tableau des retenues 
+         * @description text 
          * @requires operande
          */
         this.resoudreAddition = function resoudreAddition() {
-            var MaxPartieEntiere = this.longueurMaxPartieEntiere();
-            var MaxPartieDecimale = this.longueurMaxPartieDecimale();
+            var maxPartieEntiere = longueurMaxPartieEntiere();
+            var maxPartieDecimale = longueurMaxPartieDecimale();
+			
             var matriceOprerande = [];
-
+            
             for (i = 0; i < operande.length; i++) {
+               
                 var tmpPartieDecimal = [];
-                if (operande[i].getPartieDecimale().length < MaxPartieDecimale) {
-                    for (j = 0; j < MaxPartieDecimale; j++) {
+                if (operande[i].getPartieDecimale().length < maxPartieDecimale) {
+                    for (j = 0; j < maxPartieDecimale; j++) {
                         if (j < operande[i].getPartieDecimale().length) {
                             tmpPartieDecimal.push(parseInt(operande[i].getPartieDecimale()[j]));
                         } else {
@@ -114,8 +151,8 @@ function Addition() {
                     tmpPartieDecimal = operande[i].getPartieDecimale();
                 }
                 var tmpPartieEntiere = [];
-                if (operande[i].getPartieEntiere().length < MaxPartieEntiere) {
-                    for (j = 0; j < MaxPartieEntiere; j++) {
+                if (operande[i].getPartieEntiere().length < maxPartieEntiere) {
+                    for (j = 0; j < maxPartieEntiere; j++) {
                         if (j < operande[i].getPartieEntiere().length) {
                             tmpPartieEntiere.push(parseInt(operande[i].getPartieEntiere()[j]));
                         } else {
@@ -127,16 +164,18 @@ function Addition() {
                 }
                 matriceOprerande.push({entiere: tmpPartieEntiere, decimal: tmpPartieDecimal});
             }
-
+            
+            
             var tmpSomme = [];
             var tmp = 0;
-            for (j = MaxPartieDecimale - 1; j >= 0; j--) {
+            for (j = maxPartieDecimale - 1; j >= 0; j--) {
                 tmp = 0;
                 for (i = 0; i < matriceOprerande.length; i++) {
                     tmp = tmp + matriceOprerande[i].decimal[j];
                 }
                 tmpSomme.unshift(tmp);
             }
+
             var taille;
             var p;
             var f;
@@ -157,9 +196,15 @@ function Addition() {
                         retenues.unshift(parseInt(f));
                     }
                 } else {
+                    if (i == 0) {
+                        retenues.unshift(" ");
+                        tmpSomme.unshift(".");
+                    }
                     retenues.unshift(0);
                 }
             }
+           
+
             if (tmpSomme.length > 0) {
                 diff = tmpSomme.length - 1;
             } else {
@@ -171,24 +216,33 @@ function Addition() {
                 retenueDepart = retenues[0];
             }
 
-            for (j = MaxPartieEntiere - 1; j >= 0; j--) {
+            for (j = maxPartieEntiere - 1; j >= 0; j--) {
                 tmp = 0;
                 for (i = 0; i < matriceOprerande.length; i++) {
                     tmp = tmp + matriceOprerande[i].entiere[j];
                 }
-                if (j === MaxPartieEntiere - 1) {
-                    if (tmpSomme[0]) {
-                        tmpSomme[0] = tmp + retenueDepart;
+                if (j === maxPartieEntiere - 1) {
+                    if (tmpSomme[0] != ".") {
+                        if (tmpSomme[0]) {
+                            tmpSomme[0] = tmp + retenueDepart;
+                        } else {
+                            tmpSomme.unshift(tmp + retenueDepart);
+                        }
                     } else {
                         tmpSomme.unshift(tmp + retenueDepart);
                     }
                 } else {
-                    tmpSomme.unshift(tmp);
+                    if (tmpSomme[0] != ".") {
+                        tmpSomme.unshift(tmp + retenueDepart);
+                    } else {
+                        tmpSomme.unshift(tmp);
+                    }
                 }
             }
-
+             
             for (i = tmpSomme.length - diff - 1; i >= 0; i--) {
                 taille = String(tmpSomme[i]).length;
+
                 if (taille > 1) {
                     p = String(tmpSomme[i])[taille - 1];
                     f = String(tmpSomme[i]).substring(0, taille - 1);
@@ -221,8 +275,10 @@ function Addition() {
                             retenues.unshift(parseInt(f));
                         }
                     }
-                } else {
-                    if (i !== 0) {
+                } 
+                else {
+                    if (i == 0) {
+                        
                         retenues.unshift(0);
                     }
                 }
@@ -232,13 +288,20 @@ function Addition() {
             for (i = 0; i < tmpSomme.length; i++) {
                 valCreateResultat += String(tmpSomme[i]);
             }
+            
+                       
             resultat = new Nombre(parseFloat(valCreateResultat));
+            if(valCreateResultat[valCreateResultat.length-2]=="."){
+                if(valCreateResultat[valCreateResultat.length-1]=="0"){
+                    resultat.setPartieDecimale(0);
+                }
+            }
 
         };
 
         /**
          * @public
-         * @description Renvoie le résultat de l'addition
+         * @description text
          * @returns {Nombre}
          */
         this.getResultat = function getResultat() {
@@ -246,7 +309,7 @@ function Addition() {
         };
         /**
          * @public
-         * @description Renvoie le tableau des retenues
+         * @description text
          * @returns {Array}
          */
         this.getRetenues = function getRetenues() {
@@ -254,50 +317,27 @@ function Addition() {
         };
         /**
          * @public
-         * @description Renvoie le tableau des opérandes
+         * @description text
          * @returns {Array}
          */
         this.getOperande = function getOperande() {
             return operande;
         };
-		
         /**
          * @public
-         * @description Calcule la taille de la partie entière la plus longue parmis les opérandes
-         * @returns {Array}
+         * @description text
+         * @returns lgMaxPartieEntiere
          */
-        this.longueurMaxPartieEntiere = function longueurMaxPartieEntiere() {
-	        var longueurMax = 0;
-	        if (listArgument.length > 0) {
-	            for (i = 0; i < operande.length; i++) {
-	                if (operande[i].getPartieEntiere().length > longueurMax) {
-	                    longueurMax = operande[i].getPartieEntiere().length;
-	                }
-	            }
-	        }
-	        return longueurMax;
+        this.getLgMaxPartieEntiere = function getLgMaxPartieEntiere() {
+            return lgMaxPartieEntiere;
         };
-		
         /**
          * @public
-         * @description Calcule la taille de la partie décimale la plus longue parmis les opérandes
-         * @returns {Array}
+         * @description text
+         * @returns lgMaxPartieDecimale
          */
-        this.longueurMaxPartieDecimale = function longueurMaxPartieDecimale() {
-	        var longueurMax = 0;
-	        if (listArgument.length > 0) {
-	            for (i = 0; i < operande.length; i++) {
-	                if (operande[i].getPartieDecimale().length >= longueurMax) {
-	                    longueurMax = operande[i].getPartieDecimale().length;
-	                }
-	            }
-	        }
-	        return longueurMax;
-        };
-	
-
+        this.getLgMaxPartieDecimale = function getLgMaxPartieDecimale() {
+            return lgMaxPartieDecimale;
+        };		
     }
 }
-
-
-
