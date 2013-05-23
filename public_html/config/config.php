@@ -7,10 +7,10 @@ if (isset($_POST['configuration'])) {
     fwrite($fp, $data);
     fclose($fp);
     $reponse = array("reponse" => "success");
-    echo json_decode($reponse);
+    echo json_encode($reponse);
 } else {
     $reponse = array("reponse" => "error");
-    echo json_decode($reponse);
+    echo json_encode($reponse);
 }
 
 ?>
