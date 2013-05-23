@@ -32,9 +32,15 @@ and open the template in the editor.
                 console.log(addition.getRetenues());
                 console.log(addition.getResultat().getPartieEntiere(), addition.getResultat().getPartieDecimale());
                 var textEnonce = "Résoudre l\'addition en spécifiant les retenues";
+				
+				//Type de correction : Correction Simpe = 0; Correction Suivie = 1; 
 
-                grille.poserOparationAddition(addition, textEnonce);
-				// grille.lancerAdditionAPoser(addition, "defaut");
+				// grille.poserOparationAddition(addition, 0, textEnonce);
+				// grille.poserOparationAddition(addition, 1, textEnonce);
+				// grille.lancerAdditionAPoser(addition, 0, "defaut");
+				grille.lancerAd	ditionAPoser(addition, 1, "defaut");
+				
+
             }
         </script>
     </body>
