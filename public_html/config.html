@@ -19,17 +19,19 @@ and open the template in the editor.
             <div class="row">
                 <div class="span12">
                     <div class="row">
-                        <div class="span9">
+                        <div class="page-header">
                             <h2>Configuration du poseur d'opération</h2> 
-                            <a class="btn btn-primary pull-right" href="index.html">Poseur d'opération</a>
+                            <a class="btn btn-primary pull-right" style="margin-top:-40px;" href="index.html"><i class="icon-share-alt icon-white"></i> Retour au poseur d'opération</a>
                         </div>
 
                     </div>
 
                     <div class="row">
+
                         <div class="span12">
-                            <h3>Categories: </h3>
+                            <h3>Menu de configutation: </h3>
                             <ul class="nav nav-tabs nav-stacked">
+                                <li class='active'><a href="#">Table des matières</a></li>
                                 <li><a href="#1">Couleur </a></li>
                                 <li><a href="#2">Cellule </a></li>
                                 <li><a href="#3">Correction </a></li>
@@ -39,51 +41,100 @@ and open the template in the editor.
                             <br>
                             <h2>Couleur <small>Choix des différentes couleurs pour la grille </small></h2>
                             <div class="row">
-                                <div class="span8">
+                                <div id="zoneCouleur">
+                                </div>
+                                <div class="span10">
                                     <div class="row">
                                         <div class="span8">
                                             <h4 style="margin-left:5px;">
-                                                <strong><a href="#">Choix des couleurs</a></strong>
+                                                <strong><a href="#">Couleur choisie</a></strong>
                                                 <p class="pull-right">Palette de couleur</p>
                                             </h4>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="span2">
-                                            <a href="#" class="thumbnail" style="margin-left:5px;"><img src="http://placehold.it/260x180"  alt=""></a>
+                                        <div class="span2"  >
+                                            <a href="#" class="thumbnail display:bloc;text-align:center;" >
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 117" style="margin:3px;width: 100%; height: 117;">
+                                                <rect x="000" width="155" id="CouleurSelectionne" height="130" fill="#f00000"/>
+                                                </svg>
+                                            </a>
                                         </div>
-                                        <div class="span6">
+                                        <div class="span1">
+
+                                        </div>
+                                        <div class="span7">
                                             <div class="tabbable tabs-left">
 
-                                                <ul class="nav nav-tabs" style="padding-top:15px;margin-left:-20px;">
-                                                    <li class="active"><a href="#A" data-toggle="tab">Marge</a></li>
-                                                    <li><a href="#B" data-toggle="tab">Partie Entière</a></li>
-                                                    <li><a href="#C" data-toggle="tab">Partie Décimale</a></li>
-                                                    <li><a href="#D" data-toggle="tab">Rétenue</a></li>
-                                                    <li><a href="#E" data-toggle="tab">Résultat</a></li>
-
+                                                <ul class="nav nav-tabs" id="choixCouleur" style="padding-top:15px;margin-left:-20px;">
+                                                    <li class="active" id="AA"><a href="#A" id="couleurMarge" data-toggle="tab">Marge</a></li>
+                                                    <li id="BB"><a href="#B" id="couleurAvantVirgule" data-toggle="tab" >Partie Entière</a></li>
+                                                    <li id="CC"><a href="#C" id="couleurApresVirgule" data-toggle="tab">Partie Décimale</a></li>
+                                                    <li id="DD"><a href="#D" id="couleurVirgule" data-toggle="tab">Virgule</a></li>
+                                                    <li id="EE"><a href="#E" id="couleurRetenue" data-toggle="tab">Rétenue</a></li>
+                                                    <li id="FF"><a href="#F" id="couleurResultat" data-toggle="tab">Résultat</a></li>
                                                 </ul>
 
-                                                <div class="tab-content">
+                                                <div class="tab-content" id="divChoixCouleur">
                                                     <div class="tab-pane active" id="A">
-                                                        <p><span class="label label-success" ><i class="icon-camera" style="margin-right:3px;"></i>Code RGBA:</span> <span class="label label-info" >Code HTML:</span> <span class="label" >Code RVB</span></p>
-                                                        <img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="">
+                                                        <p>Code RGBA: <span class="label label-success" id="codeRGBA" ></span> | Code HTML: <span class="label label-info" id="codeHTML" ></span></p>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" id="listeCouleurSVG" viewBox="0 0 410 85" style="width: 410; height: 85;">
+                                                        <rect x="000" width="80" height="80" fill="#f00000"/>
+                                                        <rect x="082" width="80" height="80" fill="#ff8000"/>
+                                                        <rect x="164" width="80" height="80" fill="#ffff00"/>
+                                                        <rect x="246" width="80" height="80" fill="#007940"/>
+                                                        <rect x="328" width="80" height="80" fill="#4040ff"/>
+                                                        </svg>
                                                     </div>
                                                     <div class="tab-pane" id="B">
-                                                        <p><span class="label label-success" ><i class="icon-camera" style="margin-right:3px;"></i>Code RGBA:</span> <span class="label label-info" >Code HTML:</span> <span class="label" >Code RVB</span></p>
-                                                        <img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="">
+                                                        <p>Code RGBA: <span class="label label-success" id="codeRGBA" ></span> | Code HTML: <span class="label label-info" id="codeHTML" ></span></p>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" id="listeCouleurSVG" viewBox="0 0 410 85" style="width: 410; height: 85;">
+                                                        <rect x="000" width="80" height="80" fill="#f00000"/>
+                                                        <rect x="082" width="80" height="80" fill="#ff8000"/>
+                                                        <rect x="164" width="80" height="80" fill="#ffff00"/>
+                                                        <rect x="246" width="80" height="80" fill="#007940"/>
+                                                        <rect x="328" width="80" height="80" fill="#4040ff"/>
+                                                        </svg>
                                                     </div>
                                                     <div class="tab-pane" id="C">
-                                                        <p><span class="label label-success" ><i class="icon-camera" style="margin-right:3px;"></i>Code RGBA:</span> <span class="label label-info" >Code HTML:</span> <span class="label" >Code RVB</span></p>
-                                                        <img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="">
+                                                        <p>Code RGBA: <span class="label label-success" id="codeRGBA" ></span> | Code HTML: <span class="label label-info" id="codeHTML" ></span></p>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" id="listeCouleurSVG" viewBox="0 0 410 85" style="width: 410; height: 85;">
+                                                        <rect x="000" width="80" height="80" fill="#f00000"/>
+                                                        <rect x="082" width="80" height="80" fill="#ff8000"/>
+                                                        <rect x="164" width="80" height="80" fill="#ffff00"/>
+                                                        <rect x="246" width="80" height="80" fill="#007940"/>
+                                                        <rect x="328" width="80" height="80" fill="#4040ff"/>
+                                                        </svg>
                                                     </div>
                                                     <div class="tab-pane" id="D">
-                                                        <p><span class="label label-success" ><i class="icon-camera" style="margin-right:3px;"></i>Code RGBA:</span> <span class="label label-info" >Code HTML:</span> <span class="label" >Code RVB</span></p>
-                                                        <img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="">
+                                                        <p>Code RGBA: <span class="label label-success" id="codeRGBA" ></span> | Code HTML: <span class="label label-info" id="codeHTML" ></span></p>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" id="listeCouleurSVG" viewBox="0 0 410 85" style="width: 410; height: 85;">
+                                                        <rect x="000" width="80" height="80" fill="#f00000"/>
+                                                        <rect x="082" width="80" height="80" fill="#eed5b8"/>
+                                                        <rect x="164" width="80" height="80" fill="#ffff00"/>
+                                                        <rect x="246" width="80" height="80" fill="#007940"/>
+                                                        <rect x="328" width="80" height="80" fill="#4040ff"/>
+                                                        </svg>
                                                     </div>
                                                     <div class="tab-pane" id="E">
-                                                        <p><span class="label label-success" ><i class="icon-camera" style="margin-right:3px;"></i>Code RGBA:</span> <span class="label label-info" >Code HTML:</span> <span class="label" >Code RVB</span></p>
-                                                        <img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="" style="margin-right:5px;"><img src="http://placehold.it/80x80" alt="">
+                                                        <p>Code RGBA: <span class="label label-success" id="codeRGBA" ></span> | Code HTML: <span class="label label-info" id="codeHTML" ></span></p>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" id="listeCouleurSVG" viewBox="0 0 410 85" style="width: 410; height: 85;">
+                                                        <rect x="000" width="80" height="80" fill="#f00000"/>
+                                                        <rect x="082" width="80" height="80" fill="#000000"/>
+                                                        <rect x="164" width="80" height="80" fill="#ffff00"/>
+                                                        <rect x="246" width="80" height="80" fill="#007940"/>
+                                                        <rect x="328" width="80" height="80" fill="#4040ff"/>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="tab-pane" id="F">
+                                                        <p>Code RGBA: <span class="label label-success" id="codeRGBA" ></span> | Code HTML: <span class="label label-info" id="codeHTML" ></span></p>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" id="listeCouleurSVG" viewBox="0 0 410 85" style="width: 410; height: 85;">
+                                                        <rect x="000" width="80" height="80" fill="#f00000"/>
+                                                        <rect x="082" width="80" height="80" fill="#000000"/>
+                                                        <rect x="164" width="80" height="80" fill="#ffff00"/>
+                                                        <rect x="246" width="80" height="80" fill="#007940"/>
+                                                        <rect x="328" width="80" height="80" fill="#4040ff"/>
+                                                        </svg>
                                                     </div>
                                                 </div>
                                             </div> <!-- /tabbable -->
@@ -93,7 +144,7 @@ and open the template in the editor.
                                     <div class="row">
                                         <div class="span8" style="margin-bottom:0px;">
                                             <p style="margin-left:5px;">
-                                                by <a href="#">Palette de couleur pour miope</a> | Sept 16th, 2012 <button class="btn btn-primary pull-right" style="margin-right:5px;">Enregistré</button>
+                                                <a href="https://fr.wikipedia.org/wiki/Daltonisme#Pr.C3.A9sentation" target="_blank">Information sur les couleurs visibles par les daltoniens</a>  <a class="btn btn-primary pull-right" id="enregistrerCouleur" style="margin-right:5px;">Enregistré</a>
                                             </p>
                                         </div>
                                     </div>
@@ -104,38 +155,40 @@ and open the template in the editor.
                             <br>
                             <h2>Cellule <small>Dimensionnement des cellules de la grille</small></h2>
                             <div class="row">
+                                <div id="zoneTaille">
+                                </div>
                                 <div class="span8">
                                     <form class="form-horizontal well">
                                         <fieldset>
                                             <h4>Choix de la taille d'une cellule !</h4>
                                             <div class="control-group">
                                                 <label class="control-label" >Taille en pixel</label>
-                                                <div class="controls">
+                                                <div class="controls" id="tailleCellule">
                                                     <label class="radio">
-                                                        <input type="radio" name="tailleCellule" value="30" id="" checked/>
+                                                        <input type="radio" name="tailleCellule" value="30" id="tailleCellule_30" />
                                                         30 </label>
                                                     <label for="web" class="radio">
-                                                        <input type="radio" name="tailleCellule" value="40" id="" />
+                                                        <input type="radio" name="tailleCellule" value="40" id="tailleCellule_40" />
                                                         40 </label>
                                                     <label for="hasard" class="radio">
-                                                        <input type="radio" name="tailleCellule" value="45" id="" />
+                                                        <input type="radio" name="tailleCellule" value="45" id="tailleCellule_45" />
                                                         45</label>
                                                 </div>
                                             </div>
                                             <h4>Choix de la taille entre deux cellules !</h4>
                                             <div class="control-group">
                                                 <label class="control-label" >Taille en pixel</label>
-                                                <div class="controls">
+                                                <div class="controls" id="tailleContour">
                                                     <label  class="radio">
-                                                        <input type="radio" name="tailleContour" value="2" id="" checked/>
+                                                        <input type="radio" name="tailleContour" value="2" id="tailleContour_2"/>
                                                         2 </label>
                                                     <label for="web" class="radio">
-                                                        <input type="radio" name="tailleContour" value="4" id="" />
+                                                        <input type="radio" name="tailleContour" value="4" id="tailleContour_4" />
                                                         4 </label>
                                                 </div>
                                             </div>
                                             <div class="form-actions">
-                                                <button type="submit" class="btn btn-primary pull-right">Enrégistré</button>
+                                                <a id="enregistrerTaille" class="btn btn-primary pull-right">Enrégistré</a>
                                             </div>
                                         </fieldset>
                                     </form>
@@ -146,6 +199,8 @@ and open the template in the editor.
                             <br>
                             <h2>Correction <small>Choix des constantes et règles de correction</small></h2>
                             <div class="row">
+                                <div id="zoneCorrection">
+                                </div>
                                 <div class="span8">
                                     <form class="form-horizontal well">
                                         <fieldset>
@@ -154,13 +209,13 @@ and open the template in the editor.
                                                 <label class="control-label" >Rétenue obligatoire</label>
                                                 <div class="controls">
                                                     <label class="checkbox">
-                                                        <input type="checkbox" name="retenueobligatoire" id="optionsCheckbox" value="true">
+                                                        <input type="checkbox" name="retenueobligatoire" id="retenueObligatoire" value="true" >
                                                         True
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="form-actions">
-                                                <button type="submit" class="btn btn-primary pull-right">Enregistré</button>
+                                                <a id="enregistrerRetenueObligatoire" class="btn btn-primary pull-right">Enregistré</a>
                                             </div>
                                         </fieldset>
                                     </form>
@@ -176,6 +231,7 @@ and open the template in the editor.
                 <p>Projet ingénieur de <a href="http://www.telecom-bretagne.com" target="_blank">Télécom Bretagne</a> | <a href="#" target="_blank">Sésamath</a> |   <a href="https://github.com/kane073/Poseur_Operation" target="_blank" class="btn">Git Hub</a></p>	</footer>
 
         </div>
+        <script type="text/javascript" src="config/config.js"></script>
 
     </body>
 </html>

@@ -30,6 +30,9 @@ function Addition() {
      * @type Nombre
      */
     var resultat = new Nombre(0);
+	
+	var lgMaxPartieEntiere = 0;
+	var lgMaxPartieDecimale = 0;
 
     /**
      * @private
@@ -95,6 +98,7 @@ function Addition() {
                 }
             }
         }
+		lgMaxPartieEntiere = longueurMax;
         return longueurMax;
     }
     /**
@@ -112,6 +116,7 @@ function Addition() {
                 }
             }
         }
+		lgMaxPartieDecimale = longueurMax;
         return longueurMax;
     }
     if (verifieLongueurDeChaqueArgument() && verifieNumbreArgument()) {
@@ -127,6 +132,7 @@ function Addition() {
         this.resoudreAddition = function resoudreAddition() {
             var maxPartieEntiere = longueurMaxPartieEntiere();
             var maxPartieDecimale = longueurMaxPartieDecimale();
+			
             var matriceOprerande = [];
             
             for (i = 0; i < operande.length; i++) {
@@ -317,9 +323,21 @@ function Addition() {
         this.getOperande = function getOperande() {
             return operande;
         };
-
+        /**
+         * @public
+         * @description text
+         * @returns lgMaxPartieEntiere
+         */
+        this.getLgMaxPartieEntiere = function getLgMaxPartieEntiere() {
+            return lgMaxPartieEntiere;
+        };
+        /**
+         * @public
+         * @description text
+         * @returns lgMaxPartieDecimale
+         */
+        this.getLgMaxPartieDecimale = function getLgMaxPartieDecimale() {
+            return lgMaxPartieDecimale;
+        };		
     }
 }
-
-
-

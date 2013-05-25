@@ -12,15 +12,42 @@ and open the template in the editor.
         <script type="text/javascript" src="js/Grillage.js"></script>
         <script type="text/javascript" src="js/Nombre.js"></script>
         <script type="text/javascript" src="js/Addition.js"></script>
+        <script type="text/javascript" src="js/Soustraction.js"></script>
+        <script type='text/javascript' src='config/config2.js'></script>
+
 
     </head>
     <body>
-        
+
         <div id="operation">
 
         </div>
-        <a href="config.html">Configuration</a>
         <script type="text/javascript" src="js/global.js"></script>
+        <script type="text/javascript">
+            configuration = getFileConfig();
 
+            if (configuration) {
+                var grille = new Grillage("operation", configuration);
+//                var addition = new Addition(1347.1, 871.2, 224.574);
+//                addition.resoudreAddition();
+//                console.log(addition.getRetenues());
+//                console.log(addition.getResultat().getPartieEntiere(), addition.getResultat().getPartieDecimale());
+//                var textEnonce = "Résoudre l\'addition 1347.1, 871.2, 224.574 en spécifiant les retenues";
+
+                //Type de correction : Correction Simpe = 0; Correction Suivie = 1; 
+
+//                 grille.poserOparationAddition(addition, 0, textEnonce);
+//                 grille.poserOparationAddition(addition, 1, textEnonce);
+//				grille.lancerAdditionAPoser(addition, 0, "defaut");
+                // grille.lancerAdditionAPoser(addition, 1, "defaut");
+                
+                var soustraction = new Soustraction(914.712, 91.24);
+                soustraction.resoudreSoustraction();
+                console.log(soustraction.getRetenues());
+                console.log(soustraction.getResultat().getPartieEntiere(), soustraction.getResultat().getPartieDecimale());
+                var textEnonce = "Résoudre l\'soustraction en spécifiant les retenues";
+                grille.poserOparationSoustraction(soustraction, 0, textEnonce);
+            }
+        </script>
     </body>
 </html>
