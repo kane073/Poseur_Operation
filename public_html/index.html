@@ -28,25 +28,38 @@ and open the template in the editor.
 
             if (configuration) {
                 var grille = new Grillage("operation", configuration);
-//                var addition = new Addition(1347.1, 871.2, 224.574);
-//                addition.resoudreAddition();
-//                console.log(addition.getRetenues());
-//                console.log(addition.getResultat().getPartieEntiere(), addition.getResultat().getPartieDecimale());
-//                var textEnonce = "Résoudre l\'addition 1347.1, 871.2, 224.574 en spécifiant les retenues";
 
-                //Type de correction : Correction Simpe = 0; Correction Suivie = 1; 
-
-//                 grille.poserOparationAddition(addition, 0, textEnonce);
-//                 grille.poserOparationAddition(addition, 1, textEnonce);
-//				grille.lancerAdditionAPoser(addition, 0, "defaut");
-                // grille.lancerAdditionAPoser(addition, 1, "defaut");
-                
-                var soustraction = new Soustraction(914.712, 91.24);
+				
+				// ----------------- Declarer une addition -----------------
+				{
+				// var addition = new Addition(13, 570);
+				// addition.resoudreAddition();
+				// var textEnonce = "Résoudre l\'addition 1347.1, 871.2, 224.574 en spécifiant les retenues";
+				// ----------------- Optionnel -----------------
+				// console.log(addition.getRetenues());
+				// console.log(addition.getResultat().getPartieEntiere(), addition.getResultat().getPartieDecimale());
+                // ----------------- Choix de correction : Correction Simpe := 0 ou Correction Suivie := 1 -----------------
+				// grille.poserOparationAddition(addition, 0, textEnonce);
+				// grille.poserOparationAddition(addition, 1, textEnonce);
+				// grille.lancerOperationAPoser(addition, 0, "defaut");
+				// grille.lancerOperationAPoser(addition, 1, "defaut");
+				}
+						
+				// ----------------- Declarer une Soustratction -----------------
+				{
+                var soustraction = new Soustraction(914, 91.24);
                 soustraction.resoudreSoustraction();
-                console.log(soustraction.getRetenues());
-                console.log(soustraction.getResultat().getPartieEntiere(), soustraction.getResultat().getPartieDecimale());
                 var textEnonce = "Résoudre l\'soustraction en spécifiant les retenues";
-                grille.poserOparationSoustraction(soustraction, 0, textEnonce);
+				// ----------------- Optionnel -----------------
+                // console.log(soustraction.getRetenues());
+                // console.log(soustraction.getResultat().getPartieEntiere(), soustraction.getResultat().getPartieDecimale());
+                // ----------------- Choix de correction : Correction Simpe := 0 ou Correction Suivie := 1 -----------------
+                // grille.poserOparationSoustraction(soustraction, 0, textEnonce);
+				grille.lancerOperationAPoser(soustraction, 0, "defaut");
+				// grille.lancerOperationAPoser(soustraction, 1, "defaut");
+				}
+				
+				
             }
         </script>
     </body>
