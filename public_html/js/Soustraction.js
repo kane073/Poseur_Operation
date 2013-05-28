@@ -75,8 +75,21 @@ function Soustraction() {
     }
     ;
     remplissageOperande();
-
-
+    
+    
+    function realignementRetenueDesOperandes(){
+        
+        tailleSuperieur = operandeSuperieur.getPartieDecimale().length;
+        tailleInferieur = operandeInferieur.getPartieDecimale().length;
+        console.log([tailleSuperieur, tailleInferieur]);
+        if( tailleSuperieur < tailleInferieur ){
+            for(i=0;i<(tailleInferieur-tailleSuperieur);i++){
+                operandeSuperieur.setPartieDecimale(0);
+            }
+        }
+    }
+    realignementRetenueDesOperandes();
+    
     /**
      * @private
      * @description Verifie que chaque argument est compris entre 1 et 18 chiffre
@@ -130,11 +143,15 @@ function Soustraction() {
         lgMaxPartieDecimale = longueurMax;
         return longueurMax;
     }
+    
+    
     if (verifieLongueurDeChaqueArgument()) {
 
         this.isEmpty = function isEmpty() {
 
         };
+        
+        
         /**
          * @public
          * @description text 
