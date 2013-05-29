@@ -53,8 +53,8 @@ function Soustraction() {
             return false;
         }
     }
-    
-    
+
+
     /**
      * @private
      * @description Crèe des types Nombres et les mets dans l'atribut operande
@@ -63,7 +63,7 @@ function Soustraction() {
         if (verifieNombreArgument()) {
             var operande1 = new Nombre(listArgument[0]);
             var operande2 = new Nombre(listArgument[1]);
-            
+
             if (operande1.getValeur() > operande2.getValeur()) {
                 operandeSuperieur = operande1;
                 operandeInferieur = operande2;
@@ -76,6 +76,19 @@ function Soustraction() {
     ;
     remplissageOperande();
 
+
+    function realignementRetenueDesOperandes() {
+        tailleSuperieur = operandeSuperieur.getPartieDecimale().length;
+        tailleInferieur = operandeInferieur.getPartieDecimale().length;
+        if (tailleSuperieur != 0 || tailleInferieur != 0) {
+            if (tailleSuperieur < tailleInferieur) {
+                for (i = 0; i < (tailleInferieur - tailleSuperieur); i++) {
+                    operandeSuperieur.setPartieDecimale(0);
+                }
+            }
+        }
+    }
+    realignementRetenueDesOperandes();
 
     /**
      * @private
@@ -90,8 +103,9 @@ function Soustraction() {
             alert("L'un des arguments est supérieur à 15 caractères!");
         }
         return reponse;
-    };
-   
+    }
+    ;
+
     /**
      * @private
      * @description 
@@ -130,11 +144,15 @@ function Soustraction() {
         lgMaxPartieDecimale = longueurMax;
         return longueurMax;
     }
+
+
     if (verifieLongueurDeChaqueArgument()) {
 
         this.isEmpty = function isEmpty() {
 
         };
+
+
         /**
          * @public
          * @description text 

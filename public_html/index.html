@@ -29,6 +29,7 @@ and open the template in the editor.
             if (configuration) {
                 var grille = new Grillage("operation", configuration);
 
+<<<<<<< HEAD
 				
 				// ----------------- Declarer une addition -----------------
 				{
@@ -54,12 +55,45 @@ and open the template in the editor.
                 // console.log(soustraction.getRetenues());
                 // console.log(soustraction.getResultat().getPartieEntiere(), soustraction.getResultat().getPartieDecimale());
                 // ----------------- Choix de correction : Correction Simpe := 0 ou Correction Suivie := 1 -----------------
-                // grille.poserOparationSoustraction(soustraction, 0, textEnonce);
-				grille.lancerOperationAPoser(soustraction, 0, "defaut");
+                grille.poserOparationSoustraction(soustraction, 0, textEnonce);
+				// grille.lancerOperationAPoser(soustraction, 0, "defaut");
 				// grille.lancerOperationAPoser(soustraction, 1, "defaut");
 				}
 				
 				
+=======
+
+                // ----------------- Declarer une addition -----------------
+                {
+                    // var addition = new Addition(13, 570);
+                    // addition.resoudreAddition();
+                    // var textEnonce = "Résoudre l\'addition 1347.1, 871.2, 224.574 en spécifiant les retenues";
+                    // ----------------- Optionnel -----------------
+                    // console.log(addition.getRetenues());
+                    // console.log(addition.getResultat().getPartieEntiere(), addition.getResultat().getPartieDecimale());
+                    // ----------------- Choix de correction : Correction Simpe := 0 ou Correction Suivie := 1 -----------------
+                    // grille.poserOparationAddition(addition, 0, textEnonce);
+                    // grille.poserOparationAddition(addition, 1, textEnonce);
+                    // grille.lancerOperationAPoser(addition, 0, "defaut");
+                    // grille.lancerOperationAPoser(addition, 1, "defaut");
+                }
+
+                // ----------------- Declarer une Soustratction -----------------
+                {
+                    var soustraction = new Soustraction(914, 91.241);
+                    soustraction.resoudreSoustraction();
+                    var textEnonce = "Résoudre l\'soustraction en spécifiant les retenues";
+                    // ----------------- Optionnel -----------------
+                    // console.log(soustraction.getRetenues());
+                    // console.log(soustraction.getResultat().getPartieEntiere(), soustraction.getResultat().getPartieDecimale());
+                    // ----------------- Choix de correction : Correction Simpe := 0 ou Correction Suivie := 1 -----------------
+//                     grille.poserOparationSoustraction(soustraction, 0, textEnonce);
+                    grille.lancerOperationAPoser(soustraction, 0, "defaut");
+//                    grille.lancerOperationAPoser(soustraction, 1, "defaut");
+                }
+
+
+>>>>>>> ff4d083d0dd9ce44267680ae09642808cfa35755
             }
         </script>
     </body>
