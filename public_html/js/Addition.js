@@ -30,9 +30,9 @@ function Addition() {
      * @type Nombre
      */
     var resultat = new Nombre(0);
-	
-	var lgMaxPartieEntiere = 0;
-	var lgMaxPartieDecimale = 0;
+
+    var lgMaxPartieEntiere = 0;
+    var lgMaxPartieDecimale = 0;
 
     /**
      * @private
@@ -92,13 +92,13 @@ function Addition() {
     function longueurMaxPartieEntiere() {
         var longueurMax = 0;
         if (listArgument.length > 0) {
-            for (i = 0; i < operande.length; i++) {
+            for (var i = 0; i < operande.length; i++) {
                 if (operande[i].getPartieEntiere().length > longueurMax) {
                     longueurMax = operande[i].getPartieEntiere().length;
                 }
             }
         }
-		lgMaxPartieEntiere = longueurMax;
+        lgMaxPartieEntiere = longueurMax;
         return longueurMax;
     }
     /**
@@ -116,7 +116,7 @@ function Addition() {
                 }
             }
         }
-		lgMaxPartieDecimale = longueurMax;
+        lgMaxPartieDecimale = longueurMax;
         return longueurMax;
     }
     if (verifieLongueurDeChaqueArgument() && verifieNumbreArgument()) {
@@ -130,173 +130,81 @@ function Addition() {
          * @requires operande
          */
         this.resoudreAddition = function resoudreAddition() {
-            var maxPartieEntiere = longueurMaxPartieEntiere();
+
+            var somme = 0;
+            for (var i = 0; i < operande.length; i++) {
+                somme = operande[i].getValeur() + somme;
+            }
+            resultat = new Nombre(somme);
+
             var maxPartieDecimale = longueurMaxPartieDecimale();
-			
-            var matriceOprerande = [];
-            
-            for (i = 0; i < operande.length; i++) {
-               
-                var tmpPartieDecimal = [];
-                if (operande[i].getPartieDecimale().length < maxPartieDecimale) {
-                    for (j = 0; j < maxPartieDecimale; j++) {
-                        if (j < operande[i].getPartieDecimale().length) {
-                            tmpPartieDecimal.push(parseInt(operande[i].getPartieDecimale()[j]));
-                        } else {
-                            tmpPartieDecimal.push(0);
-                        }
+            var positionVirgule = maxPartieDecimale;
+            var tabOperande = [];
+            var tabTemporaire = [];
+            var tabOperandeString = [];
+            for (var key in operande) {
+                tabTemporaire.push(operande[key].getValeur());
+            }
+            tabTemporaire.sort();
+            for (var key in tabTemporaire) {
+                tabOperande.push(new Nombre(tabTemporaire[key]));
+                var tailleNombre = tabOperande[key].getPartieDecimale().length;
+                if (maxPartieDecimale > tailleNombre) {
+                    for (var i = 0; i < (maxPartieDecimale - tailleNombre); i++) {
+                        tabOperande[key].setPartieDecimale(0);
                     }
                 }
-                else {
-                    tmpPartieDecimal = operande[i].getPartieDecimale();
-                }
-                var tmpPartieEntiere = [];
-                if (operande[i].getPartieEntiere().length < maxPartieEntiere) {
-                    for (j = 0; j < maxPartieEntiere; j++) {
-                        if (j < operande[i].getPartieEntiere().length) {
-                            tmpPartieEntiere.push(parseInt(operande[i].getPartieEntiere()[j]));
-                        } else {
-                            tmpPartieEntiere.unshift(0);
-                        }
+                tabOperandeString.push(String(tabOperande[key].getValeur()).split(".")[0]);
+                if (maxPartieDecimale != 0) {
+                    for (var key2 in tabOperande[key].getPartieDecimale()) {
+                        tabOperandeString[key] = tabOperandeString[key] + tabOperande[key].getPartieDecimale()[key2];
                     }
+                }
+            }
+            var C = [];
+            var indice = 0;
+            var retenue = 0;
+            var objRetenue = [];
+            var sommeTmp = 0;
+            while (indice < tabOperandeString[0].length) {
+                for (var j = 0; j < tabOperandeString.length; j++) {
+                    sommeTmp = parseInt((tabOperandeString[j][tabOperandeString[j].length - 1 - indice])) + sommeTmp;
+                }
+                C[indice] = sommeTmp + retenue;
+                objRetenue[indice] = retenue;
+                retenue = parseInt(C[indice] / 10);
+                C[indice] = C[indice] % 10;
+                indice++;
+                sommeTmp = 0;
+            }
+            for (var i = 1; i < tabOperande.length; i++) {
+                while (indice < tabOperandeString[i].length) {
+                    for (var j = i; j < tabOperandeString.length; j++) {
+                        sommeTmp = parseInt((tabOperandeString[j][tabOperandeString[j].length - 1 - indice])) + sommeTmp;
+                    }
+                    C[indice] = sommeTmp + retenue;
+                    objRetenue[indice] = retenue;
+                    retenue = parseInt(C[indice] / 10);
+                    C[indice] = C[indice] % 10;
+                    indice++;
+                    sommeTmp = 0;
+                }
+            }
+            if (retenue > 0) {
+                C[indice] = retenue;
+                objRetenue[indice] = retenue;
+            }
+            var tableauRetenue = [];
+            for (var i = 0; i < objRetenue.length; i++) {
+                if (i == positionVirgule - 1) {
+                    tableauRetenue.push(objRetenue[i]);
+                    tableauRetenue.push(" ");
                 } else {
-                    tmpPartieEntiere = operande[i].getPartieEntiere();
-                }
-                matriceOprerande.push({entiere: tmpPartieEntiere, decimal: tmpPartieDecimal});
-            }
-            
-            
-            var tmpSomme = [];
-            var tmp = 0;
-            for (j = maxPartieDecimale - 1; j >= 0; j--) {
-                tmp = 0;
-                for (i = 0; i < matriceOprerande.length; i++) {
-                    tmp = tmp + matriceOprerande[i].decimal[j];
-                }
-                tmpSomme.unshift(tmp);
-            }
-
-            var taille;
-            var p;
-            var f;
-            var diff = 0;
-            for (i = tmpSomme.length - 1; i >= 0; i--) {
-                taille = String(tmpSomme[i]).length;
-                if (taille > 1) {
-                    p = String(tmpSomme[i])[taille - 1];
-                    f = String(tmpSomme[i]).substring(0, taille - 1);
-                    tmpSomme[i] = parseInt(p);
-                    if (i <= 0) {
-                        retenues.unshift(" ");
-                        tmpSomme.unshift(".");
-                        tmpSomme.unshift(parseInt(f));
-                        retenues.unshift(parseInt(f));
-                    } else {
-                        tmpSomme[i - 1] = tmpSomme[i - 1] + parseInt(f);
-                        retenues.unshift(parseInt(f));
-                    }
-                } else {
-                    if (i == 0) {
-                        retenues.unshift(" ");
-                        tmpSomme.unshift(".");
-                    }
-                    retenues.unshift(0);
-                }
-            }
-           
-
-            if (tmpSomme.length > 0) {
-                diff = tmpSomme.length - 1;
-            } else {
-                diff;
-            }
-
-            var retenueDepart = 0;
-            if (retenues[0]) {
-                retenueDepart = retenues[0];
-            }
-
-            for (j = maxPartieEntiere - 1; j >= 0; j--) {
-                tmp = 0;
-                for (i = 0; i < matriceOprerande.length; i++) {
-                    tmp = tmp + matriceOprerande[i].entiere[j];
-                }
-                if (j === maxPartieEntiere - 1) {
-                    if (tmpSomme[0] != ".") {
-                        if (tmpSomme[0]) {
-                            tmpSomme[0] = tmp + retenueDepart;
-                        } else {
-                            tmpSomme.unshift(tmp + retenueDepart);
-                        }
-                    } else {
-                        tmpSomme.unshift(tmp + retenueDepart);
-                    }
-                } else {
-                    if (tmpSomme[0] != ".") {
-                        tmpSomme.unshift(tmp + retenueDepart);
-                    } else {
-                        tmpSomme.unshift(tmp);
-                    }
-                }
-            }
-             
-            for (i = tmpSomme.length - diff - 1; i >= 0; i--) {
-                taille = String(tmpSomme[i]).length;
-
-                if (taille > 1) {
-                    p = String(tmpSomme[i])[taille - 1];
-                    f = String(tmpSomme[i]).substring(0, taille - 1);
-                    tmpSomme[i] = parseInt(p);
-                    if (f.length <= 1) {
-                        if (i <= 0) {
-                            tmpSomme.unshift(parseInt(f));
-                            retenues.unshift(parseInt(f));
-                        } else {
-                            tmpSomme[i - 1] = tmpSomme[i - 1] + parseInt(f);
-                            retenues.unshift(parseInt(f));
-                        }
-                    } else {
-                        sf = f.substring(0, f.length - 1);
-                        if (i <= 0) {
-                            tmpSomme.unshift(parseInt(f));
-                            retenues.unshift(parseInt(f));
-                            if (f.length > 1) {
-                                for (z = 0; z < f.length; z++) {
-                                    if (tmpSomme[i]) {
-                                        tmpSomme[i] = parseInt(f[z + f.length - 1]);
-                                    } else {
-                                        tmpSomme.unshift(parseInt(f[f.length - z - 1]));
-                                        retenues.unshift(parseInt(f[f.length - z - 1]));
-                                    }
-                                }
-                            }
-                        } else {
-                            tmpSomme[i - 1] = tmpSomme[i - 1] + parseInt(f);
-                            retenues.unshift(parseInt(f));
-                        }
-                    }
-                } 
-                else {
-                    if (i == 0) {
-                        
-                        retenues.unshift(0);
-                    }
+                    tableauRetenue.push(objRetenue[i]);
                 }
             }
 
-            var valCreateResultat = "";
-            for (i = 0; i < tmpSomme.length; i++) {
-                valCreateResultat += String(tmpSomme[i]);
-            }
-            
-                       
-            resultat = new Nombre(parseFloat(valCreateResultat));
-            if(valCreateResultat[valCreateResultat.length-2]=="."){
-                if(valCreateResultat[valCreateResultat.length-1]=="0"){
-                    resultat.setPartieDecimale(0);
-                }
-            }
-
+            retenues = tableauRetenue.reverse();
         };
 
         /**
@@ -338,6 +246,6 @@ function Addition() {
          */
         this.getLgMaxPartieDecimale = function getLgMaxPartieDecimale() {
             return lgMaxPartieDecimale;
-        };		
+        };
     }
 }

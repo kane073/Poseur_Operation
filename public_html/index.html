@@ -5,62 +5,25 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Poseur d'operation</title>
+        <title>Poseur d'opération</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="libs/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
         <link href="css/poseuroperation.css" rel="stylesheet" type="text/css">
+        
+        <script type="text/javascript" src="libs/jquery/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="libs/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="libs/IE/excanvas.js"></script>
         <script type="text/javascript" src="js/Grillage.js"></script>
         <script type="text/javascript" src="js/Nombre.js"></script>
         <script type="text/javascript" src="js/Addition.js"></script>
         <script type="text/javascript" src="js/Soustraction.js"></script>
-        <script type='text/javascript' src='config/config2.js'></script>
-
+        <script type="text/javascript" src="js/global.js"></script>
+        <script type="text/javascript" src="js/poseurchargement.js"></script>
 
     </head>
     <body>
 
-        <div id="operation">
-
-        </div>
-        <script type="text/javascript" src="js/global.js"></script>
-        <script type="text/javascript">
-            configuration = getFileConfig();
-
-            if (configuration) {
-                var grille = new Grillage("operation", configuration);
-
-				
-				// ----------------- Declarer une addition -----------------
-				{
-				// var addition = new Addition(13, 570);
-				// addition.resoudreAddition();
-				// var textEnonce = "Résoudre l\'addition 1347.1, 871.2, 224.574 en spécifiant les retenues";
-				// ----------------- Optionnel -----------------
-				// console.log(addition.getRetenues());
-				// console.log(addition.getResultat().getPartieEntiere(), addition.getResultat().getPartieDecimale());
-                // ----------------- Choix de correction : Correction Simpe := 0 ou Correction Suivie := 1 -----------------
-				// grille.poserOparationAddition(addition, 0, textEnonce);
-				// grille.poserOparationAddition(addition, 1, textEnonce);
-				// grille.lancerOperationAPoser(addition, 0, "defaut");
-				// grille.lancerOperationAPoser(addition, 1, "defaut");
-				}
-						
-				// ----------------- Declarer une Soustratction -----------------
-				{
-                var soustraction = new Soustraction(914, 91.24);
-                soustraction.resoudreSoustraction();
-                var textEnonce = "Résoudre l\'soustraction en spécifiant les retenues";
-				// ----------------- Optionnel -----------------
-                // console.log(soustraction.getRetenues());
-                // console.log(soustraction.getResultat().getPartieEntiere(), soustraction.getResultat().getPartieDecimale());
-                // ----------------- Choix de correction : Correction Simpe := 0 ou Correction Suivie := 1 -----------------
-                // grille.poserOparationSoustraction(soustraction, 0, textEnonce);
-				grille.lancerOperationAPoser(soustraction, 0, "defaut");
-				// grille.lancerOperationAPoser(soustraction, 1, "defaut");
-				}
-				
-				
-            }
-        </script>
     </body>
 </html>
